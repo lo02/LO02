@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Joueur {
 	
@@ -5,7 +7,22 @@ public class Joueur {
 	protected String nom = "";
 	protected int nbreMenhir = 0;
 	protected int nbreGraine = 0;
-
+	protected List<Carte> main = new ArrayList<Carte>();	
+	
+	
+	public void remplirMainJoueur()
+	{
+		List<Carte> tempTas = new ArrayList<Carte>();
+		tempTas.addAll(Carte.getTasDeCartes());
+		
+		for(int i=1;i<5;i++)
+		{
+			main.add(tempTas.get(i));
+			tempTas.remove(i);
+		}
+		Carte.setTasDeCartes(tempTas);		
+	}
+	
 	public String getNom() {
 		return nom;
 	}
