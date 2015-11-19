@@ -1,5 +1,7 @@
 
 public class Joueur {
+	
+
 	protected String nom = "";
 	protected int nbreMenhir = 0;
 	protected int nbreGraine = 0;
