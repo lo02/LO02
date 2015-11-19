@@ -1,10 +1,8 @@
 
 public class StrategyNormal implements Strategy {
 	
-	public void normal (){
-		
-	}
-	public void offensive() {
+	//Avec cette strategie le joueur virtuel va chercher à prendre des graines avec le géant
+	public void jouerCarte(){
 		
 	}
 }

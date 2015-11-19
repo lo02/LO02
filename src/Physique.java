@@ -6,4 +6,18 @@ public class Physique extends Joueur{
 		
 	}
 	
+	//méthodes que le joueur va pouvoir utiliser pour pouvoir gérer une partie
+	public void choisirPartie(){
+		
+	}
+	public void arreterPartie(){
+		
+	}
+	public void mettrePause(){
+		
+	}
+	public void voirCarte(){
+		
+	}
+	
 }

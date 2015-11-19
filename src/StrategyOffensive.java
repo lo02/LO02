@@ -1,16 +1,12 @@
 
 public class StrategyOffensive implements Strategy{
 
-	
-	public void normal() {
-		
+	//Avec cette strategie le joueur virtuel va chercher à prendre des graines avec un farfadet
+	public void jouerCarte() {
 		
 	}
 
 	
-	public void offensive() {
-		
-		
-	}
+	
 
 }
