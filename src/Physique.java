@@ -5,5 +5,17 @@ public class Physique extends Joueur{
 		super(nom, nbreMenhir, nbreGraine);
 		
 	}
+	public void choisirPartie(){
+				
+			}
+			public void arreterPartie(){
+				
+			}
+			public void mettrePause(){
+				
+			}
+			public void voirCarte(){
+				
+			}
 	
 }
