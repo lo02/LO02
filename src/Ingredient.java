@@ -1,32 +1,25 @@
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.DocumentBuilder;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
+	import java.util.List;
+	import javax.xml.parsers.DocumentBuilderFactory;
+	import javax.xml.parsers.DocumentBuilder;
+	import org.w3c.dom.Document;
+	import org.w3c.dom.NodeList;
+	import org.w3c.dom.Node;
+	import org.w3c.dom.Element;
+	import java.io.File;
+	import java.util.*;
 
 
-public class Carte {
+
+public class Ingredient extends Card {
 	private String name = "";
 	private int[] geant = new int[4];
 	private int[] farfadet = new int[4];
 	private int[] engrais = new int[4];
-	private static List<Carte> tasdecartes = new ArrayList<Carte>();	
+	private static List<Card> tasdecartes = new ArrayList<Card>();	
+
 	
-	
-	
-	
-	public Carte()
-	{
-		
-	}
-	
-	public static void initialisationCartes() {
+
+	public void initialisationCartes() {
 		//System.out.println("dsqdqcxvcxdddddsd");
 	    try {
 
@@ -40,7 +33,7 @@ public class Carte {
 		nList = doc.getElementsByTagName("printemps");
 		for (int i=0; i< nList.getLength() ; i++)
 		{	
-			Carte carte= new Carte();
+			Card carte= new Ingredient();
 			nList = doc.getElementsByTagName("ID"+i);
 			Node nNode = nList.item(0);
 			
@@ -110,7 +103,7 @@ public class Carte {
 		return engrais;
 	}
 	
-	public static List<Carte> getTasDeCartes() {
+	public  List<Card> getTasDeCartes() {
 		return tasdecartes;
 	}
 
@@ -118,7 +111,7 @@ public class Carte {
 		this.engrais[index] = engrais ;
 	}
 	
-	public static void setTasDeCartes(List<Carte> cartes) {
+	public void setTasDeCartes(List<Card> cartes) {
 		tasdecartes.clear();
 		tasdecartes.addAll(cartes);
 	}
@@ -128,6 +121,15 @@ public class Carte {
 		
 		return "\t"+name+"\n"+geant[0]+"\t"+geant[1]+"\t"+geant[2]+"\t"+geant[3]+"\n"+engrais[0]+"\t"+engrais[1]+"\t"+engrais[2]+"\t"+engrais[3]+"\n"+farfadet[0]+"\t"+farfadet[1]+"\t"+farfadet[2]+"\t"+farfadet[3];
 	}
+
+	@Override
+	public void setValeur(int parseInt, int j) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 	}
 	
 
