@@ -7,10 +7,7 @@ public class Virtuel extends Joueur implements Strategy{
 		super(nom, nbreMenhir, nbreGraine);	
 		this.strategy = strategy;
 	}
-	public void normal(){
-		
-	}
-	public void offensive(){
+	public void jouerCarte(){
 		
 	}
 }
