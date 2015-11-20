@@ -26,8 +26,8 @@ public class Carte {
 		
 	}
 	
-	public void initialisationCartes() {
-
+	public static void main(String[] args) {
+		System.out.println("dsqdqsd");
 	    try {
 
 		File fXmlFile = new File("ab.xml");
