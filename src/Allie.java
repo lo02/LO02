@@ -20,13 +20,14 @@ public class Allie extends Card {
 	private int[] valeur = new int[4];
 	private String titre = "";
 	
-	public static void main(String[] args)
+/*	TEST SEULEMENT
+ * public static void main(String[] args)
 	{
 		Card allie = new Allie();
 		allie.initialisationCartes();
 		System.out.println(tasdecartes.toString());
 		
-	}
+	}*/
 	
 	
 	public void initialisationCartes() {
