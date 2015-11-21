@@ -114,6 +114,7 @@ public class Allie extends Card {
 
 	@Override
 	public String toString(){
+		//Nous permet d'afficher le carte
 		return "\t"+this.titre+"\n"+this.valeur[0]+"\t"+this.valeur[1]+"\t"+this.valeur[2]+"\t"+this.valeur[3];
 	
 	}
