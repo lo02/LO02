@@ -2,7 +2,8 @@ import java.util.List;
 public abstract class Card {
 
 
-
+		// Je pense qu'il y problème, on devrait plutôt mettre setGean, setEngrais,setFarfadet dans la classe
+		// Ingrédiant
 		public abstract  void initialisationCartes();
 		public abstract List<Card> getTasDeCartes();
 		public abstract void setTasDeCartes(List<Card> cartes);
