@@ -57,7 +57,5 @@ public class Joueur {
 	
 	public List<Card> getMain(){
 		return this.main;
-	}
-	
-	
+	}	
 }
