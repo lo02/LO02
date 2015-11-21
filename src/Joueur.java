@@ -7,20 +7,22 @@ public class Joueur {
 	protected String nom = "";
 	protected int nbreMenhir = 0;
 	protected int nbreGraine = 0;
-	protected List<Carte> main = new ArrayList<Carte>();	
+	protected List<Card> main = new ArrayList<Card>();	
 	
 	
 	public void remplirMainJoueur()
 	{
-		List<Carte> tempTas = new ArrayList<Carte>();
-		tempTas.addAll(Carte.getTasDeCartes());
+		Card tasDeCarte = new Ingredient();
+		List<Card> tempTas = new ArrayList<Card>();
+		tempTas.addAll(tasDeCarte.getTasDeCartes());
 		
-		for(int i=1;i<5;i++)
+		for(int i=0;i<4;i++)
 		{
 			main.add(tempTas.get(i));
 			tempTas.remove(i);
+			
 		}
-		Carte.setTasDeCartes(tempTas);		
+		tasDeCarte.setTasDeCartes(tempTas);		
 	}
 	
 	public String getNom() {
@@ -51,6 +53,10 @@ public class Joueur {
 
 	public void setNbreGraine(int nbreGraine) {
 		this.nbreGraine = nbreGraine;
+	}
+	
+	public List<Card> getMain(){
+		return this.main;
 	}
 	
 	
