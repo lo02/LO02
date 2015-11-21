@@ -43,7 +43,9 @@ public class Partie {
 		for (int i=0 ; i <partie.getListJoueur().size() ; i++)
 		{
 			partie.getListJoueur().get(i).remplirMainJoueur();
-			System.out.println(partie.getListJoueur().get(i).getMain());
+			
+	
+			System.out.println("joueur"+i+"\n"+partie.getListJoueur().get(i).getMain());
 		}		
 	}
 	

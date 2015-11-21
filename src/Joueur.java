@@ -12,18 +12,24 @@ public class Joueur {
 	
 	public void remplirMainJoueur()
 	{
+		
 		Card tasDeCarte = new Ingredient();
+		System.out.println("a"+tasDeCarte.getTasDeCartes());
+		
+		// linked list mettre un queue
 		List<Card> tempTas = new ArrayList<Card>();
 		tempTas.addAll(tasDeCarte.getTasDeCartes());
 		
 		for(int i=0;i<4;i++)
 		{
-			main.add(tempTas.get(i));
-			tempTas.remove(i);
+			main.add(tempTas.get(0));
+			System.out.println(i);
+			tempTas.remove(0);
 			
 		}
 		tasDeCarte.setTasDeCartes(tempTas);		
-		System.out.println(tasDeCarte.getTasDeCartes());
+	
+		
 	}
 	
 	public String getNom() {
