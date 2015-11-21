@@ -140,6 +140,20 @@ public class Allie extends Card {
 		
 	}
 
+
+	@Override
+	public int[] getGeant() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public int[] getEngrais() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }

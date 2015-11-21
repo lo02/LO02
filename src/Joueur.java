@@ -14,7 +14,6 @@ public class Joueur {
 	{
 		
 		Card tasDeCarte = new Ingredient();
-		System.out.println("a"+tasDeCarte.getTasDeCartes());
 		
 		// linked list mettre un queue
 		List<Card> tempTas = new ArrayList<Card>();
@@ -23,7 +22,6 @@ public class Joueur {
 		for(int i=0;i<4;i++)
 		{
 			main.add(tempTas.get(0));
-			System.out.println(i);
 			tempTas.remove(0);
 			
 		}
@@ -65,4 +63,39 @@ public class Joueur {
 	public List<Card> getMain(){
 		return this.main;
 	}	
+	
+	public void poserCarte(int index , int action )
+	{
+		if (action==0)
+		{
+			this.nbreGraine=this.getNbreGraine()+this.main.get(index).getGeant()[Partie.getTour()];
+		}
+		else {
+			if (action==1)
+			{
+				this.planterGraines(this.main.get(index).getEngrais()[Partie.getTour()]);
+			}
+		}
+	}
+	
+	public void poserCarte(int index , Joueur joueurCible)
+	{
+		
+	}
+	public void planterGraines(int nbrGrainesCarte){
+		if(nbrGrainesCarte <= this.nbreGraine)
+		{
+			this.nbreGraine = this.nbreGraine - nbrGrainesCarte;
+			this.nbreMenhir = this.nbreMenhir + nbrGrainesCarte;
+		}else
+		{
+			if(nbrGrainesCarte > this.nbreGraine)
+			{
+				this.nbreMenhir = this.nbreMenhir + this.nbreGraine;
+				this.nbreGraine = 0;
+			}
+		}
+		
+	}
+	
 }

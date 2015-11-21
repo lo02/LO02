@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 //C'est dans cette classe que le déroulement d'une partie va s'organiser
 public class Partie {
-	protected int tour = 4;
-	protected int manche = 4;
+	protected static int tour = 0;
+	protected static int manche = 0;
 	protected int nbreJoueur = 0;
 	protected List<Joueur> listeJoueur = new ArrayList<Joueur>();
 	
@@ -21,7 +21,7 @@ public class Partie {
 		boolean vrai = true;
 		while(vrai)
 		{
-			System.out.println("1 - rapide\n 2 - avancée ");
+			System.out.println("1 - rapide\n2 - avancée ");
 			int reponse = saisie.nextInt();
 			switch (reponse)
 			{
@@ -43,17 +43,21 @@ public class Partie {
 		for (int i=0 ; i <partie.getListJoueur().size() ; i++)
 		{
 			partie.getListJoueur().get(i).remplirMainJoueur();
-			
 	
-			System.out.println("joueur"+i+"\n"+partie.getListJoueur().get(i).getMain());
-		}		
+		}
+		// On affiche la main 
+		System.out.println(partie.getListJoueur().get(0).getMain());
+		partie.getListJoueur().get(0).poserCarte(1, 0);
+		System.out.println(partie.getListJoueur().get(0).getNbreGraine());
+		
+		
 	}
 	
 	public Partie (int nbreJoueur){
 		this.nbreJoueur = nbreJoueur;
 	}
 	
-	public int getTour() {
+	public static int getTour() {
 		return tour;
 	}
 	public void setTour(int tour) {
