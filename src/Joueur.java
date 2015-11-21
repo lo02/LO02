@@ -23,6 +23,7 @@ public class Joueur {
 			
 		}
 		tasDeCarte.setTasDeCartes(tempTas);		
+		System.out.println(tasDeCarte.getTasDeCartes());
 	}
 	
 	public String getNom() {

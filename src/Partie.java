@@ -89,7 +89,7 @@ public class Partie {
 	public void factoryJoueurs()
 	{
 		// On va créer tous les joueurs nécessaires pour le déroulement du jeu
-		System.out.println(this.nbreJoueur);
+		
 		for(int i=0;i < this.nbreJoueur+1;i++)
 		{
 			Joueur joueur = new Joueur("",0,2);
