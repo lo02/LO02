@@ -84,9 +84,9 @@ public class Partie {
 		carte.initialisationCartes();
 		
 		// On remplit la main de chaque joueur
-		for (int i=0 ; i <partie.getListJoueur().size() ; i++)
+		for (int i=0 ; i <this.getListJoueur().size() ; i++)
 		{
-			partie.getListJoueur().get(i).remplirMainJoueur();
+			this.getListJoueur().get(i).remplirMainJoueur();
 		}
 		
 		
