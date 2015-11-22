@@ -154,6 +154,13 @@ public class Allie extends Card {
 		return null;
 	}
 
+
+	@Override
+	public int[] getFarfadet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }

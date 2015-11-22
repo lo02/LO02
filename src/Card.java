@@ -11,6 +11,7 @@ public abstract class Card {
 		public abstract void setEngrais(int parseInt, int j);
 		public abstract int[] getGeant();
 		public abstract int[] getEngrais();
+		public abstract int[] getFarfadet();
 		public abstract void setFarfadet(int parseInt, int j);
 		public abstract void setName(String attribute);
 		public abstract void setValeur(int parseInt, int j);

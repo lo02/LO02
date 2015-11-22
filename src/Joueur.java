@@ -80,6 +80,24 @@ public class Joueur {
 	
 	public void poserCarte(int index , Joueur joueurCible)
 	{
+	
+		int nbrGrainesJoueur = joueurCible.getNbreGraine();
+		int nbrGrainesCarte = this.main.get(index).getFarfadet()[Partie.getTour()];
+		if(nbrGrainesCarte <= nbrGrainesJoueur)
+		{
+			joueurCible.setNbreGraine(nbrGrainesJoueur - nbrGrainesCarte); 
+			this.nbreMenhir = this.nbreMenhir + nbrGrainesCarte;
+		}else
+		{
+			if(nbrGrainesCarte > this.nbreGraine)
+			{
+				this.nbreMenhir = this.nbreMenhir + nbrGrainesJoueur;
+				joueurCible.setNbreGraine(0);
+			}
+		}
+		
+		
+				
 		
 	}
 	public void planterGraines(int nbrGrainesCarte){
