@@ -78,10 +78,13 @@ public class Partie {
 	
 	
 	//Méthodes qui vont nous permettre de jouer les deux types de partie.
-	public void jouerPartieRapide(){
+	public void jouerPartieRapide(int nbreJoueur){
+		//On crée un instance carte qui va contenir notre tas de carte
 		Card carte = new Ingredient();
-		
 		carte.initialisationCartes();
+		
+		
+		
 		
 		
 	}
