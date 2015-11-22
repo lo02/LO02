@@ -88,6 +88,7 @@ public class Joueur {
 				this.planterGraines(this.main.get(index).getEngrais()[Partie.getTour()]);
 			}
 		}
+		this.main.remove(index);
 	}
 	
 	//Méthode poserCarte pour l'action farfadet
@@ -113,7 +114,7 @@ public class Joueur {
 				joueurCible.setNbreGraine(0);
 			}
 		}
-		
+		this.main.remove(index);
 		
 				
 		

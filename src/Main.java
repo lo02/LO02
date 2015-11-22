@@ -57,14 +57,14 @@ public class Main {
 				System.out.println("Choisir la carte à jouer 0 - 3 \n"+j.getMain());
 				int carte = saisie.nextInt();
 				System.out.println(partie.getListJoueur());
-				System.out.println("Quel type de jeu : 0- géant \n1- engrais\n2- Farfadet");
+				System.out.println("Quel type de jeu : \n0- géant \n1- engrais\n2- Farfadet");
 				int jeu = saisie.nextInt();
 				if(jeu==2)
 				{
 					System.out.print("Quel joueur voulez vous voler ?");
-					for(int i = 0 ; i<partie.getListJoueur().size(); i++)
+					for(int i = 1 ; i<partie.getListJoueur().size(); i++)
 					{
-						System.out.println("Tapez "+i+"pour \n"+partie.getListJoueur().get(i));
+						System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
 					}
 					int cible = saisie.nextInt();
 					j.poserCarte(carte, partie.getListJoueur().get(cible));
@@ -73,7 +73,7 @@ public class Main {
 					j.poserCarte(carte, jeu);
 					
 				}
-				partie.tour();
+				//partie.tour();
 				
 			}
 			
