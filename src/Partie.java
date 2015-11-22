@@ -78,7 +78,7 @@ public class Partie {
 	
 	
 	//Méthodes qui vont nous permettre de jouer les deux types de partie.
-	public void jouerPartieRapide(){
+	public void initierPartieRapide(){
 		//On crée un instance carte qui va contenir notre tas de carte
 		Card carte = new Ingredient();
 		carte.initialisationCartes();
@@ -88,9 +88,6 @@ public class Partie {
 		{
 			this.getListJoueur().get(i).remplirMainJoueur();
 		}
-		
-		
-		
 		
 	}
 	public void jouerPartieAvancee(){

@@ -1,14 +1,16 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] argc){
 		//on demande de joueur physique de se donner un nom
-		Joueur j = new Joueur(); 
+		
 		Scanner sc = new Scanner(System.in); 
 		System.out.println("Saisissez votre nom : ");
 		String nom = sc.nextLine();
 		//On met le nom dans le joueur
-		j.setNom(nom);
+		Joueur j = new Joueur(nom,0,0); 
 		System.out.println("Vous vous appelez : " +nom +"\n" + j);
 		
 		
@@ -17,19 +19,27 @@ public class Main {
 		System.out.println("Saisissez le nombre de joueurs entre 1 et 5 ");
 		Partie partie = new Partie(saisie.nextInt());
 		
-		//partie.setListJoueur();
+		//On ajoute le joueur physique dans la liste des joueurs  
+		List<Joueur> listeTemp =  new ArrayList<Joueur>(); 
+		listeTemp = partie.getListJoueur();
+		listeTemp.add(j);
+		partie.setListJoueur(listeTemp);
+		
+		
 		//On crée les joueurs virtuel
 		partie.factoryJoueurs();
 		
 		// Partie Rapide ou Avancée 
 		boolean vrai = true;
+		System.out.println("1 - rapide\n2 - avancée ");
+		int reponse = saisie.nextInt();
 		while(vrai)
 		{
-			System.out.println("1 - rapide\n2 - avancée ");
-			int reponse = saisie.nextInt();
+			
+			
 			switch (reponse)
 			{
-				case 1: partie.jouerPartieRapide();
+				case 1: partie.initierPartieRapide();
 				vrai = false;
 				break;
 				case 2: partie.jouerPartieAvancee();
@@ -39,6 +49,37 @@ public class Main {
 				break;
 			}
 		}
+		
+		if(reponse == 1)
+		{
+			for(int tour=0 ; tour <4 ; tour++) 
+			{
+				System.out.println("Choisir la carte à jouer 0 - 3 \n"+j.getMain());
+				int carte = saisie.nextInt();
+				System.out.println(partie.getListJoueur());
+				System.out.println("Quel type de jeu : 0- géant \n1- engrais\n2- Farfadet");
+				int jeu = saisie.nextInt();
+				if(jeu==2)
+				{
+					System.out.print("Quel joueur voulez vous voler ?");
+					for(int i = 0 ; i<partie.getListJoueur().size(); i++)
+					{
+						System.out.println("Tapez "+i+"pour \n"+partie.getListJoueur().get(i));
+					}
+					int cible = saisie.nextInt();
+					j.poserCarte(carte, partie.getListJoueur().get(cible));
+				}else
+				{
+					j.poserCarte(carte, jeu);
+					
+				}
+				partie.tour();
+				
+			}
+			
+			
+		}
+		
 		
 		
 	}
