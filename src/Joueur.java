@@ -35,6 +35,7 @@ public class Joueur {
 		return nom;
 	}
 
+	
 	public Joueur(String nom, int nbreMenhir, int nbreGraine) {
 		this.nom = nom;
 		this.nbreMenhir = nbreMenhir;
@@ -135,65 +136,9 @@ public class Joueur {
 
 	public String toString()
 	{
-		return "Joueur " + this.nom +"\n- Nombres ménhirs : "+ this.nbreMenhir +"\n- Nombres graines : "+ this.nbreGraine;
+		return "\nJoueur " + this.nom +"\n- Nombres ménhirs : "+ this.nbreMenhir +"\n- Nombres graines : "+ this.nbreGraine;
 	
 	}
 	
-	public String aleaName()
-	{
-		
-		
-		String[] names = {"Elkantar",
-				"Ilphrin",
-				"Jarlaxe",
-				"Riklaunim",
-				"Nym",
-				"Vorn",
-				"Ranaghar",
-				"Bruherd",
-				"Tluth",
-				"Welverin",
-				"Berg'inyon",
-				"Tluth",
-				"Nilomim",
-				"Dinin",
-				"Drizzt",
-				"Seldszar",
-				"Tebryn",
-				"Krondorl",
-				"Chaszmyr",
-				"Seldszar",
-				"Mourn",
-				"Welverin",
-				"Kalannar",
-				"Nilomim",
-				"Ilphrin",
-				"Ryld",
-				"Tluth",
-				"Alak",
-				"Pharaun",
-				"Sabrar",
-				"Istolil",
-				"Vuzlyn",
-				"Ranaghar",
-				"Amalica",
-				"Ilphrin",
-				"Istolil",
-				"Tathyn",
-				"Guldor",
-				"Calimar",
-				"Malaggar",
-				"Nadal",
-				"Dilvolg",
-				"Duagolth",
-				"Chaszmyr",
-				"Dilvolg",
-				"Tebryn",
-				"Vorn"};
-		
-		Random rand = new Random();
-		int nombreAleatoire = rand.nextInt( 49 );
-		return names[nombreAleatoire];
 	
-	}
 }
