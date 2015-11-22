@@ -64,30 +64,43 @@ public class Joueur {
 		return this.main;
 	}	
 	
+	
+	// Méthode poser carte qui va permettre de jouer Engrais ou Géant
 	public void poserCarte(int index , int action )
 	{
+		// Si le joueur joue le géant, alors il entre dans cette condition
 		if (action==0)
 		{
+			//Le nombre de graines du joueur augmentent
 			this.nbreGraine=this.getNbreGraine()+this.main.get(index).getGeant()[Partie.getTour()];
 		}
+		// si il joue l'engrais il entre alors dans cette condition  
 		else {
+			
 			if (action==1)
 			{
+				// Il plante alors ses grainnes pour en faire des Menhirs
 				this.planterGraines(this.main.get(index).getEngrais()[Partie.getTour()]);
 			}
 		}
 	}
 	
+	//Méthode poserCarte pour l'action farfadet
 	public void poserCarte(int index , Joueur joueurCible)
 	{
 	
+		//variable qui va compter le nombre de graine de la cible
 		int nbrGrainesJoueur = joueurCible.getNbreGraine();
+		// variable qui contient le nombre de graine que le farfadet peut voler
 		int nbrGrainesCarte = this.main.get(index).getFarfadet()[Partie.getTour()];
+		//On mais une condition pour savoir si le joueur à assez de graine
+		//Si le joueur en a plus, on lui enlève la quantité qui se trouve sur la carte
 		if(nbrGrainesCarte <= nbrGrainesJoueur)
 		{
 			joueurCible.setNbreGraine(nbrGrainesJoueur - nbrGrainesCarte); 
 			this.nbreMenhir = this.nbreMenhir + nbrGrainesCarte;
 		}else
+			//sinon on va lui retirer toute ses graines
 		{
 			if(nbrGrainesCarte > this.nbreGraine)
 			{
