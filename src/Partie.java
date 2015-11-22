@@ -80,6 +80,7 @@ public class Partie {
 	//Méthodes qui vont nous permettre de jouer les deux types de partie.
 	public void jouerPartieRapide(){
 		Card carte = new Ingredient();
+		
 		carte.initialisationCartes();
 		
 		
