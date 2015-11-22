@@ -119,7 +119,23 @@ public class Partie {
 		for(int i=1;i<this.listeJoueur.size();i++)
 		{
 			this.listeJoueur.get(i).poserCarte(this.listeJoueur.get(i).choisirCarte()[0], this.listeJoueur.get(i).choisirCarte()[1]);
+		
 		}
+	}
+	
+	public int chercherGagnant()
+	{	
+		int max=0;
+		int id = 0;
+		
+		for(int i=0 ; i<this.listeJoueur.size(); i++)
+		{
+			if (this.listeJoueur.get(i).getNbreMenhir()>= max ){
+				id = i;
+				max = this.listeJoueur.get(i).getNbreMenhir();
+			}
+		}
+		return id;
 	}
 	
 }

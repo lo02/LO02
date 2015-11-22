@@ -10,7 +10,7 @@ public class Main {
 		System.out.println("Saisissez votre nom : ");
 		String nom = sc.nextLine();
 		//On met le nom dans le joueur
-		Joueur j = new Joueur(nom,0,0); 
+		Joueur j = new Joueur(nom,0,2); 
 		System.out.println("Vous vous appelez : " +nom +"\n" + j);
 		
 		
@@ -54,9 +54,10 @@ public class Main {
 		{
 			for(int tour=0 ; tour <4 ; tour++) 
 			{
+				partie.setTour(tour);
+				System.out.println(partie.getListJoueur());
 				System.out.println("Choisir la carte à jouer 0 - 3 \n"+j.getMain());
 				int carte = saisie.nextInt();
-				System.out.println(partie.getListJoueur());
 				System.out.println("Quel type de jeu : \n0- géant \n1- engrais\n2- Farfadet");
 				int jeu = saisie.nextInt();
 				if(jeu==2)
@@ -67,15 +68,20 @@ public class Main {
 						System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
 					}
 					int cible = saisie.nextInt();
+					System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
 					j.poserCarte(carte, partie.getListJoueur().get(cible));
 				}else
 				{
+					System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
 					j.poserCarte(carte, jeu);
-					partie.setTour(tour);
+					
 				}
+				
 				partie.gererTour();
 				
 			}
+			System.out.println("\nScore Final : \n"+partie.getListJoueur()+"\nLe gagnant est : \n"+ partie.getListJoueur().get(partie.chercherGagnant()));
+			
 			
 			
 		}

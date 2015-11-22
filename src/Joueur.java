@@ -140,7 +140,7 @@ public class Joueur {
 
 	public String toString()
 	{
-		return "\nJoueur " + this.nom +"\n- Nombres ménhirs : "+ this.nbreMenhir +"\n- Nombres graines : "+ this.nbreGraine;
+		return "Joueur " + this.nom +":\n- Nombres ménhirs : "+ this.nbreMenhir +"\n- Nombres graines : "+ this.nbreGraine+"\n\n====================\n\n";
 	
 	}
 	
