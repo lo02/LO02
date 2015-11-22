@@ -9,6 +9,9 @@ public class Joueur {
 	protected int nbreGraine = 0;
 	protected List<Card> main = new ArrayList<Card>();	
 	
+	public Joueur (){
+		this.nom = "";
+	}
 	
 	public void remplirMainJoueur()
 	{

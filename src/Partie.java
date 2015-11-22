@@ -10,7 +10,7 @@ public class Partie {
 	protected List<Joueur> listeJoueur = new ArrayList<Joueur>();
 	
 	
-	public static void main(String[] argc)
+	/*public static void main(String[] argc)
 	{
 		// demande du nombre de joueurs
 		Scanner saisie = new Scanner(System.in); 
@@ -51,7 +51,7 @@ public class Partie {
 		System.out.println(partie.getListJoueur().get(0).getNbreGraine());
 		
 		
-	}
+	}*/
 	
 	public Partie (int nbreJoueur){
 		this.nbreJoueur = nbreJoueur;
@@ -78,11 +78,16 @@ public class Partie {
 	
 	
 	//Méthodes qui vont nous permettre de jouer les deux types de partie.
-	public void jouerPartieRapide(int nbreJoueur){
+	public void jouerPartieRapide(){
 		//On crée un instance carte qui va contenir notre tas de carte
 		Card carte = new Ingredient();
 		carte.initialisationCartes();
 		
+		// On remplit la main de chaque joueur
+		for (int i=0 ; i <partie.getListJoueur().size() ; i++)
+		{
+			partie.getListJoueur().get(i).remplirMainJoueur();
+		}
 		
 		
 		
@@ -106,6 +111,10 @@ public class Partie {
 	public List<Joueur> getListJoueur()
 	{
 		return this.listeJoueur;
+	}
+	public void setListJoueur(List<Joueur> listeJoueur)
+	{
+		this.listeJoueur = listeJoueur;
 	}
 	
 }
