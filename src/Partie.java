@@ -46,10 +46,10 @@ public class Partie {
 	
 		}
 		// On affiche la main 
-		System.out.println(partie.getListJoueur().get(0).getMain());
-		partie.getListJoueur().get(0).poserCarte(1, 0);
-		System.out.println(partie.getListJoueur().get(0).getNbreGraine());
-		
+		//System.out.println(partie.getListJoueur().get(0).getMain());
+		//partie.getListJoueur().get(0).poserCarte(1, 0);
+		//System.out.println(partie.getListJoueur().get(0).getNbreGraine());
+		System.out.println(partie.getListJoueur());
 		
 	}*/
 	
@@ -101,9 +101,22 @@ public class Partie {
 	{
 		// On va créer tous les joueurs nécessaires pour le déroulement du jeu
 		
-		for(int i=0;i < this.nbreJoueur+1;i++)
+		for(int i=1;i < this.nbreJoueur+1;i++)
 		{
-			Joueur joueur = new Joueur("",0,2);
+			Virtuel joueur = new Virtuel(0,2) ;
+			if (this.listeJoueur.size()==0)
+			{
+				
+			}else
+			{
+				for (int j=0; j < this.listeJoueur.size() ; j++)
+				{
+					while(joueur.getNom()==this.listeJoueur.get(j).getNom())
+					{
+						joueur = new Virtuel(0,2); 
+					}
+				}
+			}	
 			this.listeJoueur.add(joueur);
 		}
 	}

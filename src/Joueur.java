@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Joueur {
 	
@@ -37,6 +38,7 @@ public class Joueur {
 		return nom;
 	}
 
+	
 	public Joueur(String nom, int nbreMenhir, int nbreGraine) {
 		this.nom = nom;
 		this.nbreMenhir = nbreMenhir;
@@ -129,7 +131,17 @@ public class Joueur {
 				this.nbreGraine = 0;
 			}
 		}
+	
 		
 	}
+	
+
+
+	public String toString()
+	{
+		return "\nJoueur " + this.nom +"\n- Nombres ménhirs : "+ this.nbreMenhir +"\n- Nombres graines : "+ this.nbreGraine;
+	
+	}
+	
 	
 }
