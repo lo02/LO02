@@ -71,9 +71,9 @@ public class Main {
 				}else
 				{
 					j.poserCarte(carte, jeu);
-					
+					partie.setTour(tour);
 				}
-				//partie.tour();
+				partie.gererTour();
 				
 			}
 			

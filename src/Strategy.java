@@ -1,5 +1,8 @@
 
+
 public interface Strategy {	
-	public void jouerCarte();
+	public int[] choisirCarte(Joueur joueur);
+
+	
 	
 }

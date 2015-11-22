@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class Virtuel extends Joueur implements Strategy{
+public class Virtuel extends Joueur {
 	
 	
 	public final static List<String> names = Arrays.asList("Elkantar","Ilphrin","Jarlaxe","Riklaunim","Nym","Vorn","Ranaghar","Bruherd","Tluth","Welverin","Berg'inyon","Tluth","Nilomim","Dinin","Drizzt","Seldszar","Tebryn","Krondorl","Chaszmyr","Seldszar","Mourn","Welverin","Kalannar","Nilomim","Ilphrin","Ryld","Tluth","Alak","Pharaun","Sabrar","Istolil","Vuzlyn","Ranaghar","Amalica","Ilphrin","Istolil","Tathyn","Guldor","Calimar","Malaggar","Nadal","Dilvolg","Duagolth","Chaszmyr","Dilvolg","Tebryn","Vorn");
@@ -29,8 +29,6 @@ public class Virtuel extends Joueur implements Strategy{
 	public static String aleaName()
 	{
 		
-		
-		namesDisponible.addAll(names);
 		Random rand = new Random();
 		int nombreAleatoire = rand.nextInt(namesDisponible.size());
 		String nom = namesDisponible.get(nombreAleatoire);
@@ -38,6 +36,13 @@ public class Virtuel extends Joueur implements Strategy{
 		
 		return nom ;
 	}
+	public int[] choisirCarte()
+	{
+		Strategy strategy = new StrategyNormal();
+		return strategy.choisirCarte(this);
+		
+	}
+	
 	
 	
 }

@@ -144,5 +144,9 @@ public class Joueur {
 	
 	}
 	
-	
+	public int[] choisirCarte()
+	{
+		
+		return null;
+	}
 }

@@ -115,4 +115,11 @@ public class Partie {
 		this.listeJoueur = listeJoueur;
 	}
 	
+	public void gererTour(){
+		for(int i=1;i<this.listeJoueur.size();i++)
+		{
+			this.listeJoueur.get(i).poserCarte(this.listeJoueur.get(i).choisirCarte()[0], this.listeJoueur.get(i).choisirCarte()[1]);
+		}
+	}
+	
 }
