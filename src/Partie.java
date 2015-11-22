@@ -101,22 +101,10 @@ public class Partie {
 	{
 		// On va créer tous les joueurs nécessaires pour le déroulement du jeu
 		
+		Virtuel.initialisationNom();
 		for(int i=1;i < this.nbreJoueur+1;i++)
 		{
-			Virtuel joueur = new Virtuel(0,2) ;
-			if (this.listeJoueur.size()==0)
-			{
-				
-			}else
-			{
-				for (int j=0; j < this.listeJoueur.size() ; j++)
-				{
-					while(joueur.getNom()==this.listeJoueur.get(j).getNom())
-					{
-						joueur = new Virtuel(0,2); 
-					}
-				}
-			}	
+			Virtuel joueur = new Virtuel(0,2);
 			this.listeJoueur.add(joueur);
 		}
 	}
