@@ -16,8 +16,7 @@ public class Virtuel extends Joueur {
 		//String nom23 = aleaName();
 		super(aleaName(), nbreMenhir, nbreGraine);
 	}
-	public void jouerCarte(){	
-	}
+	
 	public static void initialisationNom(){
 		namesDisponible.addAll(names);
 	}
@@ -72,7 +71,6 @@ public class Virtuel extends Joueur {
 	
 	/*Méthode qui va permettre de choisir soit une carte alliée soit 2 graines en début de manche en partie
 	 * avancée;
-	 * 
 	*/
 	public void choixDebutManche(){
 		//On regarde le nombre de graine, s'il n'as pas de graine il en prend
@@ -84,6 +82,20 @@ public class Virtuel extends Joueur {
 		{
 			this.remplirMainJoueurAllie();
 		}
+	}
+	
+	public int jouerChien(int valeur, String j, Joueur joueurCible){
+		//on regarde si il peut jouer son chien
+		if(this.getAllie().getValeur()[Partie.getTour()] > 0){
+			int val = this.getAllie().getValeur()[Partie.getTour()];
+			this.getAllie().deleteAllie();
+			return val;
+		}
+		else{
+			return 0;
+		}
+		
+		
 	}
 }
 	
