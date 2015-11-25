@@ -110,6 +110,7 @@ public class Virtuel extends Joueur {
 				else{
 					joueurCible.setNbreMenhir(joueurCible.getNbreMenhir()-this.getAllie().getValeur()[Partie.getTour()]);
 				}
+				
 			}
 		}
 	}
