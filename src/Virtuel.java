@@ -42,18 +42,21 @@ public class Virtuel extends Joueur {
 		return strategie.choisirCarte(this);
 		
 	}
+	// Méthode qui va permettre au joueur virtuel de séléctionner la meillleur stratégie entre normal et offensive
 	public Strategy choisirStrategie(Joueur joueur , Joueur joueurCible)
 	{
 			
 		boolean farfadet = false ;		
-		// on vérifie si Farfadet > géant 
+		// on vérifie si la valeur Farfadet > géant 
 			if(joueur.valeurMaxFarfadet()>joueur.valeurMaxGeant())
 			{
+				// on vérifie si la cible à un nbre suffisant de graine à voler
 				if(joueurCible.getNbreGraine() >= joueur.valeurMaxFarfadet())
 				{
-					
 					farfadet = true ;
-				}else
+				}
+				//Sinon on vérifie si le geant nous permet d'obtenir plus de graine qu'avec le farfadet
+				else
 				{
 					if(joueurCible.getNbreGraine()>=joueur.valeurMaxGeant())
 					{
@@ -61,12 +64,15 @@ public class Virtuel extends Joueur {
 					}
 				}
 			}
+		//on joue alors le farfadet
 		if(farfadet)
 		{
 			Strategy strategy = new StrategyOffensive(joueurCible);
 			System.out.println(strategy);
 			return strategy;
-		}else
+		}
+		//Sinon on joue le Géant
+		else
 		{
 			
 			Strategy strategy = new StrategyNormal();
