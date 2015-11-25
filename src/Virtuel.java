@@ -97,6 +97,10 @@ public class Virtuel extends Joueur {
 		
 		
 	}
+	
+	public void jouerTaupe(Joueur joueurCible){
+		if()
+	}
 }
 	
 	

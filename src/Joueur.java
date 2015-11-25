@@ -137,33 +137,35 @@ public class Joueur {
 	
 		int nbrGrainesCarte = this.main.get(index).getFarfadet()[Partie.getTour()];
 		
-		//On mais une condition pour savoir si le joueur à assez de graine
-		//Si le joueur en a plus, on lui enlève la quantité qui se trouve sur la carte
+		//Si le joueur ciblé joue un chien de garde  
 		if(joueurCible.getAllie().getTitre() == "Chien de garde")
 		{
 			//Si le joueur joue le chien de garde le nombre de graine diminue en fonction du chien de garde
 			nbrGrainesCarte = nbrGrainesCarte - joueurCible.jouerChien(nbrGrainesCarte,this.getNom(),joueurCible);
-			
-			if(nbrGrainesCarte <= nbrGrainesJoueur)
-			{
-			
-				joueurCible.setNbreGraine(nbrGrainesJoueur - nbrGrainesCarte); 
-				this.nbreMenhir = this.nbreMenhir + nbrGrainesCarte;
-			}else
-				//sinon on va lui retirer toute ses graines
-			{
-				if(nbrGrainesCarte > this.nbreGraine)
+			// On joue seulement si on peut lui prendre des graines
+			if (nbrGrainesCarte > 0){
+				if(nbrGrainesCarte <= nbrGrainesJoueur)
 				{
-					this.nbreGraine = this.nbreGraine + nbrGrainesJoueur;
-					joueurCible.setNbreGraine(0);
+				
+					joueurCible.setNbreGraine(nbrGrainesJoueur - nbrGrainesCarte); 
+					this.nbreMenhir = this.nbreMenhir + nbrGrainesCarte;
+				}else
+					//sinon on va lui retirer toute ses graines
+				{
+					if(nbrGrainesCarte > this.nbreGraine)
+					{
+						this.nbreGraine = this.nbreGraine + nbrGrainesJoueur;
+						joueurCible.setNbreGraine(0);
+					}
 				}
+				this.main.remove(index);
 			}
-		}
+		}	
 		else{
 			//Sinon on joue normalement
 			poserCarte(index , joueurCible);
 		}
-		this.main.remove(index);
+		//this.main.remove(index);
 	}
 	
 	public int jouerChien(int valeur, String j, Joueur joueurCible){
@@ -179,7 +181,21 @@ public class Joueur {
 		}
 	}
 	
-	
+	public void jouerTaupe(Joueur joueurCible){
+		if(this.getAllie().getTitre() == "Taupe géante"){
+			//Valeur qui contient le nombre de menhir que la tauoe peu détruire
+			int val = this.getAllie().getValeur()[Partie.getTour()];
+			//Si le joueur cible n'a pas assez de Menhir on met à 0
+			if(joueurCible.getNbreMenhir()-val < 0){
+				joueurCible.setNbreMenhir(0);
+			}
+			//Sinon on enleve la valeur indiquée
+			else{
+				joueurCible.setNbreMenhir(joueurCible.getNbreMenhir()-val);
+			}
+		}
+		
+	}
 	public Card getAllie() {
 		return allie;
 	}
