@@ -6,7 +6,6 @@ import java.util.Random;
 
 public class Virtuel extends Joueur {
 	
-	
 	public final static List<String> names = Arrays.asList("Elkantar","Ilphrin","Jarlaxe","Riklaunim","Nym","Vorn","Ranaghar","Bruherd","Tluth","Welverin","Berg'inyon","Tluth","Nilomim","Dinin","Drizzt","Seldszar","Tebryn","Krondorl","Chaszmyr","Seldszar","Mourn","Welverin","Kalannar","Nilomim","Ilphrin","Ryld","Tluth","Alak","Pharaun","Sabrar","Istolil","Vuzlyn","Ranaghar","Amalica","Ilphrin","Istolil","Tathyn","Guldor","Calimar","Malaggar","Nadal","Dilvolg","Duagolth","Chaszmyr","Dilvolg","Tebryn","Vorn");
 	private static List<String> namesDisponible = new ArrayList<String>();
 	
@@ -14,38 +13,29 @@ public class Virtuel extends Joueur {
 	public Strategy strategy;
 
 	public Virtuel( int nbreMenhir, int nbreGraine) {
-		
 		//String nom23 = aleaName();
 		super(aleaName(), nbreMenhir, nbreGraine);
-		
-		
 	}
-	public void jouerCarte(){
-		
+	public void jouerCarte(){	
 	}
 	public static void initialisationNom(){
 		namesDisponible.addAll(names);
 	}
 	public static String aleaName()
 	{
-		
 		Random rand = new Random();
 		int nombreAleatoire = rand.nextInt(namesDisponible.size());
 		String nom = namesDisponible.get(nombreAleatoire);
-		namesDisponible.remove(nombreAleatoire);
-		
+		namesDisponible.remove(nombreAleatoire);	
 		return nom ;
 	}
 	public List choisirCarte(Strategy strategie)
 	{
-
-		return strategie.choisirCarte(this);
-		
+		return strategie.choisirCarte(this);	
 	}
 	// Méthode qui va permettre au joueur virtuel de séléctionner la meillleur stratégie entre normal et offensive
 	public Strategy choisirStrategie(Joueur joueur , Joueur joueurCible)
-	{
-			
+	{	
 		boolean farfadet = false ;		
 		// on vérifie si la valeur Farfadet > géant 
 			if(joueur.valeurMaxFarfadet()>joueur.valeurMaxGeant())
@@ -73,17 +63,10 @@ public class Virtuel extends Joueur {
 		}
 		//Sinon on joue le Géant
 		else
-		{
-			
+		{	
 			Strategy strategy = new StrategyNormal();
 			System.out.println(strategy);
 			return strategy;
-		}
-		
-	
-		
-	}
-	
-	
-	
+		}	
+	}	
 }

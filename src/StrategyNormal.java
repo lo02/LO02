@@ -1,10 +1,8 @@
-
-
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class StrategyNormal implements Strategy {
+
 	public List choisirCarte(Joueur joueur){	
 		int choixTemporaire = 0;
 		int action=0;
@@ -23,24 +21,19 @@ public class StrategyNormal implements Strategy {
 				choixTemporaire = jouerGeant(joueur);
 				action = 0;
 			}
-			System.out.println("Bordel ");
+			System.out.println("Bordel");
 		}
 		else
 		{
 			choixTemporaire = jouerGeant(joueur);
 			action = 0;
 		}
-		List liste = new ArrayList();
-		
+		List liste = new ArrayList();	
 		System.out.println("Bordel ");
 		liste.add(0, choixTemporaire);
 		liste.add(1,action);
-		
 		return liste;
 	}
-	
-	
-	
 	public int jouerEngrais(Joueur joueur)
 	{
 		// on crée une collection de tableau 
@@ -65,8 +58,6 @@ public class StrategyNormal implements Strategy {
 					}
 					return choixTemporaire;
 	}
-	
-	
 	public int jouerGeant(Joueur joueur){
 		int choix = 0;
 		int choixTemp = 0;
@@ -92,6 +83,4 @@ public class StrategyNormal implements Strategy {
 	{
 		return "strat normal";
 	}
-	
-	
 }

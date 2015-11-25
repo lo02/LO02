@@ -8,8 +8,6 @@ public class Partie {
 	protected static int manche = 0;
 	protected int nbreJoueur = 0;
 	protected List<Joueur> listeJoueur = new ArrayList<Joueur>();
-	
-	
 	/*public static void main(String[] argc)
 	{
 		// demande du nombre de joueurs
@@ -52,11 +50,9 @@ public class Partie {
 		System.out.println(partie.getListJoueur());
 		
 	}*/
-	
 	public Partie (int nbreJoueur){
 		this.nbreJoueur = nbreJoueur;
 	}
-	
 	public static int getTour() {
 		return tour;
 	}
@@ -75,23 +71,18 @@ public class Partie {
 	public void setNbreJoueur(int nbreJoueur) {
 		this.nbreJoueur = nbreJoueur;
 	}
-	
-	
 	//Méthodes qui vont nous permettre de jouer les deux types de partie.
 	public void initierPartieRapide(){
 		//On crée un instance carte qui va contenir notre tas de carte
 		Card carte = new Ingredient();
 		carte.initialisationCartes();
-		
 		// On remplit la main de chaque joueur
 		for (int i=0 ; i <this.getListJoueur().size() ; i++)
 		{
 			this.getListJoueur().get(i).remplirMainJoueur();
-		}
-		
+		}	
 	}
 	public void jouerPartieAvancee(){
-		
 	}
 	
 	public void factoryJoueurs()
@@ -115,15 +106,11 @@ public class Partie {
 	{
 		this.listeJoueur = listeJoueur;
 	}
-	
-	
 	public void gererTour(){
 		for(int i=1;i<this.listeJoueur.size();i++)
 		{
 			// choisirCarte[0] : la carte jouer 
 			// choisirCarte[1] : type de jeu ( farfadet , géant , engrais ) 
-			
-			
 			Strategy strategie =  this.listeJoueur.get(i).choisirStrategie(this.listeJoueur.get(i),this.chercherJoueurGrainesMax());
 			System.out.println(strategie);
 			//this.listeJoueur.get(i).poserCarte( ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(0)), ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(1)));
@@ -135,12 +122,9 @@ public class Partie {
 			{
 				this.listeJoueur.get(i).poserCarte(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0)),((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(1)));
 			
-			}
-			
-		
+			}	
 		}
 	}
-	
 	public int chercherGagnant()
 	{	
 		int max=0;
@@ -155,7 +139,6 @@ public class Partie {
 		}
 		return id;
 	}
-	
 	public Joueur chercherJoueurGrainesMax()
 	{
 		int max=0;
@@ -168,7 +151,5 @@ public class Partie {
 			}
 		}
 		return this.listeJoueur.get(id);
-	}
-	
-	
+	}	
 }

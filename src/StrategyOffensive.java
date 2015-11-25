@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,31 +28,22 @@ public class StrategyOffensive implements Strategy{
 			choixTemporaire = jouerFarfadet(joueur);
 			action = 2;
 		}
-		
 		System.out.println("Bordel ");
 		List liste = new ArrayList();
 		liste.add(0, choixTemporaire);
 		liste.add(1,action);
 		liste.add(2,this.joueurCible );
-		
 		return liste;
-	
 	}
 	
 	public StrategyOffensive(Joueur joueur)
-	
 	{
 		this.joueurCible = joueur;
 	}
-	
-	
 	public int jouerFarfadet(Joueur joueur){
 		int[] farfadet = joueur.getFarfadetAllCard();
-		
-		return  this.cardMax(farfadet ,joueur.getMain().size());
-		
+		return  this.cardMax(farfadet ,joueur.getMain().size());	
 	}
-	
 	public int jouerEngrais(Joueur joueur){
 		// on crée une collection de tableau 
 		List<int[]> engrais = new ArrayList<int[]>();
@@ -76,7 +66,6 @@ public class StrategyOffensive implements Strategy{
 				}				
 		}
 		return choixTemporaire;
-
 	}
 	public int cardMax(int[] cartes, int z )
 	{
