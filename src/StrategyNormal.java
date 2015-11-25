@@ -87,10 +87,5 @@ public class StrategyNormal implements Strategy {
 	public boolean isOffensive()
 	{
 	return false;
-	}
-	
-	
+	}	
 }
-
-
-

@@ -83,8 +83,14 @@ public class Partie {
 		}	
 	}
 	public void jouerPartieAvancee(){
+		
+		
 	}
 	
+	/* Méthodes qui va nous permettre de créer des joueurs en partie rapide
+	 * Il faudrait mettre en paramettre une valeur soit pour créer des joueurs en partie rapide ou bien en
+	 * partie avancée(pas mettre de graine, le choix sera fait après)
+	 */
 	public void factoryJoueurs()
 	{
 		// On va créer tous les joueurs nécessaires pour le déroulement du jeu
@@ -96,6 +102,15 @@ public class Partie {
 			this.listeJoueur.add(joueur);
 		}
 	}
+	
+	/*Méthode qui va permettre de choisir soit une carte alliée soit 2 graines en début de manche en partie
+	 * avancée
+	 */
+	
+	public void choixDebutManche(){
+		
+	}
+	
 	
 	public List<Joueur> getListJoueur()
 	{
