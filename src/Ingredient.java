@@ -121,6 +121,8 @@ public class Ingredient extends Card {
 		
 		return "\n\n\t"+name+"\n"+geant[0]+"\t"+geant[1]+"\t"+geant[2]+"\t"+geant[3]+"\n"+engrais[0]+"\t"+engrais[1]+"\t"+engrais[2]+"\t"+engrais[3]+"\n"+farfadet[0]+"\t"+farfadet[1]+"\t"+farfadet[2]+"\t"+farfadet[3];
 	}
+	
+	
 
 	@Override
 	public void setValeur(int parseInt, int j) {

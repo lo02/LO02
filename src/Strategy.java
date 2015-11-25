@@ -1,7 +1,7 @@
-
+import java.util.List;
 
 public interface Strategy {	
-	public int[] choisirCarte(Joueur joueur);
+	public List choisirCarte(Joueur joueur);
 
 	
 	

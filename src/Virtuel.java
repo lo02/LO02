@@ -36,10 +36,39 @@ public class Virtuel extends Joueur {
 		
 		return nom ;
 	}
-	public int[] choisirCarte()
+	public List choisirCarte(Strategy strategie)
 	{
-		Strategy strategy = new StrategyNormal();
-		return strategy.choisirCarte(this);
+
+		return strategie.choisirCarte(this);
+		
+	}
+	public Strategy choisirStrategie(Joueur joueur , Joueur joueurCible)
+	{
+			
+		boolean farfadet = false ;		
+		// on vérifie si Farfadet > géant 
+			if(joueur.valeurMaxFarfadet()>joueur.valeurMaxGeant())
+			{
+				if(joueurCible.getNbreGraine() >= joueur.valeurMaxFarfadet())
+				{
+					farfadet = true ;
+				}else
+				{
+					if(joueurCible.getNbreGraine()>=joueur.valeurMaxGeant())
+					{
+						farfadet = true;
+					}
+				}
+			}
+		if(true)
+		{
+			Strategy strategy = new StrategyOffensive(joueurCible);
+		}else
+		{
+			Strategy strategy = new StrategyNormal();
+		}
+		
+		return strategy;
 		
 	}
 	

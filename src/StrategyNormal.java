@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StrategyNormal implements Strategy {
-	public int[] choisirCarte(Joueur joueur){	
+	public List choisirCarte(Joueur joueur){	
 		int choixTemporaire = 0;
 		int action=0;
 		int[] retourne= new int[2];
@@ -29,9 +29,13 @@ public class StrategyNormal implements Strategy {
 			choixTemporaire = jouerGeant(joueur);
 			action = 0;
 		}
-		retourne[1] = action;
-		retourne[0] = choixTemporaire;
-		return retourne;
+		List liste = new ArrayList();
+		
+		
+		liste.add(0, choixTemporaire);
+		liste.add(1,action);
+		
+		return liste;
 	}
 	
 	

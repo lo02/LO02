@@ -110,15 +110,23 @@ public class Partie {
 	{
 		return this.listeJoueur;
 	}
+	
 	public void setListJoueur(List<Joueur> listeJoueur)
 	{
 		this.listeJoueur = listeJoueur;
 	}
 	
+	
 	public void gererTour(){
 		for(int i=1;i<this.listeJoueur.size();i++)
 		{
-			this.listeJoueur.get(i).poserCarte(this.listeJoueur.get(i).choisirCarte()[0], this.listeJoueur.get(i).choisirCarte()[1]);
+			// choisirCarte[0] : la carte jouer 
+			// choisirCarte[1] : type de jeu ( farfadet , géant , engrais ) 
+			
+			
+			Strategy strategie = this.listeJoueur.get(i).choisirStrategie(this.listeJoueur.get(i),this.chercherJoueurGrainesMax());
+			//this.listeJoueur.get(i).poserCarte( ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(0)), ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(1)));
+			this.getListJoueur().get(i).poserCarte(, action);
 		
 		}
 	}
@@ -137,5 +145,20 @@ public class Partie {
 		}
 		return id;
 	}
+	
+	public Joueur chercherJoueurGrainesMax()
+	{
+		int max=0;
+		int id=0;
+		for (int i = 0 ; i< this.listeJoueur.size() ; i++)
+		{
+			if(this.listeJoueur.get(i).getNbreGraine() > max){
+				max = this.listeJoueur.get(i).getNbreGraine();
+				id = i;
+			}
+		}
+		return this.listeJoueur.get(id);
+	}
+	
 	
 }

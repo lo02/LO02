@@ -3,48 +3,65 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StrategyOffensive implements Strategy{
-	public int[] choisirCarte(Joueur joueur){
+	
+	private Joueur joueurCible;
+	
+	public List choisirCarte(Joueur joueur){
 		int choixTemporaire = 0;
+		int action ; 
 		// on regarde  le nombre de graines 
 		if(joueur.nbreGraine> 0 )
 		{
 			// on jouera engrais 
 			// on regarde la carte la plus apropriée pour planter
 			choixTemporaire = jouerEngrais(joueur);
-			
+			action = 1;
 			// Si le choixtemporaire retourne -1 cad pas de carte appropriée
-			// On jouera géant 
+			// On jouera farfadet 
 			if (choixTemporaire == -1)
 			{
 				choixTemporaire = jouerFarfadet(joueur);
+				action = 2;
 			}
 		}
 		else
 		{
 			choixTemporaire = jouerFarfadet(joueur);
+			action = 2;
 		}
-		return null;
+		List liste = new ArrayList();
+		liste.add(0, choixTemporaire);
+		liste.add(1,action);
+		liste.add(2,this.joueurCible );
+		
+		return liste;
 	
 	}
 	
+	public StrategyOffensive(Joueur joueur)
+	
+	{
+		this.joueurCible = joueur;
+	}
+	
+	
 	public int jouerFarfadet(Joueur joueur){
-		int choix = 0;
+		int[] farfadet = joueur.getFarfadetAllCard();
 		
+		return  this.cardMax(farfadet ,joueur.getMain().size());
 		
-		
-		return choix;
 	}
 	
 	public int jouerEngrais(Joueur joueur){
 		// on crée une collection de tableau 
 		List<int[]> engrais = new ArrayList<int[]>();
-		for(int i=0;i<4;i++)
+		for(int i=0;i<joueur.getMain().size();i++)
 		{
 			// On crée une collection qui contient les valeurs d'engrais de chaque carte de la main 
 			engrais.add(joueur.getMain().get(i).getEngrais());	
 		}
 		int choixTemporaire = -1;
-		for(int i=0;i<4;i++)
+		for(int i=0;i<joueur.getMain().size();i++)
 		{
 			// on vérifie si le nombre de graines que le joueur possède correspond au celui indiqué sur la carte 
 			if(engrais.get(i)[Partie.getTour()] == joueur.nbreGraine){
@@ -58,5 +75,19 @@ public class StrategyOffensive implements Strategy{
 		}
 		return choixTemporaire;
 
+	}
+	public int cardMax(int[] cartes, int z )
+	{
+		int max=0;
+		int id=0;
+		for(int i=0 ; i<z ; i++)
+		{
+			if (cartes[i]>max)
+			{
+				max = cartes[i];
+				id = i;
+			}
+		}
+		return id;
 	}
 }

@@ -129,8 +129,82 @@ public class Joueur {
 	
 	}
 
-	public int[] choisirCarte()
+	public List choisirCarte(Strategy strategie)
 	{		
+		return null;
+	}
+	
+	public int[] getFarfadetAllCard()
+	{
+		int[] farfadet = new int[this.main.size()];
+		for(int i=0;i<this.main.size(); i++)
+		{
+			farfadet[i] = this.main.get(i).getFarfadet()[Partie.getTour()];
+		}
+	
+		return farfadet;
+	}
+	
+	public int[] getGeantAllCard()
+	{
+		int[] geant = new int[this.main.size()];
+		for(int i=0;i<this.main.size(); i++)
+		{
+			geant[i] = this.main.get(i).getGeant()[Partie.getTour()];
+		}
+	
+		return geant;
+	}
+	
+	public Strategy choisirStrategie(Joueur joueur )
+	{
+		return null;
+		
+	}
+	
+	public int cardMax(int[] cartes, int z )
+	{
+		int max=0;
+		int id=0;
+		for(int i=0 ; i<z ; i++)
+		{
+			if (cartes[i]>max)
+			{
+				max = cartes[i];
+				id = i;
+			}
+		}
+		return id;
+	}
+	
+	public int valeurMaxFarfadet()
+	{
+		int max= 0;
+		for(int i = 0 ; i< this.getMain().size() ; i++)
+		{
+			if ( this.getMain().get(i).getFarfadet()[Partie.getTour()]> max )
+			{
+				max = this.getMain().get(i).getFarfadet()[Partie.getTour()];
+			}
+		}
+		return max;
+	}
+	
+	public int valeurMaxGeant()
+	{
+		int max= 0;
+		for(int i = 0 ; i< this.getMain().size() ; i++)
+		{
+			if ( this.getMain().get(i).getGeant()[Partie.getTour()]> max )
+			{
+				max = this.getMain().get(i).getGeant()[Partie.getTour()];
+			}
+		}
+		return max;
+	}
+
+	public Strategy choisirStrategie(Joueur joueur, Joueur chercherJoueurGrainesMax) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }
