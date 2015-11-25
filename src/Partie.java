@@ -159,6 +159,38 @@ public class Partie {
 		}
 	}
 	
+	
+	public void gererTourAvancee(){
+		for(int i=1;i<this.listeJoueur.size();i++)
+		{
+			// choisirCarte[0] : la carte jouer 
+			// choisirCarte[1] : type de jeu ( farfadet , géant , engrais ) 
+			//Création de l'objet stratégie
+			//On cherche stratégie à utiliser
+			// et on cherche l'adversaire qui à le plus de graines
+			Strategy strategie =  this.listeJoueur.get(i).choisirStrategie(this.listeJoueur.get(i),this.chercherJoueurGrainesMax());
+			System.out.println(strategie);
+			//this.listeJoueur.get(i).poserCarte( ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(0)), ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(1)));
+			
+			// En fonction de la réponse de isOffensive si vrai on joue offensif sinon normal
+			if (strategie.isOffensive())
+			{
+				//Stratégie offensive
+				// On pose la carte avec en première élément la carte que l'on pose et ensuite le joueur que l'on attaque
+				//On joue avec poserCarteBis pour vois si l'adverssairepeut jouer un chien
+				this.listeJoueur.get(i).poserCarteBis(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0)), ((Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(1) ));
+				//On cherche si on peut jouer la taupe
+				this.listeJoueur.get(i).jouerTaupe(this.chercherJoueurMenhirMax());
+			}
+			else
+			{
+				//Stratégie normal
+				//En premier élément on a la carte que l'on pose et ensuite l'action que l'on réalise
+				this.listeJoueur.get(i).poserCarte(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0)),((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(1)));
+				this.listeJoueur.get(i).jouerTaupe(this.chercherJoueurMenhirMax());
+			}	
+		}
+	}
 	public void gererTourBis(){
 		
 		for(int i=1;i<this.listeJoueur.size();i++)
