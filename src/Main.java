@@ -40,7 +40,7 @@ public class Main {
 				case 1: partie.initierPartieRapide();
 				vrai = false;
 				break;
-				case 2: partie.jouerPartieAvancee();
+				case 2: partie.initierPartieAvancee();
 				vrai=false;
 				break;
 				default: System.out.println("Taper 1 ou 2" );
@@ -83,8 +83,24 @@ public class Main {
 			
 			
 		}
+		else
+		if(reponse == 2){
+			
+		}
 		
 		
 		
+	}
+	
+	public static boolean danger(int valeur, String j, Joueur joueurCible){
+		System.out.println("Le joueur "+j+" veut vous voler "+valeur+" graine(s) avec un farfadet!!!\nVoulez vous utilisez votre chien de garde (O/N)?");
+		Scanner sc = new Scanner(System.in); 
+		String reponse = sc.nextLine();
+		if (reponse=="O"){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }

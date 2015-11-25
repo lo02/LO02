@@ -11,6 +11,9 @@ public class Joueur {
 	protected int nbreGraine = 0;
 	protected List<Card> main = new ArrayList<Card>();	
 	protected Card allie  ;
+	protected int compteurMenhir = 0;
+	
+	public void choixDebutManche(){};
 	
 	public Joueur (){
 		this.nom = "";
@@ -30,6 +33,14 @@ public class Joueur {
 		tasDeCarte.setTasDeCartes(tempTas);			
 	}
 	
+	public int getCompteurMenhir() {
+		return compteurMenhir;
+	}
+
+	public void setCompteurMenhir(int compteurMenhir) {
+		this.compteurMenhir = compteurMenhir;
+	}
+
 	public String getNom() {
 		return nom;
 	}
@@ -100,6 +111,7 @@ public class Joueur {
 		//Si le joueur en a plus, on lui enlève la quantité qui se trouve sur la carte
 		if(nbrGrainesCarte <= nbrGrainesJoueur)
 		{
+			
 			joueurCible.setNbreGraine(nbrGrainesJoueur - nbrGrainesCarte); 
 			this.nbreMenhir = this.nbreMenhir + nbrGrainesCarte;
 		}else
@@ -114,6 +126,68 @@ public class Joueur {
 		this.main.remove(index);
 	}
 	
+	//On ce place dans le cas d'une partie avancée avec un joueur qui peut jouer un farfadet.
+	public void poserCarteBis(int index , Joueur joueurCible)
+	{
+	
+		//variable qui va compter le nombre de graine de la cible
+		int nbrGrainesJoueur = joueurCible.getNbreGraine();
+		// variable qui contient le nombre de graine que le farfadet peut voler
+		
+	
+		int nbrGrainesCarte = this.main.get(index).getFarfadet()[Partie.getTour()];
+		
+		//On mais une condition pour savoir si le joueur à assez de graine
+		//Si le joueur en a plus, on lui enlève la quantité qui se trouve sur la carte
+		if(joueurCible.getAllie().getTitre() == "Chien de garde")
+		{
+			//Si le joueur joue le chien de garde le nombre de graine diminue en fonction du chien de garde
+			nbrGrainesCarte = nbrGrainesCarte - joueurCible.jouerChien(nbrGrainesCarte,this.getNom(),joueurCible);
+			
+			if(nbrGrainesCarte <= nbrGrainesJoueur)
+			{
+			
+				joueurCible.setNbreGraine(nbrGrainesJoueur - nbrGrainesCarte); 
+				this.nbreMenhir = this.nbreMenhir + nbrGrainesCarte;
+			}else
+				//sinon on va lui retirer toute ses graines
+			{
+				if(nbrGrainesCarte > this.nbreGraine)
+				{
+					this.nbreGraine = this.nbreGraine + nbrGrainesJoueur;
+					joueurCible.setNbreGraine(0);
+				}
+			}
+		}
+		else{
+			//Sinon on joue normalement
+			poserCarte(index , joueurCible);
+		}
+		this.main.remove(index);
+	}
+	
+	public int jouerChien(int valeur, String j, Joueur joueurCible){
+		if(Main.danger(valeur, j, joueurCible)){
+			//On recupere la valeur du chien de garde lors de cette saison
+			int val = this.getAllie().getValeur()[Partie.getTour()];
+			this.getAllie().deleteAllie();
+			return val;
+			
+		}
+		else{
+			return 0;
+		}
+	}
+	
+	
+	public Card getAllie() {
+		return allie;
+	}
+
+	public void setAllie(Card allie) {
+		this.allie = allie;
+	}
+
 	public void planterGraines(int nbrGrainesCarte){
 		if(nbrGrainesCarte <= this.nbreGraine)
 		{

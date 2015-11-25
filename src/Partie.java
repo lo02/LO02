@@ -77,19 +77,31 @@ public class Partie {
 		//On crée un instance carte qui va contenir notre tas de carte
 		Card carte = new Ingredient();
 		carte.initialisationCartes();
-		// On remplit la main de chaque joueur
+		// On remplit la main et on met deux graines à chaque joueur
 		for (int i=0 ; i <this.getListJoueur().size() ; i++)
 		{
 			this.getListJoueur().get(i).remplirMainJoueur();
+			this.getListJoueur().get(i).setNbreGraine(2);
+			this.getListJoueur().get(i).setNbreMenhir(0);
 		}	
 	}
-	public void jouerPartieAvancee(){
-		
+	//Fonction pour Initier la partie
+	public void initierPartieAvancee(){
+		Card carte = new Ingredient();
+		carte.initialisationCartes();
+		//On remplit la main des joueurs
+		for (int i=0 ; i <this.getListJoueur().size() ; i++)
+		{
+			this.getListJoueur().get(i).remplirMainJoueur();
+			this.getListJoueur().get(i).setNbreMenhir(0);
+		}
+		//Les joueurs virtuels font leur choix pour le début de la première manche
+		for (int k=1; k<this.getListJoueur().size() ; k++){
+			this.getListJoueur().get(k).choixDebutManche();
+		}
 	}
 	
 	/* Méthodes qui va nous permettre de créer des joueurs en partie rapide
-	 * Il faudrait mettre en paramettre une valeur soit pour créer des joueurs en partie rapide ou bien en
-	 * partie avancée(pas mettre de graine, le choix sera fait après)
 	 */
 	public void factoryJoueurs()
 	{
@@ -98,7 +110,7 @@ public class Partie {
 		Virtuel.initialisationNom();
 		for(int i=1;i < this.nbreJoueur+1;i++)
 		{
-			Virtuel joueur = new Virtuel(0,2);
+			Virtuel joueur = new Virtuel(0,0);
 			this.listeJoueur.add(joueur);
 		}
 	}
@@ -146,6 +158,32 @@ public class Partie {
 			}	
 		}
 	}
+	
+	public void gererTourBis(){
+		
+		for(int i=1;i<this.listeJoueur.size();i++)
+		{
+			Strategy strategie =  this.listeJoueur.get(i).choisirStrategie(this.listeJoueur.get(i),this.chercherJoueurGrainesMax());
+			System.out.println(strategie);
+		
+			if (strategie.isOffensive())
+			{
+				//Stratégie offensive
+				// On pose la carte avec en première élément la carte que l'on pose et ensuite le joueur que l'on attaque
+				this.listeJoueur.get(i).poserCarte(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0)), ((Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(1) ));
+			
+			}
+			else
+			{
+				//Stratégie normal
+				//En premier élément on a la carte que l'on pose et ensuite l'action que l'on réalise
+				this.listeJoueur.get(i).poserCarte(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0)),((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(1)));
+		
+			}	
+		}
+		
+	}
+	
 	public int chercherGagnant()
 	{	
 		int max=0;

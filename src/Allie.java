@@ -85,7 +85,11 @@ public class Allie extends Card {
 			    }
 	}
 	
-
+	//Une fois qu'un allié à été utlisée on lui enlève son nom pour qu'il ne puisse plus être utilisé
+	public void deleteAllie(){
+		this.titre = "";
+	}
+	
 	@Override
 	public List<Card> getTasDeCartes() {
 		// TODO Auto-generated method stub
@@ -104,6 +108,26 @@ public class Allie extends Card {
 		tasdecartes.addAll(cartes);
 	}
 	
+	public int[] getValeur() {
+		return valeur;
+	}
+
+
+	public void setValeur(int[] valeur) {
+		this.valeur = valeur;
+	}
+
+
+	public String getTitre() {
+		return titre;
+	}
+
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+
 	public void setValeur(int valeur, int j)
 	{
 		this.valeur[j]=valeur;

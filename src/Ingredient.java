@@ -135,6 +135,24 @@ public class Ingredient extends Card {
 		
 	}
 
+	@Override
+	public String getTitre() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int[] getValeur() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteAllie() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 	}

@@ -17,7 +17,10 @@ public abstract class Card {
 		public abstract void setFarfadet(int parseInt, int j);
 		public abstract void setName(String attribute);
 		public abstract void setValeur(int parseInt, int j);
+		public abstract int[] getValeur();
 		public abstract String toString();
+		public abstract String getTitre();
+		public abstract void deleteAllie();
 		
 	}
 
