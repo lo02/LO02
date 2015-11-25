@@ -1,0 +1,38 @@
+<?xml version="1.0"?><ALLCARDS>
+<ID0 name="Taupe géante">
+<printemps valeur="1"/>
+<été valeur="1"/>
+<automne valeur="1"/>
+<hiver valeur="1"/>
+</ID0>
+<ID1 name="Taupe géante">
+<printemps valeur="0"/>
+<été valeur="2"/>
+<automne valeur="2"/>
+<hiver valeur="0"/>
+</ID1>
+<ID2 name="Taupe géante">
+<printemps valeur="0"/>
+<été valeur="1"/>
+<automne valeur="2"/>
+<hiver valeur="1"/>
+</ID2>
+<ID3 name="Chien de garde">
+<printemps valeur="2"/>
+<été valeur="0"/>
+<automne valeur="2"/>
+<hiver valeur="0"/>
+</ID3>
+<ID4 name="Chien de garde">
+<printemps valeur="1"/>
+<été valeur="2"/>
+<automne valeur="0"/>
+<hiver valeur="1"/>
+</ID4>
+<ID5 name="Chien de garde">
+<printemps valeur="0"/>
+<été valeur="1"/>
+<automne valeur="3"/>
+<hiver valeur="0"/>
+</ID5>
+</ALLCARDS>
