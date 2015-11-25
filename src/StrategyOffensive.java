@@ -6,7 +6,7 @@ public class StrategyOffensive implements Strategy{
 	
 	private Joueur joueurCible;
 	
-	public List choisirCarte(Joueur joueur){
+	public List choisirCarte(Joueur joueur ){
 		int choixTemporaire = 0;
 		int action ; 
 		// on regarde  le nombre de graines 
@@ -29,6 +29,8 @@ public class StrategyOffensive implements Strategy{
 			choixTemporaire = jouerFarfadet(joueur);
 			action = 2;
 		}
+		
+		System.out.println("Bordel ");
 		List liste = new ArrayList();
 		liste.add(0, choixTemporaire);
 		liste.add(1,action);

@@ -23,6 +23,7 @@ public class StrategyNormal implements Strategy {
 				choixTemporaire = jouerGeant(joueur);
 				action = 0;
 			}
+			System.out.println("Bordel ");
 		}
 		else
 		{
@@ -31,7 +32,7 @@ public class StrategyNormal implements Strategy {
 		}
 		List liste = new ArrayList();
 		
-		
+		System.out.println("Bordel ");
 		liste.add(0, choixTemporaire);
 		liste.add(1,action);
 		

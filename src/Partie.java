@@ -124,9 +124,19 @@ public class Partie {
 			// choisirCarte[1] : type de jeu ( farfadet , géant , engrais ) 
 			
 			
-			Strategy strategie = this.listeJoueur.get(i).choisirStrategie(this.listeJoueur.get(i),this.chercherJoueurGrainesMax());
+			Strategy strategie =  this.listeJoueur.get(i).choisirStrategie(this.listeJoueur.get(i),this.chercherJoueurGrainesMax());
+			System.out.println("")
 			//this.listeJoueur.get(i).poserCarte( ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(0)), ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(1)));
-			this.getListJoueur().get(i).poserCarte(, action);
+			if (strategie.choisirCarte(this.listeJoueur.get(i)).size() == 2)
+			{
+				this.listeJoueur.get(i).poserCarte(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(1)), ((Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(2) ));
+				
+			}else
+			{
+				this.listeJoueur.get(i).poserCarte(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0)),((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(1)));
+			
+			}
+			
 		
 		}
 	}
