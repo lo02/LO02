@@ -92,4 +92,8 @@ public class StrategyOffensive implements Strategy{
 		}
 		return id;
 	}
+	public String toString()
+	{
+		return "strat offensive";
+	}
 }

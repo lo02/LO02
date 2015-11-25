@@ -51,6 +51,7 @@ public class Virtuel extends Joueur {
 			{
 				if(joueurCible.getNbreGraine() >= joueur.valeurMaxFarfadet())
 				{
+					
 					farfadet = true ;
 				}else
 				{
@@ -60,15 +61,20 @@ public class Virtuel extends Joueur {
 					}
 				}
 			}
-		if(true)
+		if(farfadet)
 		{
 			Strategy strategy = new StrategyOffensive(joueurCible);
+			System.out.println(strategy);
+			return strategy;
 		}else
 		{
+			
 			Strategy strategy = new StrategyNormal();
+			System.out.println(strategy);
+			return strategy;
 		}
 		
-		return strategy;
+	
 		
 	}
 	

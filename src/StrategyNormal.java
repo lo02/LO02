@@ -88,6 +88,10 @@ public class StrategyNormal implements Strategy {
 		}
 		return choix;
 	}
+	public String toString()
+	{
+		return "strat normal";
+	}
 	
 	
 }

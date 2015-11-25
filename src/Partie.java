@@ -125,7 +125,7 @@ public class Partie {
 			
 			
 			Strategy strategie =  this.listeJoueur.get(i).choisirStrategie(this.listeJoueur.get(i),this.chercherJoueurGrainesMax());
-			System.out.println("")
+			System.out.println(strategie);
 			//this.listeJoueur.get(i).poserCarte( ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(0)), ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(1)));
 			if (strategie.choisirCarte(this.listeJoueur.get(i)).size() == 2)
 			{
