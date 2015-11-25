@@ -35,8 +35,6 @@ public class Main {
 		int reponse = saisie.nextInt();
 		while(vrai)
 		{
-			
-			
 			switch (reponse)
 			{
 				case 1: partie.initierPartieRapide();
@@ -60,10 +58,10 @@ public class Main {
 				int carte = saisie.nextInt();
 				System.out.println("Quel type de jeu : \n0- géant \n1- engrais\n2- Farfadet");
 				int jeu = saisie.nextInt();
-				if(jeu==2)
+				if(jeu == 2)
 				{
 					System.out.print("Quel joueur voulez vous voler ?");
-					for(int i = 1 ; i<partie.getListJoueur().size(); i++)
+					for(int i = 1 ; i < partie.getListJoueur().size(); i++)
 					{
 						System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
 					}

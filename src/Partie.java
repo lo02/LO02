@@ -8,6 +8,7 @@ public class Partie {
 	protected static int manche = 0;
 	protected int nbreJoueur = 0;
 	protected List<Joueur> listeJoueur = new ArrayList<Joueur>();
+	///protected int typePartie = 0;
 	/*public static void main(String[] argc)
 	{
 		// demande du nombre de joueurs
@@ -84,7 +85,6 @@ public class Partie {
 	}
 	public void jouerPartieAvancee(){
 		
-		
 	}
 	
 	/* Méthodes qui va nous permettre de créer des joueurs en partie rapide
@@ -103,13 +103,7 @@ public class Partie {
 		}
 	}
 	
-	/*Méthode qui va permettre de choisir soit une carte alliée soit 2 graines en début de manche en partie
-	 * avancée
-	 */
 	
-	public void choixDebutManche(){
-		
-	}
 	
 	
 	public List<Joueur> getListJoueur()
@@ -142,7 +136,8 @@ public class Partie {
 				// On pose la carte avec en première élément la carte que l'on pose et ensuite le joueur que l'on attaque
 				this.listeJoueur.get(i).poserCarte(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0)), ((Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(1) ));
 				
-			}else
+			}
+			else
 			{
 				//Stratégie normal
 				//En premier élément on a la carte que l'on pose et ensuite l'action que l'on réalise

@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Random;
 
 public class Joueur {
@@ -8,6 +10,7 @@ public class Joueur {
 	protected int nbreMenhir = 0;
 	protected int nbreGraine = 0;
 	protected List<Card> main = new ArrayList<Card>();	
+	protected Card allie  ;
 	
 	public Joueur (){
 		this.nom = "";
@@ -209,5 +212,29 @@ public class Joueur {
 	public Strategy choisirStrategie(Joueur joueur, Joueur chercherJoueurGrainesMax) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public void remplirMainJoueurAllie()
+	{
+		Card tasDeCarte = new Allie();		
+		// linked list mettre un queue
+		Queue<Card> tas = new LinkedList<Card>();
+		tas.addAll(tasDeCarte.getTasDeCartes());
+		this.allie = tas.poll();
+		tasDeCarte.setTasDeCartes(tas);
+	}
+	
+	/*Méthode qui va permettre de choisir soit une carte alliée soit 2 graines en début de manche en partie
+	 * avancée;
+	 * Pour prendre des graines en met 1, on met 2 pour avoir une carte alliée.
+	*/
+	public void choixDebutManche(int choix){
+		if (choix == 1){
+			this.setNbreGraine(2);
+		}
+		else
+			if (choix == 2){
+				this.remplirMainJoueurAllie();
+			}
 	}
 }

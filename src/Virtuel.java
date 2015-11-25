@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Virtuel extends Joueur {
 	
-	public final static List<String> names = Arrays.asList("Elkantar","Ilphrin","Jarlaxe","Riklaunim","Nym","Vorn","Ranaghar","Bruherd","Tluth","Welverin","Berg'inyon","Tluth","Nilomim","Dinin","Drizzt","Seldszar","Tebryn","Krondorl","Chaszmyr","Seldszar","Mourn","Welverin","Kalannar","Nilomim","Ilphrin","Ryld","Tluth","Alak","Pharaun","Sabrar","Istolil","Vuzlyn","Ranaghar","Amalica","Ilphrin","Istolil","Tathyn","Guldor","Calimar","Malaggar","Nadal","Dilvolg","Duagolth","Chaszmyr","Dilvolg","Tebryn","Vorn");
+	public final static List<String> names = Arrays.asList("Thor","Ilphrin","Jarlaxe","Riklaunim","Nym","Vorn","Ranaghar","Bruherd","Tluth","Welverin","Berg'inyon","Tluth","Nilomim","Dinin","Drizzt","Seldszar","Tebryn","Krondorl","Chaszmyr","Seldszar","Mourn","Welverin","Kalannar","Nilomim","Ilphrin","Ryld","Tluth","Alak","Pharaun","Sabrar","Istolil","Vuzlyn","Ranaghar","Amalica","Ilphrin","Istolil","Tathyn","Guldor","Calimar","Malaggar","Nadal","Dilvolg","Duagolth","Chaszmyr","Dilvolg","Tebryn","Vorn");
 	private static List<String> namesDisponible = new ArrayList<String>();
 	
 	// La variable strategy contient le type de strategie choisi pour le joueur virtuel
@@ -69,4 +69,23 @@ public class Virtuel extends Joueur {
 			return strategy;
 		}	
 	}	
+	
+	/*Méthode qui va permettre de choisir soit une carte alliée soit 2 graines en début de manche en partie
+	 * avancée;
+	 * 
+	*/
+	public void choixDebutManche(){
+		//On regarde le nombre de graine, s'il n'as pas de graine il en prend
+		if (this.getNbreGraine()==0){
+			this.setNbreGraine(this.getNbreGraine()+2);
+		}
+		//Sinon il prend un allié
+		else
+		{
+			this.remplirMainJoueurAllie();
+		}
+	}
 }
+	
+	
+	

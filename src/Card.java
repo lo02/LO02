@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Queue;
 public abstract class Card {
 
 
@@ -7,6 +8,7 @@ public abstract class Card {
 		public abstract  void initialisationCartes();
 		public abstract List<Card> getTasDeCartes();
 		public abstract void setTasDeCartes(List<Card> cartes);
+		public abstract void setTasDeCartes(Queue<Card> cartes);
 		public abstract void setGeant(int parseInt, int j);
 		public abstract void setEngrais(int parseInt, int j);
 		public abstract int[] getGeant();

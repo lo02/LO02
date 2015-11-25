@@ -2,6 +2,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Queue;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -93,6 +94,11 @@ public class Allie extends Card {
 
 	@Override
 	public void setTasDeCartes(List<Card> cartes) {
+		// TODO Auto-generated method stub
+		tasdecartes.clear();
+		tasdecartes.addAll(cartes);
+	}
+	public void setTasDeCartes(Queue<Card> cartes) {
 		// TODO Auto-generated method stub
 		tasdecartes.clear();
 		tasdecartes.addAll(cartes);

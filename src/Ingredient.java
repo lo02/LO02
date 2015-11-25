@@ -1,4 +1,3 @@
-	import java.util.List;
 	import javax.xml.parsers.DocumentBuilderFactory;
 	import javax.xml.parsers.DocumentBuilder;
 	import org.w3c.dom.Document;
@@ -126,6 +125,12 @@ public class Ingredient extends Card {
 
 	@Override
 	public void setValeur(int parseInt, int j) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setTasDeCartes(Queue<Card> cartes) {
 		// TODO Auto-generated method stub
 		
 	}
