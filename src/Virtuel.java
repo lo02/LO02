@@ -99,7 +99,32 @@ public class Virtuel extends Joueur {
 	}
 	
 	public void jouerTaupe(Joueur joueurCible){
-		if()
+		if(this.getAllie().getTitre() == "Taupe géante"){
+			//On regarde la saison pour laquelle notre taupe peut détruire le plus de menhir
+			if(Partie.getTour()==this.rechercheMaxTaupe()){
+				//Si le joueur cible n'a pas assez de Menhir on met à 0
+				if(joueurCible.getNbreMenhir()-this.getAllie().getValeur()[Partie.getTour()] < 0){
+					joueurCible.setNbreMenhir(0);
+				}
+				//Sinon on enleve la valeur indiquée
+				else{
+					joueurCible.setNbreMenhir(joueurCible.getNbreMenhir()-this.getAllie().getValeur()[Partie.getTour()]);
+				}
+			}
+		}
+	}
+	
+	public int rechercheMaxTaupe(){
+		int Max = 0, id = 0;
+		for (int i =0; i<4; i++){
+			//On regarde qu'elle est la valeur la plus grande pour la taupe et on garde l'indice de la saison dans id que l'on retourne
+			if(this.getAllie().getValeur()[i]>=Max)
+			{
+				Max = this.getAllie().getValeur()[i];
+				id = i;
+			}
+		}
+		return id;	
 	}
 }
 	
