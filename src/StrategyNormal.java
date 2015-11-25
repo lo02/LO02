@@ -21,15 +21,16 @@ public class StrategyNormal implements Strategy {
 				choixTemporaire = jouerGeant(joueur);
 				action = 0;
 			}
-			System.out.println("Bordel");
+			
 		}
 		else
 		{
 			choixTemporaire = jouerGeant(joueur);
 			action = 0;
 		}
+		//Création d'une liste pour renvoyer le choix
 		List liste = new ArrayList();	
-		System.out.println("Bordel ");
+		
 		liste.add(0, choixTemporaire);
 		liste.add(1,action);
 		return liste;
@@ -37,20 +38,20 @@ public class StrategyNormal implements Strategy {
 	public int jouerEngrais(Joueur joueur)
 	{
 		// on crée une collection de tableau 
-					List<int[]> engrais = new ArrayList<int[]>();
-					for(int i=0;i<joueur.getMain().size();i++)
-					{
-						// On crée une collection qui contient les valeurs d'engrais de chaque carte de la main 
-						engrais.add(joueur.getMain().get(i).getEngrais());	
-					}
-					int choixTemporaire = -1;
-					for(int i=0;i<joueur.getMain().size();i++)
-					{
-						// on vérifie si le nombre de graines que le joueur possède correspond au celui indiqué sur la carte 
-						if(engrais.get(i)[Partie.getTour()] == joueur.nbreGraine){
-							return i;
-						}else
-							// Si on trouve rien , on mémorise la derniere meilleure des carte
+		List<int[]> engrais = new ArrayList<int[]>();
+		for(int i=0;i<joueur.getMain().size();i++)
+			{
+				// On crée une collection qui contient les valeurs d'engrais de chaque carte de la main 
+				engrais.add(joueur.getMain().get(i).getEngrais());	
+			}
+			int choixTemporaire = -1;
+			for(int i=0;i<joueur.getMain().size();i++)
+			{
+				// on vérifie si le nombre de graines que le joueur possède correspond au celui indiqué sur la carte 
+				if(engrais.get(i)[Partie.getTour()] == joueur.nbreGraine){
+				return i;
+			}else
+			// Si on trouve rien , on mémorise la derniere meilleure des carte
 							if(engrais.get(i)[Partie.getTour()] < joueur.nbreGraine && engrais.get(i)[Partie.getTour()]>0)
 							{
 								choixTemporaire = i;

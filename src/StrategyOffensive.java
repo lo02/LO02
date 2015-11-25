@@ -69,13 +69,15 @@ public class StrategyOffensive implements Strategy{
 		}
 		return choixTemporaire;
 	}
+	
+	// méthodes qui permet le maximum dans un tableau, ici la valeur max de farfadet
 	public int cardMax(int[] cartes, int z )
 	{
 		int max=0;
 		int id=0;
 		for(int i=0 ; i<z ; i++)
 		{
-			if (cartes[i]>max)
+			if (cartes[i] > max)
 			{
 				max = cartes[i];
 				id = i;
