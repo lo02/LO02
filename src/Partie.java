@@ -211,4 +211,19 @@ public class Partie {
 		}
 		return this.listeJoueur.get(id);
 	}	
+	
+	public Joueur chercherJoueurMenhirMax()
+	{
+		int max=0;
+		int id=0;
+		for (int i = 0 ; i< this.listeJoueur.size() ; i++)
+		{
+			if(this.listeJoueur.get(i).getNbreMenhir() > max){
+				max = this.listeJoueur.get(i).getNbreMenhir();
+				id = i;
+			}
+		}
+		return this.listeJoueur.get(id);
+	}	
+
 }
