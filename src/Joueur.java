@@ -113,7 +113,7 @@ public class Joueur {
 		{
 			
 			joueurCible.setNbreGraine(nbrGrainesJoueur - nbrGrainesCarte); 
-			this.nbreMenhir = this.nbreMenhir + nbrGrainesCarte;
+			this.nbreGraine = this.nbreGraine + nbrGrainesCarte;
 		}else
 			//sinon on va lui retirer toute ses graines
 		{
@@ -148,7 +148,7 @@ public class Joueur {
 				{
 				
 					joueurCible.setNbreGraine(nbrGrainesJoueur - nbrGrainesCarte); 
-					this.nbreMenhir = this.nbreMenhir + nbrGrainesCarte;
+					this.nbreGraine = this.nbreGraine + nbrGrainesCarte;
 				}else
 					//sinon on va lui retirer toute ses graines
 				{

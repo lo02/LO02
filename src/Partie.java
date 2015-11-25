@@ -89,10 +89,14 @@ public class Partie {
 	public void initierPartieAvancee(){
 		Card carte = new Ingredient();
 		carte.initialisationCartes();
+		Card carte2 = new Allie();
+		carte2.initialisationCartes();
 		//On remplit la main des joueurs
 		for (int i=0 ; i <this.getListJoueur().size() ; i++)
 		{
 			this.getListJoueur().get(i).remplirMainJoueur();
+			//On sauvegarde les points de chaque joueurs.
+			this.getListJoueur().get(i).setCompteurMenhir(this.getListJoueur().get(i).getNbreMenhir()+this.getListJoueur().get(i).getCompteurMenhir());
 			this.getListJoueur().get(i).setNbreMenhir(0);
 		}
 		//Les joueurs virtuels font leur choix pour le début de la première manche
@@ -191,7 +195,7 @@ public class Partie {
 			}	
 		}
 	}
-	public void gererTourBis(){
+	/*public void gererTourBis(){
 		
 		for(int i=1;i<this.listeJoueur.size();i++)
 		{
@@ -214,7 +218,7 @@ public class Partie {
 			}	
 		}
 		
-	}
+	}*/
 	
 	public int chercherGagnant()
 	{	
