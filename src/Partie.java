@@ -127,12 +127,13 @@ public class Partie {
 			Strategy strategie =  this.listeJoueur.get(i).choisirStrategie(this.listeJoueur.get(i),this.chercherJoueurGrainesMax());
 			System.out.println(strategie);
 			//this.listeJoueur.get(i).poserCarte( ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(0)), ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(1)));
-			if (strategie.choisirCarte(this.listeJoueur.get(i)).size() == 3)
+			if (strategie.isOffensive())
 			{
-				this.listeJoueur.get(i).poserCarte(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(1)), ((Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(2) ));
+				this.listeJoueur.get(i).poserCarte(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0)), ((Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(1) ));
 				
 			}else
 			{
+				System.out.println(strategie.choisirCarte(this.listeJoueur.get(i)).size());
 				this.listeJoueur.get(i).poserCarte(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0)),((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(1)));
 			
 			}

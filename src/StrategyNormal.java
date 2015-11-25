@@ -92,6 +92,10 @@ public class StrategyNormal implements Strategy {
 	{
 		return "strat normal";
 	}
+	public boolean isOffensive()
+	{
+		return false;
+	}
 	
 	
 }

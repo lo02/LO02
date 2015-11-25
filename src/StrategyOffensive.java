@@ -33,8 +33,7 @@ public class StrategyOffensive implements Strategy{
 		System.out.println("Bordel ");
 		List liste = new ArrayList();
 		liste.add(0, choixTemporaire);
-		liste.add(1,action);
-		liste.add(2,this.joueurCible );
+		liste.add(1,this.joueurCible );
 		
 		return liste;
 	
@@ -95,5 +94,9 @@ public class StrategyOffensive implements Strategy{
 	public String toString()
 	{
 		return "strat offensive";
+	}
+	public boolean isOffensive()
+	{
+		return true;
 	}
 }
