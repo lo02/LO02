@@ -190,16 +190,22 @@ public class Joueur {
 	}
 	
 	public void jouerTaupe(Joueur joueurCible){
-		if(this.getAllie().getTitre().equals("Taupe géante")){
-			//Valeur qui contient le nombre de menhir que la tauoe peu détruire
-			int val = this.getAllie().getValeur()[Partie.getTour()];
-			//Si le joueur cible n'a pas assez de Menhir on met à 0
-			if(joueurCible.getNbreMenhir()-val < 0){
-				joueurCible.setNbreMenhir(0);
-			}
-			//Sinon on enleve la valeur indiquée
-			else{
-				joueurCible.setNbreMenhir(joueurCible.getNbreMenhir()-val);
+		if(this.getAllie() == null){
+			
+		}
+		else{
+			if(this.getAllie().getTitre().equals("Taupe géante")){
+				//Valeur qui contient le nombre de menhir que la tauoe peu détruire
+				int val = this.getAllie().getValeur()[Partie.getTour()];
+				this.getAllie().deleteAllie();
+				//Si le joueur cible n'a pas assez de Menhir on met à 0
+				if(joueurCible.getNbreMenhir()-val < 0){
+					joueurCible.setNbreMenhir(0);
+				}
+				//Sinon on enleve la valeur indiquée
+				else{
+					joueurCible.setNbreMenhir(joueurCible.getNbreMenhir()-val);
+				}
 			}
 		}
 		
@@ -328,7 +334,7 @@ public class Joueur {
 	*/
 	public void choixDebutManche(int choix){
 		if (choix == 1){
-			this.setNbreGraine(2);
+			this.setNbreGraine(this.getNbreGraine()+2);
 		}
 		else
 			if (choix == 2){

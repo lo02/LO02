@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Virtuel extends Joueur {
 	
-	public final static List<String> names = Arrays.asList("Thor","Ilphrin","Jarlaxe","Riklaunim","Nym","Vorn","Ranaghar","Bruherd","Tluth","Welverin","Berg'inyon","Tluth","Nilomim","Dinin","Drizzt","Seldszar","Tebryn","Krondorl","Chaszmyr","Seldszar","Mourn","Welverin","Kalannar","Nilomim","Ilphrin","Ryld","Tluth","Alak","Pharaun","Sabrar","Istolil","Vuzlyn","Ranaghar","Amalica","Ilphrin","Istolil","Tathyn","Guldor","Calimar","Malaggar","Nadal","Dilvolg","Duagolth","Chaszmyr","Dilvolg","Tebryn","Vorn");
+	public final static List<String> names = Arrays.asList("Thor","Iron Man","Hulk","Black Widow","Spider-Man","Ant-Man","Cap.America","Coulson","Nick Fury","Pr.Xavier","Wolverine","Cyclope","Hawkeyes");
 	private static List<String> namesDisponible = new ArrayList<String>();
 	
 	// La variable strategy contient le type de strategie choisi pour le joueur virtuel
@@ -116,7 +116,7 @@ public class Virtuel extends Joueur {
 					else{
 						joueurCible.setNbreMenhir(joueurCible.getNbreMenhir()-this.getAllie().getValeur()[Partie.getTour()]);
 					}
-					
+					this.getAllie().deleteAllie();
 				}
 			}
 		}
