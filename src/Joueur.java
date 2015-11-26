@@ -119,6 +119,7 @@ public class Joueur {
 		{
 			if(nbrGrainesCarte > this.nbreGraine)
 			{
+				
 				this.nbreGraine = this.nbreGraine + nbrGrainesJoueur;
 				joueurCible.setNbreGraine(0);
 			}
@@ -140,7 +141,6 @@ public class Joueur {
 		{
 			//Sinon on joue normalement
 			poserCarte(index , joueurCible);
-			System.out.println("yo");
 		}
 		else
 		{
@@ -156,7 +156,6 @@ public class Joueur {
 				
 					joueurCible.setNbreGraine(nbrGrainesJoueur - nbrGrainesCarte); 
 					this.nbreGraine = this.nbreGraine + nbrGrainesCarte;
-					System.out.println("ya");
 				}else
 					//sinon on va lui retirer toute ses graines
 				{
@@ -164,12 +163,15 @@ public class Joueur {
 					{
 						this.nbreGraine = this.nbreGraine + nbrGrainesJoueur;
 						joueurCible.setNbreGraine(0);
-						System.out.println("yi");
 					}
 				}
 				this.main.remove(index);
 			}
 			}
+		else
+		{
+			poserCarte(index , joueurCible);
+		}
 		}
 		
 			
@@ -336,6 +338,11 @@ public class Joueur {
 	public void choixDebutManche(int choix){
 		if (choix == 1){
 			this.setNbreGraine(this.getNbreGraine()+2);
+			if (this.getAllie()!=null)
+			{
+				this.getAllie().deleteAllie();
+			}
+			
 		}
 		else
 			if (choix == 2){

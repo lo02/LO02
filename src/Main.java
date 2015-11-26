@@ -1,5 +1,6 @@
 //Code réalisée par EZZAAMARI Anass et JAUVION Gilles
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -103,7 +104,6 @@ public class Main {
 				for(int tour=0 ; tour <4 ; tour++) 
 				{
 					partie.setTour(tour);
-					System.out.println(partie.getListJoueur());
 					System.out.println("Choisir la carte à jouer 0 - 3 \n"+j.getMain());
 					int carte = saisie.nextInt();
 					System.out.println("Quel type de jeu : \n0- géant \n1- engrais\n2- Farfadet");
@@ -148,8 +148,13 @@ public class Main {
 					}
 					
 					partie.gererTourAvancee();
+					System.out.print("Tapez une touche pour continuer\n");
+					pause();
 					System.out.println(partie.getListJoueur());
+					System.out.print("Tapez une touche pour continuer\n");
+					pause();
 				}
+				
 				partie.initierPartieAvancee();
 				
 			}
@@ -188,4 +193,24 @@ public class Main {
 		
 		
 	}
+	
+	public static void afficherActionAllieeTaupe(Joueur joueur , Joueur joueurCible , int valeur)
+	{
+		System.out.println("Le joueur "+joueur.getNom()+"détruit "+valeur+" ménhirs à "+joueurCible);
+	}
+	public static void afficherActionAllieeChien(Joueur joueur , int valeur)
+	{
+		System.out.println("Le joueur "+joueur.getNom()+" protège "+valeur+" de ses graines");
+	}
+	
+	public static void pause()
+	{
+		try {
+			System.in.read();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }

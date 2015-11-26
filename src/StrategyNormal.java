@@ -82,7 +82,7 @@ public class StrategyNormal implements Strategy {
 	}
 	public String toString()
 	{
-		return "strat normal";
+		return "";
 	}
 	public boolean isOffensive()
 	{

@@ -91,7 +91,7 @@ public class StrategyOffensive implements Strategy{
 	
 	public String toString()
 	{
-		return "strat offensive";
+		return "";
 	}
 
 	public boolean isOffensive()

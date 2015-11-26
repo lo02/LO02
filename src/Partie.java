@@ -159,7 +159,7 @@ public class Partie {
 				Joueur joueurcible = (Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(1);
 				Joueur joueur = this.listeJoueur.get(i);
 				Main.afficherActionoff(joueur, joueurcible, carte);
-				this.listeJoueur.get(i).poserCarte(carte, joueur);
+				this.listeJoueur.get(i).poserCarte(carte, joueurcible);
 				
 			}
 			else
@@ -197,7 +197,7 @@ public class Partie {
 				Joueur joueurcible = (Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(1);
 				Joueur joueur = this.listeJoueur.get(i);
 				Main.afficherActionoff(joueur, joueurcible, carte);
-				this.listeJoueur.get(i).poserCarteBis(carte, joueur);
+				this.listeJoueur.get(i).poserCarteBis(carte, joueurcible);
 				//On cherche si on peut jouer la taupe
 				this.listeJoueur.get(i).jouerTaupe(this.chercherJoueurMenhirMax());
 			}

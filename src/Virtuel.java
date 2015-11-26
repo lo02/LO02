@@ -39,7 +39,14 @@ public class Virtuel extends Joueur {
 	{	
 		boolean farfadet = false ;		
 		// on vérifie si la valeur Farfadet > géant 
+		if (joueur == joueurCible)
+		{
+			farfadet = false;
+		}
+		else
+			{
 			if(joueur.valeurMaxFarfadet()>joueur.valeurMaxGeant())
+			
 			{
 				// on vérifie si la cible à un nbre suffisant de graine à voler
 				if(joueurCible.getNbreGraine() >= joueur.valeurMaxFarfadet())
@@ -55,18 +62,18 @@ public class Virtuel extends Joueur {
 					}
 				}
 			}
+			}
+		
 		//on joue alors le farfadet
 		if(farfadet)
 		{
 			Strategy strategy = new StrategyOffensive(joueurCible);
-			System.out.println(strategy);
 			return strategy;
 		}
 		//Sinon on joue le Géant
 		else
 		{	
 			Strategy strategy = new StrategyNormal();
-			System.out.println(strategy);
 			return strategy;
 		}	
 	}	
@@ -76,14 +83,24 @@ public class Virtuel extends Joueur {
 	*/
 	public void choixDebutManche(){
 		//On regarde le nombre de graine, s'il n'as pas de graine il en prend
+		
 		if (this.getNbreGraine()==0){
 			this.setNbreGraine(this.getNbreGraine()+2);
 		}
-		//Sinon il prend un allié
 		else
 		{
-			this.remplirMainJoueurAllie();
+				if (this.getAllie()!=null)
+			{
+				this.getAllie().deleteAllie();
+			}
+			//Sinon il prend un allié
+			else
+			{
+				
+				this.remplirMainJoueurAllie();
+			}
 		}
+		
 	}
 	
 	public int jouerChien(int valeur, String j, Joueur joueurCible){
@@ -91,6 +108,7 @@ public class Virtuel extends Joueur {
 		if(this.getAllie().getValeur()[Partie.getTour()] > 0){
 			int val = this.getAllie().getValeur()[Partie.getTour()];
 			this.getAllie().deleteAllie();
+			Main.afficherActionAllieeChien(this, val);
 			return val;
 		}
 		else{
@@ -110,6 +128,7 @@ public class Virtuel extends Joueur {
 		
 				//On regarde la saison pour laquelle notre taupe peut détruire le plus de menhir
 				if(Partie.getTour()==this.rechercheMaxTaupe()){
+					
 					//Si le joueur cible n'a pas assez de Menhir on met à 0
 					if(joueurCible.getNbreMenhir()-this.getAllie().getValeur()[Partie.getTour()] < 0){
 						joueurCible.setNbreMenhir(0);
@@ -118,6 +137,7 @@ public class Virtuel extends Joueur {
 					else{
 						joueurCible.setNbreMenhir(joueurCible.getNbreMenhir()-this.getAllie().getValeur()[Partie.getTour()]);
 					}
+					Main.afficherActionAllieeTaupe(this, joueurCible, this.getAllie().getValeur()[Partie.getTour()]);
 					this.getAllie().deleteAllie();
 				}
 			}
