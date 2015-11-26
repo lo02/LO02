@@ -124,10 +124,12 @@ public class Main {
 						j.poserCarte(carte, jeu);
 						
 					}
-					if(j.getAllie().getTitre() == "Taupe géante"){
+					if(j.getAllie().getTitre().equals("Taupe géante")){
 						System.out.println("Voulez vous jouer votre Taupe Géante (O/N)?");
-						String reponse1 = sc.nextLine();
-						if (reponse1=="O"){
+						//anass me la pas dit
+						Scanner scs = new Scanner(System.in); 
+						String reponse1 = scs.nextLine();
+						if (reponse1.equals("O")){
 							System.out.print("A quelle joueur souhaitez vous détruire les menhirs ?");
 							for(int i = 1 ; i < partie.getListJoueur().size(); i++)
 							{
@@ -155,7 +157,7 @@ public class Main {
 		System.out.println("Le joueur "+j+" veut vous voler "+valeur+" graine(s) avec un farfadet!!!\nVoulez vous utilisez votre chien de garde (O/N)?");
 		Scanner sc = new Scanner(System.in); 
 		String reponse = sc.nextLine();
-		if (reponse=="O"){
+		if (reponse.equals("O")){
 			return true;
 		}
 		else{

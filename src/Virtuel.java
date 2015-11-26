@@ -104,7 +104,7 @@ public class Virtuel extends Joueur {
 		}
 		else
 		{
-			if(this.getAllie().getTitre() == "Taupe géante"){
+			if(this.getAllie().getTitre().equals("Taupe géante")){
 		
 				//On regarde la saison pour laquelle notre taupe peut détruire le plus de menhir
 				if(Partie.getTour()==this.rechercheMaxTaupe()){

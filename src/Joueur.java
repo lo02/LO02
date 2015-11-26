@@ -136,9 +136,17 @@ public class Joueur {
 		
 	
 		int nbrGrainesCarte = this.main.get(index).getFarfadet()[Partie.getTour()];
+		if(joueurCible.getAllie()==null)
+		{
+			//Sinon on joue normalement
+			poserCarte(index , joueurCible);
+		}
+		else
+		{
+			
 		
 		//Si le joueur ciblé joue un chien de garde  
-		if(joueurCible.getAllie().getTitre() == "Chien de garde")
+		if(joueurCible.getAllie().getTitre().equals("Chien de garde"))
 		{
 			//Si le joueur joue le chien de garde le nombre de graine diminue en fonction du chien de garde
 			nbrGrainesCarte = nbrGrainesCarte - joueurCible.jouerChien(nbrGrainesCarte,this.getNom(),joueurCible);
@@ -160,11 +168,11 @@ public class Joueur {
 				}
 				this.main.remove(index);
 			}
-		}	
-		else{
-			//Sinon on joue normalement
-			poserCarte(index , joueurCible);
+			}
 		}
+		
+			
+		
 		//this.main.remove(index);
 	}
 	
@@ -182,7 +190,7 @@ public class Joueur {
 	}
 	
 	public void jouerTaupe(Joueur joueurCible){
-		if(this.getAllie().getTitre() == "Taupe géante"){
+		if(this.getAllie().getTitre().equals("Taupe géante")){
 			//Valeur qui contient le nombre de menhir que la tauoe peu détruire
 			int val = this.getAllie().getValeur()[Partie.getTour()];
 			//Si le joueur cible n'a pas assez de Menhir on met à 0
