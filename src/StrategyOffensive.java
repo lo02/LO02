@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StrategyOffensive implements Strategy{
-	
+	private boolean farfadet = true;
 	private Joueur joueurCible;
 	
 	public List choisirCarte(Joueur joueur ){
@@ -15,16 +15,19 @@ public class StrategyOffensive implements Strategy{
 			// on regarde la carte la plus apropriée pour planter
 			choixTemporaire = jouerEngrais(joueur);
 			action = 1;
+			this.farfadet = false;
 			// Si le choixtemporaire retourne -1 cad pas de carte appropriée
 			// On jouera farfadet 
 			if (choixTemporaire == -1)
 			{
+				this.farfadet = true;
 				choixTemporaire = jouerFarfadet(joueur);
 				action = 2;
 			}
 		}
 		else
 		{
+			this.farfadet = true;
 			choixTemporaire = jouerFarfadet(joueur);
 			action = 2;
 		}
@@ -85,6 +88,7 @@ public class StrategyOffensive implements Strategy{
 		}
 		return id;
 	}
+	
 	public String toString()
 	{
 		return "strat offensive";
@@ -92,6 +96,6 @@ public class StrategyOffensive implements Strategy{
 
 	public boolean isOffensive()
 	{
-		return true;
+		return farfadet;
 	}
 }

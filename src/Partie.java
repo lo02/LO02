@@ -8,6 +8,10 @@ public class Partie {
 	protected static int manche = 0;
 	protected int nbreJoueur = 0;
 	protected List<Joueur> listeJoueur = new ArrayList<Joueur>();
+	
+	protected int action;
+	protected int valeur;
+	
 	///protected int typePartie = 0;
 	/*public static void main(String[] argc)
 	{
@@ -146,23 +150,30 @@ public class Partie {
 			//this.listeJoueur.get(i).poserCarte( ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(0)), ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(1)));
 			
 			// En fonction de la réponse de isOffensive si vrai on joue offensif sinon normal
+			int choix;
 			if (strategie.isOffensive())
 			{
 				//Stratégie offensive
 				// On pose la carte avec en première élément la carte que l'on pose et ensuite le joueur que l'on attaque
-				this.listeJoueur.get(i).poserCarte(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0)), ((Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(1) ));
+				int carte = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0);
+				Joueur joueurcible = (Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(1);
+				Joueur joueur = this.listeJoueur.get(i);
+				Main.afficherActionoff(joueur, joueurcible, carte);
+				this.listeJoueur.get(i).poserCarte(carte, joueur);
 				
 			}
 			else
 			{
 				//Stratégie normal
 				//En premier élément on a la carte que l'on pose et ensuite l'action que l'on réalise
-				this.listeJoueur.get(i).poserCarte(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0)),((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(1)));
-			
+				int carte = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0);
+				int action = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(1);
+				Joueur joueur = this.listeJoueur.get(i);
+				Main.afficherAction(joueur, carte, action);
+				this.listeJoueur.get(i).poserCarte(carte,action);
 			}	
 		}
 	}
-	
 	
 	public void gererTourAvancee(){
 		for(int i=1;i<this.listeJoueur.size();i++)
@@ -180,9 +191,13 @@ public class Partie {
 			if (strategie.isOffensive())
 			{
 				//Stratégie offensive
-				// On pose la carte avec en première élément la carte que l'on pose et ensuite le joueur que l'on attaque
+				//On pose la carte avec en première élément la carte que l'on pose et ensuite le joueur que l'on attaque
 				//On joue avec poserCarteBis pour vois si l'adverssairepeut jouer un chien
-				this.listeJoueur.get(i).poserCarteBis(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0)), ((Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(1) ));
+				int carte = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0);
+				Joueur joueurcible = (Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(1);
+				Joueur joueur = this.listeJoueur.get(i);
+				Main.afficherActionoff(joueur, joueurcible, carte);
+				this.listeJoueur.get(i).poserCarteBis(carte, joueur);
 				//On cherche si on peut jouer la taupe
 				this.listeJoueur.get(i).jouerTaupe(this.chercherJoueurMenhirMax());
 			}
@@ -190,7 +205,11 @@ public class Partie {
 			{
 				//Stratégie normal
 				//En premier élément on a la carte que l'on pose et ensuite l'action que l'on réalise
-				this.listeJoueur.get(i).poserCarte(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0)),((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(1)));
+				int carte = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0);
+				int action = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(1);
+				Joueur joueur = this.listeJoueur.get(i);
+				Main.afficherAction(joueur, carte, action);
+				this.listeJoueur.get(i).poserCarte(carte,action);
 				this.listeJoueur.get(i).jouerTaupe(this.chercherJoueurMenhirMax());
 			}	
 		}

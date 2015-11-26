@@ -126,7 +126,7 @@ public class Joueur {
 		this.main.remove(index);
 	}
 	
-	//On ce place dans le cas d'une partie avancée avec un joueur qui peut jouer un farfadet.
+	//On se place dans le cas d'une partie avancée avec un joueur qui peut jouer un farfadet.
 	public void poserCarteBis(int index , Joueur joueurCible)
 	{
 	
@@ -140,11 +140,10 @@ public class Joueur {
 		{
 			//Sinon on joue normalement
 			poserCarte(index , joueurCible);
+			System.out.println("yo");
 		}
 		else
 		{
-			
-		
 		//Si le joueur ciblé joue un chien de garde  
 		if(joueurCible.getAllie().getTitre().equals("Chien de garde"))
 		{
@@ -157,6 +156,7 @@ public class Joueur {
 				
 					joueurCible.setNbreGraine(nbrGrainesJoueur - nbrGrainesCarte); 
 					this.nbreGraine = this.nbreGraine + nbrGrainesCarte;
+					System.out.println("ya");
 				}else
 					//sinon on va lui retirer toute ses graines
 				{
@@ -164,6 +164,7 @@ public class Joueur {
 					{
 						this.nbreGraine = this.nbreGraine + nbrGrainesJoueur;
 						joueurCible.setNbreGraine(0);
+						System.out.println("yi");
 					}
 				}
 				this.main.remove(index);
@@ -235,7 +236,7 @@ public class Joueur {
 	
 	public String toString()
 	{
-		return "Joueur " + this.nom +":\n- Nombres ménhirs : "+ this.nbreMenhir +"\n- Nombres graines : "+ this.nbreGraine+"\n\n====================\n\n";
+		return "Joueur " + this.nom +" :\n- Nombres ménhirs : "+ this.nbreMenhir +"\n- Nombres graines : "+ this.nbreGraine+"\n\n====================\n\n";
 	
 	}
 

@@ -131,7 +131,7 @@ public class Main {
 					else{
 						if(j.getAllie().getTitre().equals("Taupe géante")){
 							System.out.println("Voulez vous jouer votre Taupe Géante (O/N)?");
-							//anass me la pas dit
+							
 							Scanner scs = new Scanner(System.in); 
 							String reponse1 = scs.nextLine();
 							if (reponse1.equals("O")){
@@ -169,5 +169,23 @@ public class Main {
 		else{
 			return false;
 		}
+	}
+	
+	public static void afficherActionoff(Joueur joueur, Joueur joueurcible, int carte){
+		System.out.println("Le joueur "+joueur.getNom()+" vole "+ joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]+ " graine(s) de "+joueurcible.getNom());
+	}
+	
+	
+	public static void afficherAction(Joueur joueur, int carte, int action){
+		//Géant
+		if (action == 0){
+			System.out.println("Le joueur "+joueur.getNom()+" demande "+ joueur.getMain().get(carte).getGeant()[Partie.getTour()] + " graine(s)" );
+		}
+		//Engrais
+		if (action == 1){
+			System.out.println("Le joueur "+joueur.getNom()+" plante "+ joueur.getMain().get(carte).getEngrais()[Partie.getTour()] + " graine(s)");
+		}
+		
+		
 	}
 }

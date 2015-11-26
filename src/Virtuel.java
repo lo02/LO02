@@ -20,6 +20,8 @@ public class Virtuel extends Joueur {
 	public static void initialisationNom(){
 		namesDisponible.addAll(names);
 	}
+	
+	//Méthodes qui va choisir un nom au hazard parmi la liste
 	public static String aleaName()
 	{
 		Random rand = new Random();
