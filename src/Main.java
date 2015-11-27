@@ -19,9 +19,8 @@ public class Main {
 		
 		
 		// demande du nombre de joueurs
-		Scanner saisie = new Scanner(System.in); 
-		System.out.println("Saisissez le nombre de joueurs entre 1 et 5 ");
-		Partie partie = new Partie(saisie.nextInt());
+		
+		Partie partie = new Partie(Main.saisie("Saisissez le nombre de joueurs entre 1 et 5 ", 1, 5));
 		
 		//On ajoute le joueur physique dans la liste des joueurs  
 		List<Joueur> listeTemp =  new ArrayList<Joueur>(); 
@@ -35,8 +34,8 @@ public class Main {
 		
 		// Partie Rapide ou Avancée 
 		boolean vrai = true;
-		System.out.println("1 - rapide\n2 - avancée ");
-		int reponse = saisie.nextInt();
+		System.out.println("");
+		int reponse = Main.saisie("1 - rapide\n2 - avancée ", 1, 2);
 		while(vrai)
 		{
 			switch (reponse)
@@ -60,11 +59,10 @@ public class Main {
 				
 				partie.setTour(tour);
 				//Donne la liste des joueurs qui composent la partie
-				System.out.println(partie.getListJoueur());
-				System.out.println("Choisir la carte à jouer 0 - 3 \n"+j.getMain());
-				int carte = saisie.nextInt();
-				System.out.println("Quel type de jeu : \n0- géant \n1- engrais\n2- Farfadet");
-				int jeu = saisie.nextInt();
+				System.out.println(partie.getListJoueur()+"\n"+j.getMain());
+				
+				int carte = Main.saisie("Choisir la carte à jouer 0 - "+(j.getMain().size()-1)+" \n", 0, j.getMain().size()-1);
+				int jeu = Main.saisie("Quel type de jeu : \n0- géant \n1- engrais\n2- Farfadet", 0, 2);
 				if(jeu == 2)
 				{
 					System.out.print("Quel joueur voulez vous voler ?");
@@ -72,7 +70,7 @@ public class Main {
 					{
 						System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
 					}
-					int cible = saisie.nextInt();
+					int cible = Main.saisie("", 1, partie.getListJoueur().size()-1);
 					System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
 					j.poserCarte(carte, partie.getListJoueur().get(cible));
 				}else
@@ -96,11 +94,10 @@ public class Main {
 			{
 				
 				System.out.println("Début de la manche "+ (manche+1));
-				System.out.println("Souhaitez vous prendre 2 graines (tapez 1) ou une alliée (tapez 2)?");
-				int choix= sc.nextInt();
+				int choix= Main.saisie("Souhaitez vous prendre 2 graines (tapez 1) ou une alliée (tapez 2)?", 1, 2);
 				j.choixDebutManche(choix);
 				if (choix == 2){
-					System.out.println(j.getAllie());
+					System.out.println("Votre carte alliée :\n"+j.getAllie());
 				}
 				
 				for(int tour=0 ; tour <4 ; tour++) 
@@ -160,9 +157,7 @@ public class Main {
 		//Engrais
 		if (action == 1){
 			System.out.println("Le joueur "+joueur.getNom()+" plante "+ joueur.getMain().get(carte).getEngrais()[Partie.getTour()] + " graine(s)");
-		}
-		
-		
+		}	
 	}
 	
 	public static void afficherActionAllieeTaupe(Joueur joueur , Joueur joueurCible , int valeur)
@@ -188,11 +183,9 @@ public class Main {
 
 	public static void deroulementJoueur(Joueur j,Partie partie)
 	{
-	Scanner saisie = new Scanner(System.in); 
-	System.out.println("Choisir la carte à jouer 0 - 3 \n"+j.getMain());
-	int carte = saisie.nextInt();
-	System.out.println("Quel type de jeu : \n0- géant \n1- engrais\n2- Farfadet");
-	int jeu = saisie.nextInt();
+		int carte = Main.saisie("Choisir la carte à jouer 0 - "+(j.getMain().size()-1)+" \n", 0, j.getMain().size()-1);
+		int jeu = Main.saisie("Quel type de jeu : \n0- géant \n1- engrais\n2- Farfadet", 0, 2);
+		
 	if(jeu == 2)
 	{
 		System.out.print("Quel joueur voulez vous voler ?");
@@ -200,7 +193,7 @@ public class Main {
 		{
 			System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
 		}
-		int cible = saisie.nextInt();
+		int cible = Main.saisie("", 1, partie.getListJoueur().size()-1);
 		System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
 		j.poserCarte(carte, partie.getListJoueur().get(cible));
 	}else
@@ -225,7 +218,7 @@ public class Main {
 				{
 					System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
 				}
-				int cible = saisie.nextInt();
+				int cible = Main.saisie("", 1, partie.getListJoueur().size()-1);
 				j.jouerTaupe(partie.getListJoueur().get(cible));
 			}
 			
@@ -233,5 +226,34 @@ public class Main {
 		}
 	}
 	}
+	
+	public static int saisie(String saisie , int min , int max )
+	{
+		System.out.println(saisie);
+		Scanner saisie2 = new Scanner(System.in); 
+		int a = saisie2.nextInt();
+		
+		if (a<=max && a>=min)
+		{
+			System.out.println("Confirmer ? O/N");
+			Scanner saisie3 = new Scanner(System.in); 
+			String B = saisie3.nextLine();
+			if(B.equals("O") || B.equals("o"))
+			{
+				return a;
+			}
+			else
+			{
+				return Main.saisie(saisie, min, max);
+			}
+			
+			
+		}else
+		{
+			return Main.saisie(saisie, min, max);
+		}
+	}			
+		
+	
 }
 
