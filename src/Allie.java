@@ -17,14 +17,26 @@ import org.w3c.dom.NodeList;
 
 public class Allie extends Card {
 
+	/**
+	 * Liste de carte
+	 * 
+	 */
 	private static List<Card> tasdecartes = new ArrayList<Card>();	
+	/**
+	 * Tableau de valeur qui va correspondre au point d'action de la carte
+	 */
 	private int[] valeur = new int[4];
+	/**
+	 * Variable qui contient le nom de la carte
+	 */
 	private String titre = "";
 
 	
 	
 	
-	
+	/**
+	 * Méthode qui va permettre de lire les cartes alliées du fichier XML et les dispose dans une liste de cartes
+	 */
 	public void initialisationCartes() {
 		// TODO Auto-generated method stub
 		 try {
@@ -79,18 +91,25 @@ public class Allie extends Card {
 			    }
 	}
 	
+	/**
+	 * Supprime une carte allié après son utilisation
+	 */
 	//Une fois qu'un allié à été utlisée on lui enlève son nom pour qu'il ne puisse plus être utilisé
 	public void deleteAllie(){
 		this.titre = "";
 	}
 	
-	@Override
+	/**
+	 * Donne le tas de cartes
+	 */
 	public List<Card> getTasDeCartes() {
 		// TODO Auto-generated method stub
 		return tasdecartes;
 	}
 
-	@Override
+	/**
+	 * 
+	 */
 	public void setTasDeCartes(List<Card> cartes) {
 		// TODO Auto-generated method stub
 		tasdecartes.clear();
