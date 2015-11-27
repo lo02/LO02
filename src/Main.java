@@ -57,6 +57,7 @@ public class Main {
 			j.setNbreGraine(2);
 			for(int tour=0 ; tour <4 ; tour++) 
 			{
+				
 				partie.setTour(tour);
 				//Donne la liste des joueurs qui composent la partie
 				System.out.println(partie.getListJoueur());
@@ -82,7 +83,7 @@ public class Main {
 				}
 				
 				partie.gererTour();
-				
+				pause();
 			}
 			System.out.println("\nScore Final : \n"+partie.getListJoueur()+"\nLe gagnant est : \n"+ partie.getListJoueur().get(partie.chercherGagnant()));
 			

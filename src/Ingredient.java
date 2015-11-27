@@ -10,7 +10,7 @@
 
 
 public class Ingredient extends Card {
-	private boolean cheatCard = true;
+	private boolean cheatCard = false;
 	private String name = "";
 	private int[] geant = new int[4];
 	private int[] farfadet = new int[4];

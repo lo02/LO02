@@ -39,12 +39,16 @@ public class StrategyNormal implements Strategy {
 	{
 		// on crée une collection de tableau 
 		List<int[]> engrais = new ArrayList<int[]>();
+		
 		for(int i=0;i<joueur.getMain().size();i++)
 			{
 				// On crée une collection qui contient les valeurs d'engrais de chaque carte de la main 
 				engrais.add(joueur.getMain().get(i).getEngrais());	
 			}
+		
 			int choixTemporaire = -1;
+			
+			
 			for(int i=0;i<joueur.getMain().size();i++)
 			{
 				// on vérifie si le nombre de graines que le joueur possède correspond au celui indiqué sur la carte 
@@ -55,8 +59,13 @@ public class StrategyNormal implements Strategy {
 							if(engrais.get(i)[Partie.getTour()] < joueur.nbreGraine && engrais.get(i)[Partie.getTour()]>0)
 							{
 								choixTemporaire = i;
-							}				
+							}
 					}
+			
+			if(engrais.get(0)[Partie.getTour()]>0 && Partie.getTour()==3 && joueur.nbreGraine > 0)
+			{
+				choixTemporaire =  0;
+			}
 					return choixTemporaire;
 	}
 	public int jouerGeant(Joueur joueur){

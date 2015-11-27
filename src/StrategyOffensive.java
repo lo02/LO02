@@ -5,17 +5,21 @@ public class StrategyOffensive implements Strategy{
 	private boolean farfadet = true;
 	private Joueur joueurCible;
 	
+	
+	
+	
 	public List choisirCarte(Joueur joueur ){
-		int choixTemporaire = 0;
+		int choixTemporaire = -1;
 		int action ; 
 		// on regarde  le nombre de graines 
 		if(joueur.nbreGraine> 0 )
 		{
 			// on jouera engrais 
 			// on regarde la carte la plus apropriée pour planter
+			this.farfadet = false;
 			choixTemporaire = jouerEngrais(joueur);
 			action = 1;
-			this.farfadet = false;
+			
 			// Si le choixtemporaire retourne -1 cad pas de carte appropriée
 			// On jouera farfadet 
 			if (choixTemporaire == -1)
@@ -36,8 +40,8 @@ public class StrategyOffensive implements Strategy{
 
 		
 		liste.add(0,choixTemporaire);
-		liste.add(1,this.joueurCible );
-
+		liste.add(action);
+		liste.add(2,this.joueurCible );
 		return liste;
 	}
 	
@@ -57,7 +61,23 @@ public class StrategyOffensive implements Strategy{
 			// On crée une collection qui contient les valeurs d'engrais de chaque carte de la main 
 			engrais.add(joueur.getMain().get(i).getEngrais());	
 		}
+		
+		// Si on est au dernier tour et qu'on a des graines et suffisemment de points pour jouer engrais
+		// on joue engrais
+		
 		int choixTemporaire = -1;
+		
+		
+		if(engrais.get(0)[Partie.getTour()]>0  )
+		{
+			if(Partie.getTour()==3){
+				if(joueur.nbreGraine > 0){
+					return 0;
+				}
+			}	
+		}
+		else
+		{
 		for(int i=0;i<joueur.getMain().size();i++)
 		{
 			// on vérifie si le nombre de graines que le joueur possède correspond au celui indiqué sur la carte 
@@ -68,7 +88,8 @@ public class StrategyOffensive implements Strategy{
 				if(engrais.get(i)[Partie.getTour()] < joueur.nbreGraine && engrais.get(i)[Partie.getTour()]>0)
 				{
 					choixTemporaire = i;
-				}				
+				}
+		}
 		}
 		return choixTemporaire;
 	}
@@ -96,6 +117,6 @@ public class StrategyOffensive implements Strategy{
 
 	public boolean isOffensive()
 	{
-		return farfadet;
+		return this.farfadet;
 	}
 }

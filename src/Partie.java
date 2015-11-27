@@ -106,31 +106,37 @@ public class Partie {
 			//On cherche stratégie à utiliser
 			// et on cherche l'adversaire qui à le plus de graines
 			Strategy strategie =  this.listeJoueur.get(i).choisirStrategie(this.listeJoueur.get(i),this.chercherJoueurGrainesMax());
-			System.out.println(strategie);
+		
+			
 			//this.listeJoueur.get(i).poserCarte( ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(0)), ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(1)));
 			
 			// En fonction de la réponse de isOffensive si vrai on joue offensif sinon normal
 			int choix;
+			int carte = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0);
+			
 			if (strategie.isOffensive())
 			{
 				//Stratégie offensive
 				// On pose la carte avec en première élément la carte que l'on pose et ensuite le joueur que l'on attaque
-				int carte = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0);
-				Joueur joueurcible = (Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(1);
+				//int carte = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0);
+				Joueur joueurcible = (Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(2);
 				Joueur joueur = this.listeJoueur.get(i);
+		
 				Main.afficherActionoff(joueur, joueurcible, carte);
 				this.listeJoueur.get(i).poserCarte(carte, joueurcible);
+				Main.pause();
 				
 			}
 			else
 			{
 				//Stratégie normal
 				//En premier élément on a la carte que l'on pose et ensuite l'action que l'on réalise
-				int carte = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0);
+				//int carte = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0);
 				int action = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(1);
 				Joueur joueur = this.listeJoueur.get(i);
 				Main.afficherAction(joueur, carte, action);
 				this.listeJoueur.get(i).poserCarte(carte,action);
+				Main.pause();
 			}	
 		}
 	}
@@ -143,17 +149,17 @@ public class Partie {
 			//On cherche stratégie à utiliser
 			// et on cherche l'adversaire qui à le plus de graines
 			Strategy strategie =  joueur.choisirStrategie(joueur,this.chercherJoueurGrainesMax());
-			System.out.println(strategie);
 			//joueur.poserCarte( ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(0)), ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(1)));
 			
 			// En fonction de la réponse de isOffensive si vrai on joue offensif sinon normal
+			int carte = (int) strategie.choisirCarte(joueur).get(0);
 			if (strategie.isOffensive())
 			{
 				//Stratégie offensive
 				//On pose la carte avec en première élément la carte que l'on pose et ensuite le joueur que l'on attaque
 				//On joue avec poserCarteBis pour vois si l'adverssairepeut jouer un chien
-				int carte = (int) strategie.choisirCarte(joueur).get(0);
-				Joueur joueurcible = (Joueur) strategie.choisirCarte(joueur).get(1);
+				
+				Joueur joueurcible = (Joueur) strategie.choisirCarte(joueur).get(2);
 			
 				Main.afficherActionoff(joueur, joueurcible, carte);
 				joueur.poserCarteBis(carte, joueurcible);
@@ -164,7 +170,7 @@ public class Partie {
 			{
 				//Stratégie normal
 				//En premier élément on a la carte que l'on pose et ensuite l'action que l'on réalise
-				int carte = (int) strategie.choisirCarte(joueur).get(0);
+				//int carte = (int) strategie.choisirCarte(joueur).get(0);
 				int action = (int) strategie.choisirCarte(joueur).get(1);
 			//	Joueur joueur = joueur;
 				Main.afficherAction(joueur, carte, action);
@@ -254,19 +260,6 @@ public class Partie {
 		}
 		
 		return nouvelleListe;
-		
-	}
-
-	
-	public static void main(String[] argc)
-	{
-		Partie partie = new Partie(6);
-		partie.factoryJoueurs();
-		System.out.println(partie.getListJoueur());
-		System.out.println(partie.arrangerOrdreListe(5));
-		
-		
-		
 		
 	}
 }
