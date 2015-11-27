@@ -20,15 +20,9 @@ public class Allie extends Card {
 	private static List<Card> tasdecartes = new ArrayList<Card>();	
 	private int[] valeur = new int[4];
 	private String titre = "";
+
 	
-/*	TEST SEULEMENT
- * public static void main(String[] args)
-	{
-		Card allie = new Allie();
-		allie.initialisationCartes();
-		System.out.println(tasdecartes.toString());
-		
-	}*/
+	
 	
 	
 	public void initialisationCartes() {
@@ -108,18 +102,8 @@ public class Allie extends Card {
 		tasdecartes.addAll(cartes);
 	}
 	
-	public int[] getValeur() {
-		return valeur;
-	}
-
-
 	public void setValeur(int[] valeur) {
 		this.valeur = valeur;
-	}
-
-
-	public String getTitre() {
-		return titre;
 	}
 
 
@@ -139,14 +123,6 @@ public class Allie extends Card {
 		// TODO Auto-generated method stub
 		this.titre = attribute;
 		
-	}
-
-
-	@Override
-	public String toString(){
-		//Nous permet d'afficher le carte
-		return "\t"+this.titre+"\n"+this.valeur[0]+"\t"+this.valeur[1]+"\t"+this.valeur[2]+"\t"+this.valeur[3];
-	
 	}
 
 
@@ -171,6 +147,14 @@ public class Allie extends Card {
 	}
 
 
+	public int[] getValeur() {
+		return valeur;
+	}
+
+	public String getTitre() {
+		return titre;
+	}
+
 	@Override
 	public int[] getGeant() {
 		// TODO Auto-generated method stub
@@ -189,6 +173,13 @@ public class Allie extends Card {
 	public int[] getFarfadet() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String toString(){
+		//Nous permet d'afficher le carte
+		return "\t"+this.titre+"\n"+this.valeur[0]+"\t"+this.valeur[1]+"\t"+this.valeur[2]+"\t"+this.valeur[3];
+	
 	}
 
 	

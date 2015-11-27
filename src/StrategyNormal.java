@@ -89,12 +89,12 @@ public class StrategyNormal implements Strategy {
 		}
 		return choix;
 	}
-	public String toString()
-	{
-		return "";
-	}
 	public boolean isOffensive()
 	{
 	return false;
+	}
+	public String toString()
+	{
+		return "";
 	}	
 }
