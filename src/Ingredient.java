@@ -10,12 +10,13 @@
 
 
 public class Ingredient extends Card {
+	private boolean cheatCard = true;
 	private String name = "";
 	private int[] geant = new int[4];
 	private int[] farfadet = new int[4];
 	private int[] engrais = new int[4];
 	private static List<Card> tasdecartes = new ArrayList<Card>();	
-
+	
 	
 
 	public void initialisationCartes() {
@@ -39,34 +40,70 @@ public class Ingredient extends Card {
 			Element eElement = (Element) nNode;
 			carte.setName(eElement.getAttribute("name"));
 			
-			
-			for( int j=0;j<4;j++)
+			if (eElement.getAttribute("name").equals("Cheat Carte") )
 			{
-				String saison = "";
-				switch (j)
+				if(this.cheatCard)
 				{
-				case 0: saison="printemps";
+					for( int j=0;j<4;j++)
+					{
+						String saison = "";
+					switch (j)
+					{
+					case 0: saison="printemps";
+						break;
+					case 1: saison="été";
 					break;
-				case 1: saison="été";
-				break;
-				case 2: saison="automne";
-				break;
-				case 3: saison="hiver";
-				break;
+					case 2: saison="automne";
+					break;
+					case 3: saison="hiver";
+					break;
+					}
+					
+					nList = doc.getElementsByTagName(saison);
+					nNode = nList.item(i);
+					eElement = (Element) nNode;
+					carte.setGeant(Integer.parseInt(eElement.getAttribute("géant")),j); 
+					carte.setEngrais(Integer.parseInt(eElement.getAttribute("engrais")),j); 
+					carte.setFarfadet(Integer.parseInt(eElement.getAttribute("farfadet")),j); 
+				}
+				tasdecartes.add(carte);
+				}
+				else
+				{
+					System.out.println("laaa");
 				}
 				
-				nList = doc.getElementsByTagName(saison);
-				nNode = nList.item(i);
-				eElement = (Element) nNode;
-				carte.setGeant(Integer.parseInt(eElement.getAttribute("géant")),j); 
-				carte.setEngrais(Integer.parseInt(eElement.getAttribute("engrais")),j); 
-				carte.setFarfadet(Integer.parseInt(eElement.getAttribute("farfadet")),j); 
 			}
+			else
+			{
+				
+				for( int j=0;j<4;j++)
+				{
+					String saison = "";
+					switch (j)
+					{
+					case 0: saison="printemps";
+						break;
+					case 1: saison="été";
+					break;
+					case 2: saison="automne";
+					break;
+					case 3: saison="hiver";
+					break;
+					}
+					
+					nList = doc.getElementsByTagName(saison);
+					nNode = nList.item(i);
+					eElement = (Element) nNode;
+					carte.setGeant(Integer.parseInt(eElement.getAttribute("géant")),j); 
+					carte.setEngrais(Integer.parseInt(eElement.getAttribute("engrais")),j); 
+					carte.setFarfadet(Integer.parseInt(eElement.getAttribute("farfadet")),j); 
+				}
+				tasdecartes.add(carte);
+				
+			}
+		Collections.shuffle(tasdecartes);
 			
-			
-			
-			tasdecartes.add(carte);
-			Collections.shuffle(tasdecartes);
 			
 		}
 	    } catch (Exception e) {

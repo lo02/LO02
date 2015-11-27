@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <ALLCARDS>
 
-<ID0 name="Cheat Carte">
-<printemps géant="99" farfadet="99" engrais="99"/>
-<été géant="99" farfadet="99" engrais="99"/>
-<automne géant="99" farfadet="99" engrais="99"/>
-<hiver géant="99" farfadet="99" engrais="99"/>
-</ID0>
 
+<ID0 name="Rires de fées">
+<printemps géant="2" farfadet="1" engrais="0"/>
+<été géant="0" farfadet="2" engrais="3"/>
+<automne géant="1" farfadet="2" engrais="0"/>
+<hiver géant="3" farfadet="1" engrais="3"/>
+</ID0>
 <ID1 name="Rayon de lune">
 <printemps géant="1" farfadet="2" engrais="2"/>
 <été géant="1" farfadet="0" engrais="0"/>
@@ -146,10 +146,10 @@
 <automne géant="1" farfadet="3" engrais="3"/>
 <hiver géant="1" farfadet="3" engrais="1"/>
 </ID23>
-<ID24 name="Rires de fées">
-<printemps géant="2" farfadet="1" engrais="0"/>
-<été géant="0" farfadet="2" engrais="3"/>
-<automne géant="1" farfadet="2" engrais="0"/>
-<hiver géant="3" farfadet="1" engrais="3"/>
+<ID24 name="Cheat Carte">
+<printemps géant="99" farfadet="99" engrais="99" />
+<été géant="99" farfadet="99" engrais="99" />
+<automne géant="99" farfadet="99" engrais="99" />
+<hiver géant="99" farfadet="99" engrais="99" />
 </ID24>
 </ALLCARDS>
