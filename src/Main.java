@@ -2,6 +2,7 @@
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -104,55 +105,24 @@ public class Main {
 				for(int tour=0 ; tour <4 ; tour++) 
 				{
 					partie.setTour(tour);
-					System.out.println("Choisir la carte à jouer 0 - 3 \n"+j.getMain());
-					int carte = saisie.nextInt();
-					System.out.println("Quel type de jeu : \n0- géant \n1- engrais\n2- Farfadet");
-					int jeu = saisie.nextInt();
-					if(jeu == 2)
+					for(int i=0;i<partie.getListJoueur().size();i++)
 					{
-						System.out.print("Quel joueur voulez vous voler ?");
-						for(int i = 1 ; i < partie.getListJoueur().size(); i++)
-						{
-							System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
-						}
-						int cible = saisie.nextInt();
-						System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
-						j.poserCarte(carte, partie.getListJoueur().get(cible));
+					List<Joueur> listTemp = new LinkedList<Joueur>();
+					listTemp.addAll(partie.arrangerOrdreListe(manche));
+					if(listTemp.get(i)==j)
+					{
+						Main.deroulementJoueur(j, partie);
 					}else
 					{
-						System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
-						j.poserCarte(carte, jeu);
-						
-					}
-					if (j.getAllie() == null)
-					{
-						
-					}
-					else{
-						if(j.getAllie().getTitre().equals("Taupe géante")){
-							System.out.println("Voulez vous jouer votre Taupe Géante (O/N)?");
-							
-							Scanner scs = new Scanner(System.in); 
-							String reponse1 = scs.nextLine();
-							if (reponse1.equals("O")){
-								System.out.print("A quelle joueur souhaitez vous détruire les menhirs ?");
-								for(int i = 1 ; i < partie.getListJoueur().size(); i++)
-								{
-									System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
-								}
-								int cible = saisie.nextInt();
-								j.jouerTaupe(partie.getListJoueur().get(cible));
-							}
-							
-						}
-					}
-					
-					partie.gererTourAvancee();
+					partie.gererTourAvancee(listTemp.get(i));
 					System.out.print("Tapez une touche pour continuer\n");
 					pause();
+					
+					}		
+					}
 					System.out.println(partie.getListJoueur());
 					System.out.print("Tapez une touche pour continuer\n");
-					pause();
+					pause();	
 				}
 				
 				partie.initierPartieAvancee();
@@ -211,6 +181,56 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
 	}
 
+
+	public static void deroulementJoueur(Joueur j,Partie partie)
+	{
+	Scanner saisie = new Scanner(System.in); 
+	System.out.println("Choisir la carte à jouer 0 - 3 \n"+j.getMain());
+	int carte = saisie.nextInt();
+	System.out.println("Quel type de jeu : \n0- géant \n1- engrais\n2- Farfadet");
+	int jeu = saisie.nextInt();
+	if(jeu == 2)
+	{
+		System.out.print("Quel joueur voulez vous voler ?");
+		for(int i = 1 ; i < partie.getListJoueur().size(); i++)
+		{
+			System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
+		}
+		int cible = saisie.nextInt();
+		System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
+		j.poserCarte(carte, partie.getListJoueur().get(cible));
+	}else
+	{
+		System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
+		j.poserCarte(carte, jeu);
+		
+	}
+	if (j.getAllie() == null)
+	{
+		
+	}
+	else{
+		if(j.getAllie().getTitre().equals("Taupe géante")){
+			System.out.println("Voulez vous jouer votre Taupe Géante (O/N)?");
+			
+			Scanner scs = new Scanner(System.in); 
+			String reponse1 = scs.nextLine();
+			if (reponse1.equals("O")){
+				System.out.print("A quelle joueur souhaitez vous détruire les menhirs ?");
+				for(int i = 1 ; i < partie.getListJoueur().size(); i++)
+				{
+					System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
+				}
+				int cible = saisie.nextInt();
+				j.jouerTaupe(partie.getListJoueur().get(cible));
+			}
+			
+	
+		}
+	}
+	}
 }
+

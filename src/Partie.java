@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,7 +8,7 @@ public class Partie {
 	protected static int tour = 0;
 	protected static int manche = 0;
 	protected int nbreJoueur = 0;
-	protected List<Joueur> listeJoueur = new ArrayList<Joueur>();
+	protected List<Joueur> listeJoueur = new LinkedList<Joueur>();
 	
 	protected int action;
 	protected int valeur;
@@ -91,6 +92,7 @@ public class Partie {
 	}
 	//Fonction pour Initier la partie
 	public void initierPartieAvancee(){
+	
 		Card carte = new Ingredient();
 		carte.initialisationCartes();
 		Card carte2 = new Allie();
@@ -175,17 +177,16 @@ public class Partie {
 		}
 	}
 	
-	public void gererTourAvancee(){
-		for(int i=1;i<this.listeJoueur.size();i++)
-		{
+	public void gererTourAvancee(Joueur joueur){
+		
 			// choisirCarte[0] : la carte jouer 
 			// choisirCarte[1] : type de jeu ( farfadet , géant , engrais ) 
 			//Création de l'objet stratégie
 			//On cherche stratégie à utiliser
 			// et on cherche l'adversaire qui à le plus de graines
-			Strategy strategie =  this.listeJoueur.get(i).choisirStrategie(this.listeJoueur.get(i),this.chercherJoueurGrainesMax());
+			Strategy strategie =  joueur.choisirStrategie(joueur,this.chercherJoueurGrainesMax());
 			System.out.println(strategie);
-			//this.listeJoueur.get(i).poserCarte( ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(0)), ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(1)));
+			//joueur.poserCarte( ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(0)), ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(1)));
 			
 			// En fonction de la réponse de isOffensive si vrai on joue offensif sinon normal
 			if (strategie.isOffensive())
@@ -193,26 +194,26 @@ public class Partie {
 				//Stratégie offensive
 				//On pose la carte avec en première élément la carte que l'on pose et ensuite le joueur que l'on attaque
 				//On joue avec poserCarteBis pour vois si l'adverssairepeut jouer un chien
-				int carte = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0);
-				Joueur joueurcible = (Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(1);
-				Joueur joueur = this.listeJoueur.get(i);
+				int carte = (int) strategie.choisirCarte(joueur).get(0);
+				Joueur joueurcible = (Joueur) strategie.choisirCarte(joueur).get(1);
+			
 				Main.afficherActionoff(joueur, joueurcible, carte);
-				this.listeJoueur.get(i).poserCarteBis(carte, joueurcible);
+				joueur.poserCarteBis(carte, joueurcible);
 				//On cherche si on peut jouer la taupe
-				this.listeJoueur.get(i).jouerTaupe(this.chercherJoueurMenhirMax());
+				joueur.jouerTaupe(this.chercherJoueurMenhirMax());
 			}
 			else
 			{
 				//Stratégie normal
 				//En premier élément on a la carte que l'on pose et ensuite l'action que l'on réalise
-				int carte = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0);
-				int action = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(1);
-				Joueur joueur = this.listeJoueur.get(i);
+				int carte = (int) strategie.choisirCarte(joueur).get(0);
+				int action = (int) strategie.choisirCarte(joueur).get(1);
+			//	Joueur joueur = joueur;
 				Main.afficherAction(joueur, carte, action);
-				this.listeJoueur.get(i).poserCarte(carte,action);
-				this.listeJoueur.get(i).jouerTaupe(this.chercherJoueurMenhirMax());
+				joueur.poserCarte(carte,action);
+				joueur.jouerTaupe(this.chercherJoueurMenhirMax());
 			}	
-		}
+		
 	}
 	/*public void gererTourBis(){
 		
@@ -279,6 +280,41 @@ public class Partie {
 			}
 		}
 		return this.listeJoueur.get(id);
-	}	
+	}
+	
+	public List<Joueur> arrangerOrdreListe(int decale)
+	{
+		
+		List<Joueur> nouvelleListe = new LinkedList<Joueur>();
+		int j=0;
+		
+		for(int i = 0 ;i<this.listeJoueur.size() ;i++)
+		{
+			if(i+decale >= this.getListJoueur().size())
+			{
+				nouvelleListe.add( this.getListJoueur().get(j));
+				j++;
+			}else
+			{
+			nouvelleListe.add( this.getListJoueur().get(i+decale));	
+			}
+			
+		}
+		
+		return nouvelleListe;
+		
+	}
 
+	
+	public static void main(String[] argc)
+	{
+		Partie partie = new Partie(6);
+		partie.factoryJoueurs();
+		System.out.println(partie.getListJoueur());
+		System.out.println(partie.arrangerOrdreListe(5));
+		
+		
+		
+		
+	}
 }
