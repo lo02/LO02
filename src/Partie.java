@@ -13,49 +13,7 @@ public class Partie {
 	protected int action;
 	protected int valeur;
 	
-	///protected int typePartie = 0;
-	/*public static void main(String[] argc)
-	{
-		// demande du nombre de joueurs
-		Scanner saisie = new Scanner(System.in); 
-		System.out.println("Saisissez le nombre de joueurs entre 1 et 5 ");
-		Partie partie = new Partie(saisie.nextInt());
-		
-		// Partie Rapide ou Avancée 
-		boolean vrai = true;
-		while(vrai)
-		{
-			System.out.println("1 - rapide\n2 - avancée ");
-			int reponse = saisie.nextInt();
-			switch (reponse)
-			{
-			case 1: partie.jouerPartieRapide();
-			vrai = false;
-			break;
-			case 2: partie.jouerPartieAvancee();
-			vrai=false;
-			break;
-			default: System.out.println("Taper 1 ou 2" );
-			break;
-			}
-		}
-		
-		// On crée nos joueurs 
-		partie.factoryJoueurs();
-		
-		// On remplit la main de chaque joueur
-		for (int i=0 ; i <partie.getListJoueur().size() ; i++)
-		{
-			partie.getListJoueur().get(i).remplirMainJoueur();
-	
-		}
-		// On affiche la main 
-		//System.out.println(partie.getListJoueur().get(0).getMain());
-		//partie.getListJoueur().get(0).poserCarte(1, 0);
-		//System.out.println(partie.getListJoueur().get(0).getNbreGraine());
-		System.out.println(partie.getListJoueur());
-		
-	}*/
+
 	public Partie (int nbreJoueur){
 		this.nbreJoueur = nbreJoueur;
 	}
@@ -200,7 +158,7 @@ public class Partie {
 				Main.afficherActionoff(joueur, joueurcible, carte);
 				joueur.poserCarteBis(carte, joueurcible);
 				//On cherche si on peut jouer la taupe
-				joueur.jouerTaupe(this.chercherJoueurMenhirMax());
+				joueur.jouerTaupe(this.chercherJoueurMenhirMax(),this.chercherJoueurSecondMax());
 			}
 			else
 			{
@@ -211,34 +169,11 @@ public class Partie {
 			//	Joueur joueur = joueur;
 				Main.afficherAction(joueur, carte, action);
 				joueur.poserCarte(carte,action);
-				joueur.jouerTaupe(this.chercherJoueurMenhirMax());
+				joueur.jouerTaupe(this.chercherJoueurMenhirMax(),this.chercherJoueurSecondMax());
 			}	
 		
 	}
-	/*public void gererTourBis(){
-		
-		for(int i=1;i<this.listeJoueur.size();i++)
-		{
-			Strategy strategie =  this.listeJoueur.get(i).choisirStrategie(this.listeJoueur.get(i),this.chercherJoueurGrainesMax());
-			System.out.println(strategie);
-		
-			if (strategie.isOffensive())
-			{
-				//Stratégie offensive
-				// On pose la carte avec en première élément la carte que l'on pose et ensuite le joueur que l'on attaque
-				this.listeJoueur.get(i).poserCarte(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0)), ((Joueur) strategie.choisirCarte(this.listeJoueur.get(i)).get(1) ));
-			
-			}
-			else
-			{
-				//Stratégie normal
-				//En premier élément on a la carte que l'on pose et ensuite l'action que l'on réalise
-				this.listeJoueur.get(i).poserCarte(((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0)),((int) strategie.choisirCarte(this.listeJoueur.get(i)).get(1)));
-		
-			}	
-		}
-		
-	}*/
+	
 	
 	public int chercherGagnant()
 	{	
@@ -280,6 +215,23 @@ public class Partie {
 			}
 		}
 		return this.listeJoueur.get(id);
+	}
+	
+	public Joueur chercherJoueurSecondMax()
+	{
+		
+		int max = 0;
+		int id[] = new int[2];
+		for (int i = 0 ; i< this.listeJoueur.size() ; i++)
+		{
+			if(this.listeJoueur.get(i).getNbreMenhir() > max){
+				
+				id[1] = id[0];
+				max = this.listeJoueur.get(i).getNbreMenhir();
+				id[0] = i;
+			}
+		}
+		return this.listeJoueur.get(id[1]);
 	}
 	
 	public List<Joueur> arrangerOrdreListe(int decale)

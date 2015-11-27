@@ -118,12 +118,20 @@ public class Virtuel extends Joueur {
 		
 	}
 	
-	public void jouerTaupe(Joueur joueurCible){
+	public void jouerTaupe(Joueur joueurCible , Joueur joueurSecond){
 		if(this.getAllie() == null){
 			
 		}
+		
 		else
 		{
+			if(joueurCible == this ) 
+			{
+				joueurCible = joueurSecond;
+			}
+			else
+			{
+				
 			if(this.getAllie().getTitre().equals("Taupe géante")){
 		
 				//On regarde la saison pour laquelle notre taupe peut détruire le plus de menhir
@@ -140,6 +148,7 @@ public class Virtuel extends Joueur {
 					Main.afficherActionAllieeTaupe(this, joueurCible, this.getAllie().getValeur()[Partie.getTour()]);
 					this.getAllie().deleteAllie();
 				}
+			}
 			}
 		}
 	}

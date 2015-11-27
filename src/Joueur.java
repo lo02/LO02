@@ -213,6 +213,10 @@ public class Joueur {
 		}
 		
 	}
+	public void jouerTaupe(Joueur j , Joueur j2)
+	{
+		
+	}
 	public Card getAllie() {
 		return allie;
 	}

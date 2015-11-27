@@ -166,7 +166,7 @@ public class Main {
 	
 	public static void afficherActionAllieeTaupe(Joueur joueur , Joueur joueurCible , int valeur)
 	{
-		System.out.println("Le joueur "+joueur.getNom()+"détruit "+valeur+" ménhirs à "+joueurCible);
+		System.out.println("Le joueur "+joueur.getNom()+" détruit "+valeur+" ménhirs à "+joueurCible);
 	}
 	public static void afficherActionAllieeChien(Joueur joueur , int valeur)
 	{
