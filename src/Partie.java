@@ -17,24 +17,6 @@ public class Partie {
 	public Partie (int nbreJoueur){
 		this.nbreJoueur = nbreJoueur;
 	}
-	public static int getTour() {
-		return tour;
-	}
-	public void setTour(int tour) {
-		this.tour = tour;
-	}
-	public int getManche() {
-		return manche;
-	}
-	public void setManche(int manche) {
-		this.manche = manche;
-	}
-	public int getNbreJoueur() {
-		return nbreJoueur;
-	}
-	public void setNbreJoueur(int nbreJoueur) {
-		this.nbreJoueur = nbreJoueur;
-	}
 	//Méthodes qui vont nous permettre de jouer les deux types de partie.
 	public void initierPartieRapide(){
 		//On crée un instance carte qui va contenir notre tas de carte
@@ -68,7 +50,6 @@ public class Partie {
 			this.getListJoueur().get(k).choixDebutManche();
 		}
 	}
-	
 	/* Méthodes qui va nous permettre de créer des joueurs en partie rapide
 	 */
 	public void factoryJoueurs()
@@ -82,20 +63,6 @@ public class Partie {
 			this.listeJoueur.add(joueur);
 		}
 	}
-	
-	
-	
-	
-	public List<Joueur> getListJoueur()
-	{
-		return this.listeJoueur;
-	}
-	
-	public void setListJoueur(List<Joueur> listeJoueur)
-	{
-		this.listeJoueur = listeJoueur;
-	}
-	
 	//Méthode qui va nous permettre de gérer un tour en partie rapide
 	public void gererTour(){
 		for(int i=1;i<this.listeJoueur.size();i++)
@@ -140,7 +107,6 @@ public class Partie {
 			}	
 		}
 	}
-	
 	public void gererTourAvancee(Joueur joueur){
 		
 			// choisirCarte[0] : la carte jouer 
@@ -179,8 +145,6 @@ public class Partie {
 			}	
 		
 	}
-	
-	
 	public int chercherGagnant()
 	{	
 		int max=0;
@@ -207,8 +171,7 @@ public class Partie {
 			}
 		}
 		return this.listeJoueur.get(id);
-	}	
-	
+	}
 	public Joueur chercherJoueurMenhirMax()
 	{
 		int max=0;
@@ -222,7 +185,6 @@ public class Partie {
 		}
 		return this.listeJoueur.get(id);
 	}
-	
 	public Joueur chercherJoueurSecondMax()
 	{
 		
@@ -239,7 +201,6 @@ public class Partie {
 		}
 		return this.listeJoueur.get(id[1]);
 	}
-	
 	public List<Joueur> arrangerOrdreListe(int decale)
 	{
 		
@@ -261,5 +222,31 @@ public class Partie {
 		
 		return nouvelleListe;
 		
+	}
+	public static int getTour() {
+		return tour;
+	}
+	public int getManche() {
+		return manche;
+	}
+	public List<Joueur> getListJoueur()
+	{
+		return this.listeJoueur;
+	}
+	public int getNbreJoueur() {
+		return nbreJoueur;
+	}
+	public void setManche(int manche) {
+		this.manche = manche;
+	}
+	public void setNbreJoueur(int nbreJoueur) {
+		this.nbreJoueur = nbreJoueur;
+	}
+	public void setTour(int tour) {
+		this.tour = tour;
+	}
+	public void setListJoueur(List<Joueur> listeJoueur)
+	{
+		this.listeJoueur = listeJoueur;
 	}
 }

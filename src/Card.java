@@ -1,10 +1,6 @@
 import java.util.List;
 import java.util.Queue;
 public abstract class Card {
-
-
-		// Je pense qu'il y problème, on devrait plutôt mettre setGean, setEngrais,setFarfadet dans la classe
-		// Ingrédiant
 		public abstract  void initialisationCartes();
 		public abstract List<Card> getTasDeCartes();
 		public abstract void setTasDeCartes(List<Card> cartes);
@@ -20,8 +16,7 @@ public abstract class Card {
 		public abstract int[] getValeur();
 		public abstract String toString();
 		public abstract String getTitre();
-		public abstract void deleteAllie();
-		
+		public abstract void deleteAllie();	
 	}
 
 

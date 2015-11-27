@@ -111,36 +111,22 @@ public class Ingredient extends Card {
 	    }
 	  }
 
-	public String getName() {
-		return name;
+	
+	public void deleteAllie() {
+		
+		
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public int[] getGeant() {
-		return geant;
-	}
-
 	public void setGeant(int geant,int index) {
 		this.geant[index] = geant;
 	}
 
-	public int[] getFarfadet() {
-		return farfadet;
-	}
-
 	public void setFarfadet(int farfadet, int index) {
 		this.farfadet[index] = farfadet;
-	}
-
-	public int[] getEngrais() {
-		return engrais;
-	}
-	
-	public  List<Card> getTasDeCartes() {
-		return tasdecartes;
 	}
 
 	public void setEngrais(int engrais ,int index) {
@@ -153,13 +139,6 @@ public class Ingredient extends Card {
 	}
 
 	
-	public String toString(){
-		
-		return "\n\n\t"+name+"\n"+geant[0]+"\t"+geant[1]+"\t"+geant[2]+"\t"+geant[3]+"\n"+engrais[0]+"\t"+engrais[1]+"\t"+engrais[2]+"\t"+engrais[3]+"\n"+farfadet[0]+"\t"+farfadet[1]+"\t"+farfadet[2]+"\t"+farfadet[3];
-	}
-	
-	
-
 	@Override
 	public void setValeur(int parseInt, int j) {
 		// TODO Auto-generated method stub
@@ -171,6 +150,31 @@ public class Ingredient extends Card {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public String getName() {
+		return name;
+	}
+
+
+	public int[] getGeant() {
+		return geant;
+	}
+
+
+	public int[] getFarfadet() {
+		return farfadet;
+	}
+
+
+	public int[] getEngrais() {
+		return engrais;
+	}
+
+
+	public  List<Card> getTasDeCartes() {
+		return tasdecartes;
+	}
+
 
 	@Override
 	public String getTitre() {
@@ -184,10 +188,10 @@ public class Ingredient extends Card {
 		return null;
 	}
 
-	@Override
-	public void deleteAllie() {
-		// TODO Auto-generated method stub
+
+	public String toString(){
 		
+		return "\n\n\t"+name+"\n"+geant[0]+"\t"+geant[1]+"\t"+geant[2]+"\t"+geant[3]+"\n"+engrais[0]+"\t"+engrais[1]+"\t"+engrais[2]+"\t"+engrais[3]+"\n"+farfadet[0]+"\t"+farfadet[1]+"\t"+farfadet[2]+"\t"+farfadet[3];
 	}
 
 

@@ -110,13 +110,13 @@ public class StrategyOffensive implements Strategy{
 		return id;
 	}
 	
-	public String toString()
-	{
-		return "";
-	}
-
 	public boolean isOffensive()
 	{
 		return this.farfadet;
+	}
+
+	public String toString()
+	{
+		return "";
 	}
 }

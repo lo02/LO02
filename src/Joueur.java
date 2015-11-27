@@ -13,12 +13,37 @@ public class Joueur {
 	protected Card allie  ;
 	protected int compteurMenhir = 0;
 	
-	public void choixDebutManche(){};
-	
 	public Joueur (){
 		this.nom = "";
 	}
+
+	public Joueur(String nom, int nbreMenhir, int nbreGraine) {
+		this.nom = nom;
+		this.nbreMenhir = nbreMenhir;
+		this.nbreGraine = nbreGraine;
+	}
+
+	public void choixDebutManche(){};
 	
+	/*Méthode qui va permettre de choisir soit une carte alliée soit 2 graines en début de manche en partie
+	 * avancée;
+	 * Pour prendre des graines en met 1, on met 2 pour avoir une carte alliée.
+	*/
+	public void choixDebutManche(int choix){
+		if (choix == 1){
+			this.setNbreGraine(this.getNbreGraine()+2);
+			if (this.getAllie()!=null)
+			{
+				this.getAllie().deleteAllie();
+			}
+			
+		}
+		else
+			if (choix == 2){
+				this.remplirMainJoueurAllie();
+			}
+	}
+
 	public void remplirMainJoueur()
 	{
 		Card tasDeCarte = new Ingredient();		
@@ -33,48 +58,34 @@ public class Joueur {
 		tasDeCarte.setTasDeCartes(tempTas);			
 	}
 	
-	public int getCompteurMenhir() {
-		return compteurMenhir;
+	public void remplirMainJoueurAllie()
+	{
+		Card tasDeCarte = new Allie();		
+		// linked list mettre un queue
+		Queue<Card> tas = new LinkedList<Card>();
+		tas.addAll(tasDeCarte.getTasDeCartes());
+		this.allie = tas.poll();
+		tasDeCarte.setTasDeCartes(tas);
 	}
 
-	public void setCompteurMenhir(int compteurMenhir) {
-		this.compteurMenhir = compteurMenhir;
+	public Strategy choisirStrategie(Joueur joueur, Joueur chercherJoueurGrainesMax) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public String getNom() {
-		return nom;
+	public int valeurMaxGeant()
+	{
+		int max= 0;
+		for(int i = 0 ; i< this.getMain().size() ; i++)
+		{
+			if ( this.getMain().get(i).getGeant()[Partie.getTour()]> max )
+			{
+				max = this.getMain().get(i).getGeant()[Partie.getTour()];
+			}
+		}
+		return max;
 	}
 
-	public Joueur(String nom, int nbreMenhir, int nbreGraine) {
-		this.nom = nom;
-		this.nbreMenhir = nbreMenhir;
-		this.nbreGraine = nbreGraine;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public int getNbreMenhir() {
-		return nbreMenhir;
-	}
-
-	public void setNbreMenhir(int nbreMenhir) {
-		this.nbreMenhir = nbreMenhir;
-	}
-
-	public int getNbreGraine() {
-		return nbreGraine;
-	}
-
-	public void setNbreGraine(int nbreGraine) {
-		this.nbreGraine = nbreGraine;
-	}
-	
-	public List<Card> getMain(){
-		return this.main;
-	}	
-	
 	// Méthode poser carte qui va permettre de jouer Engrais ou Géant
 	public void poserCarte(int index , int action )
 	{
@@ -95,7 +106,7 @@ public class Joueur {
 		}
 		this.main.remove(index);
 	}
-	
+
 	//Méthode poserCarte pour l'action farfadet
 	public void poserCarte(int index , Joueur joueurCible)
 	{
@@ -126,7 +137,7 @@ public class Joueur {
 		}
 		this.main.remove(index);
 	}
-	
+
 	//On se place dans le cas d'une partie avancée avec un joueur qui peut jouer un farfadet.
 	public void poserCarteBis(int index , Joueur joueurCible)
 	{
@@ -178,7 +189,7 @@ public class Joueur {
 		
 		//this.main.remove(index);
 	}
-	
+
 	public int jouerChien(int valeur, String j, Joueur joueurCible){
 		if(Main.danger(valeur, j, joueurCible)){
 			//On recupere la valeur du chien de garde lors de cette saison
@@ -191,7 +202,7 @@ public class Joueur {
 			return 0;
 		}
 	}
-	
+
 	public void jouerTaupe(Joueur joueurCible){
 		if(this.getAllie() == null){
 			
@@ -213,16 +224,44 @@ public class Joueur {
 		}
 		
 	}
+
 	public void jouerTaupe(Joueur j , Joueur j2)
 	{
 		
 	}
-	public Card getAllie() {
-		return allie;
+
+	public Strategy choisirStrategie(Joueur joueur )
+	{
+		return null;
+		
 	}
 
-	public void setAllie(Card allie) {
-		this.allie = allie;
+	public int cardMax(int[] cartes, int z )
+	{
+		int max=0;
+		int id=0;
+		for(int i=0 ; i<z ; i++)
+		{
+			if (cartes[i]>max)
+			{
+				max = cartes[i];
+				id = i;
+			}
+		}
+		return id;
+	}
+
+	public int valeurMaxFarfadet()
+	{
+		int max= 0;
+		for(int i = 0 ; i< this.getMain().size() ; i++)
+		{
+			if ( this.getMain().get(i).getFarfadet()[Partie.getTour()]> max )
+			{
+				max = this.getMain().get(i).getFarfadet()[Partie.getTour()];
+			}
+		}
+		return max;
 	}
 
 	public void planterGraines(int nbrGrainesCarte){
@@ -239,18 +278,56 @@ public class Joueur {
 			}
 		}	
 	}
-	
-	public String toString()
-	{
-		return "Joueur " + this.nom +" :\n- Nombres ménhirs : "+ this.nbreMenhir +"\n- Nombres graines : "+ this.nbreGraine+"\n\n====================\n\n";
-	
-	}
 
 	public List choisirCarte(Strategy strategie)
 	{		
 		return null;
 	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public int getNbreMenhir() {
+		return nbreMenhir;
+	}
+
+	public void setNbreMenhir(int nbreMenhir) {
+		this.nbreMenhir = nbreMenhir;
+	}
+
+	public void setNbreGraine(int nbreGraine) {
+		this.nbreGraine = nbreGraine;
+	}
 	
+	public void setAllie(Card allie) {
+		this.allie = allie;
+	}
+
+	public int getCompteurMenhir() {
+		return compteurMenhir;
+	}
+
+	public void setCompteurMenhir(int compteurMenhir) {
+		this.compteurMenhir = compteurMenhir;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public int getNbreGraine() {
+		return nbreGraine;
+	}
+
+	public List<Card> getMain(){
+		return this.main;
+	}
+
+	public Card getAllie() {
+		return allie;
+	}
+
 	public int[] getFarfadetAllCard()
 	{
 		int[] farfadet = new int[this.main.size()];
@@ -273,84 +350,9 @@ public class Joueur {
 		return geant;
 	}
 	
-	public Strategy choisirStrategie(Joueur joueur )
+	public String toString()
 	{
-		return null;
-		
-	}
+		return "Joueur " + this.nom +" :\n- Nombres ménhirs : "+ this.nbreMenhir +"\n- Nombres graines : "+ this.nbreGraine+"\n\n====================\n\n";
 	
-	public int cardMax(int[] cartes, int z )
-	{
-		int max=0;
-		int id=0;
-		for(int i=0 ; i<z ; i++)
-		{
-			if (cartes[i]>max)
-			{
-				max = cartes[i];
-				id = i;
-			}
-		}
-		return id;
-	}
-	
-	public int valeurMaxFarfadet()
-	{
-		int max= 0;
-		for(int i = 0 ; i< this.getMain().size() ; i++)
-		{
-			if ( this.getMain().get(i).getFarfadet()[Partie.getTour()]> max )
-			{
-				max = this.getMain().get(i).getFarfadet()[Partie.getTour()];
-			}
-		}
-		return max;
-	}
-	
-	public int valeurMaxGeant()
-	{
-		int max= 0;
-		for(int i = 0 ; i< this.getMain().size() ; i++)
-		{
-			if ( this.getMain().get(i).getGeant()[Partie.getTour()]> max )
-			{
-				max = this.getMain().get(i).getGeant()[Partie.getTour()];
-			}
-		}
-		return max;
-	}
-
-	public Strategy choisirStrategie(Joueur joueur, Joueur chercherJoueurGrainesMax) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public void remplirMainJoueurAllie()
-	{
-		Card tasDeCarte = new Allie();		
-		// linked list mettre un queue
-		Queue<Card> tas = new LinkedList<Card>();
-		tas.addAll(tasDeCarte.getTasDeCartes());
-		this.allie = tas.poll();
-		tasDeCarte.setTasDeCartes(tas);
-	}
-	
-	/*Méthode qui va permettre de choisir soit une carte alliée soit 2 graines en début de manche en partie
-	 * avancée;
-	 * Pour prendre des graines en met 1, on met 2 pour avoir une carte alliée.
-	*/
-	public void choixDebutManche(int choix){
-		if (choix == 1){
-			this.setNbreGraine(this.getNbreGraine()+2);
-			if (this.getAllie()!=null)
-			{
-				this.getAllie().deleteAllie();
-			}
-			
-		}
-		else
-			if (choix == 2){
-				this.remplirMainJoueurAllie();
-			}
 	}
 }
