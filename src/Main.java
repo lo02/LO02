@@ -120,13 +120,13 @@ public class Main {
 					}else
 					{
 					partie.gererTourAvancee(listTemp.get(i));
-					System.out.print("Tapez une touche pour continuer\n");
+					System.out.println("Tapez une touche pour continuer");
 					pause();
 					
 					}		
 					}
 					System.out.println(partie.getListJoueur());
-					System.out.print("Tapez une touche pour continuer\n");
+					System.out.println("Tapez une touche pour continuer");
 					pause();	
 				}
 				
@@ -180,13 +180,15 @@ public class Main {
 	
 	public static void pause()
 	{
+		
 		try {
 			System.in.read();
+			System.in.read();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
 	}
 
 
