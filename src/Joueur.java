@@ -63,10 +63,10 @@ public class Joueur {
 		Card tasDeCarte = new Allie();		
 		// linked list mettre un queue
 		Queue<Card> tas = new LinkedList<Card>();
-		tas.addAll(tasDeCarte.getTasDeCartes());
+		tas.addAll(tasDeCarte.getTasDeCartes()); 
 		this.allie = tas.poll();
 		tasDeCarte.setTasDeCartes(tas);
-	}
+	} 
 
 	public Strategy choisirStrategie(Joueur joueur, Joueur chercherJoueurGrainesMax) {
 		// TODO Auto-generated method stub
