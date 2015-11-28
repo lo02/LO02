@@ -288,10 +288,6 @@ public class Joueur {
 		this.nom = nom;
 	}
 
-	public int getNbreMenhir() {
-		return nbreMenhir;
-	}
-
 	public void setNbreMenhir(int nbreMenhir) {
 		this.nbreMenhir = nbreMenhir;
 	}
@@ -304,12 +300,16 @@ public class Joueur {
 		this.allie = allie;
 	}
 
-	public int getCompteurMenhir() {
-		return compteurMenhir;
-	}
-
 	public void setCompteurMenhir(int compteurMenhir) {
 		this.compteurMenhir = compteurMenhir;
+	}
+
+	public int getNbreMenhir() {
+		return nbreMenhir;
+	}
+
+	public int getCompteurMenhir() {
+		return compteurMenhir;
 	}
 
 	public String getNom() {

@@ -72,6 +72,7 @@ public class Main {
 					}
 					int cible = Main.saisie("", 1, partie.getListJoueur().size()-1);
 					System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
+					//System.out.println("Vous avez jouer Farfadet avec une valeur de "+j.getMain().);
 					j.poserCarte(carte, partie.getListJoueur().get(cible));
 				}else
 				{
@@ -83,7 +84,7 @@ public class Main {
 				partie.gererTour();
 				pause();
 			}
-			System.out.println("\nScore Final : \n"+partie.getListJoueur()+"\nLe gagnant est : \n"+ partie.getListJoueur().get(partie.chercherGagnant()));
+			System.out.println("\nScore Final : \n"+partie.getListJoueur()+"\nLe gagnant est : \n"+ partie.chercherGagnantRapide());
 			
 			
 			
@@ -126,6 +127,8 @@ public class Main {
 				partie.initierPartieAvancee();
 				
 			}
+			System.out.println("\nScore Final : \n"+partie.getListJoueur()+"\nLe gagnant est : \n"+partie.getListJoueur().get(partie.chercherGagnantAvancee()));
+			
 		}
 		
 		
@@ -183,7 +186,7 @@ public class Main {
 
 	public static void deroulementJoueur(Joueur j,Partie partie)
 	{
-		int carte = Main.saisie("Choisir la carte à jouer 0 - "+(j.getMain().size()-1)+" \n", 0, j.getMain().size()-1);
+		int carte = Main.saisie(j.getMain()+"Choisir la carte à jouer 0 - "+(j.getMain().size()-1)+" \n", 0, j.getMain().size()-1);
 		int jeu = Main.saisie("Quel type de jeu : \n0- géant \n1- engrais\n2- Farfadet", 0, 2);
 		
 	if(jeu == 2)
@@ -235,17 +238,17 @@ public class Main {
 		
 		if (a<=max && a>=min)
 		{
-			System.out.println("Confirmer ? O/N");
+			/*System.out.println("Confirmer ? O/N");
 			Scanner saisie3 = new Scanner(System.in); 
 			String B = saisie3.nextLine();
 			if(B.equals("O") || B.equals("o"))
-			{
+			{*/
 				return a;
-			}
+			/*}
 			else
 			{
 				return Main.saisie(saisie, min, max);
-			}
+			}*/
 			
 			
 		}else

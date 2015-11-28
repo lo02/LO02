@@ -159,6 +159,65 @@ public class Partie {
 		}
 		return id;
 	}
+	
+	public List<Joueur> chercherGagnantRapide(){
+		int max=0;
+		int id = 0;
+		
+		//Cette première boucle cherche le joueur qui à le plus de Menhir
+		for(int i=0 ; i<this.listeJoueur.size(); i++)
+		{
+			if (this.listeJoueur.get(i).getNbreMenhir()>= max ){
+				id = i;
+				max = this.listeJoueur.get(i).getNbreMenhir();
+			}
+		}
+		//On crée une liste temporaire qui va nous servir à contenir les joueurs qui auront le même nbre de menhir
+		List<Joueur> listeJoueurBis = new LinkedList<Joueur>();
+		//Boucle qui va ajouter tous les joueurs qui ont le nombre max de menhir
+		for(int i=0 ; i<this.listeJoueur.size(); i++)
+		{
+			if (this.listeJoueur.get(i).getNbreMenhir() == max ){
+				
+				listeJoueurBis.add(this.listeJoueur.get(i));
+			}
+		}
+		//On crée une nouvelle liste qui va contenir les joueurs qui auront le même nbre de graines
+		List<Joueur> listeJoueurBis2 = new LinkedList<Joueur>();
+		//On cherche la valeur max pour le nombre de graine parmi les joueurs
+		int max2 = this.chercherJoueurGrainesMax().getNbreGraine();
+		//Boucle qui va chercher tous les joueurs qui ont le plus de graine
+		for(int i=0; i<listeJoueurBis.size(); i++)
+		{
+			if (listeJoueurBis.get(i).getNbreGraine() == max2 ){
+				listeJoueurBis2.add(listeJoueurBis.get(i));
+			}
+		}
+		//Si les joueurs ont le même nbre de menhir, on renvoie alors les joueurs qui ont le plus de graines
+		if(listeJoueurBis2.size()>0)
+			return listeJoueurBis2;
+		//Sinon on renvoie le joueur qui a le plus de menhir
+		else
+			return listeJoueurBis;
+	}
+	
+	public int chercherGagnantAvancee(){
+		int max = 0;
+		int id = 0;
+		
+		for(int i=0 ; i<this.listeJoueur.size(); i++)
+		{
+			if (this.listeJoueur.get(i).getCompteurMenhir()>= max ){
+				id = i;
+				max = this.listeJoueur.get(i).getNbreMenhir();
+			}
+		}
+		
+		return id;
+		
+		//return listeJoueur;
+	}
+	
 	public Joueur chercherJoueurGrainesMax()
 	{
 		int max=0;
