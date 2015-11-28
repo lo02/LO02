@@ -71,12 +71,18 @@ public class Main {
 						System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
 					}
 					int cible = Main.saisie("", 1, partie.getListJoueur().size()-1);
-					System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
-					//System.out.println("Vous avez jouer Farfadet avec une valeur de "+j.getMain().);
+					System.out.println("Vous avez joué : \n "+j.getMain().get(carte)+"\nVous avez volé "+j.getMain().get(carte).getFarfadet()[Partie.getTour()]+" graine(s)");
+					//System.out.println("Vous avez jou Farfadet avec une valeur de "+j.getMain().);
 					j.poserCarte(carte, partie.getListJoueur().get(cible));
 				}else
 				{
+					
 					System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
+					if(jeu == 0)
+						System.out.println("Vous demandez "+j.getMain().get(carte).getGeant()[partie.getTour()]+" graine(s)");
+					else
+						System.out.println("Vous plantez "+j.getMain().get(carte).getEngrais()[partie.getTour()]+" graine(s)");
+					
 					j.poserCarte(carte, jeu);
 					
 				}
@@ -186,7 +192,7 @@ public class Main {
 
 	public static void deroulementJoueur(Joueur j,Partie partie)
 	{
-		int carte = Main.saisie(j.getMain()+"Choisir la carte à jouer 0 - "+(j.getMain().size()-1)+" \n", 0, j.getMain().size()-1);
+		int carte = Main.saisie(j.getMain()+"\nChoisir la carte à jouer 0 - "+(j.getMain().size()-1)+" \n", 0, j.getMain().size()-1);
 		int jeu = Main.saisie("Quel type de jeu : \n0- géant \n1- engrais\n2- Farfadet", 0, 2);
 		
 	if(jeu == 2)
@@ -197,11 +203,17 @@ public class Main {
 			System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
 		}
 		int cible = Main.saisie("", 1, partie.getListJoueur().size()-1);
-		System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
+		System.out.println("Vous avez joué : \n "+j.getMain().get(carte)+"\nVous avez volé "+j.getMain().get(carte).getFarfadet()[Partie.getTour()]+" graine(s)");
+			
 		j.poserCarte(carte, partie.getListJoueur().get(cible));
 	}else
 	{
 		System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
+		if(jeu == 0)
+			System.out.println("Vous demandez "+j.getMain().get(carte).getGeant()[partie.getTour()]+" graine(s)");
+		else
+			System.out.println("Vous plantez "+j.getMain().get(carte).getEngrais()[partie.getTour()]+" graine(s)");
+		
 		j.poserCarte(carte, jeu);
 		
 	}
