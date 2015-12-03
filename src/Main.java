@@ -8,18 +8,14 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] argc){
-		//on demande de joueur physique de se donner un nom
-		
+		//on demande au joueur physique de se donner un nom
 		Scanner sc = new Scanner(System.in); 
 		System.out.println("Saisissez votre nom : ");
 		String nom = sc.nextLine();
 		//On met le nom dans le joueur
 		Joueur j = new Joueur(nom,0,0); 
 		System.out.println("Vous vous appelez : " +nom +"\n" + j);
-		
-		
 		// demande du nombre de joueurs
-		
 		Partie partie = new Partie(Main.saisie("Saisissez le nombre de joueurs entre 1 et 5 ", 1, 5));
 		
 		//On ajoute le joueur physique dans la liste des joueurs  
@@ -185,12 +181,10 @@ public class Main {
 			System.in.read();
 			System.in.read();
 			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException e){
 			e.printStackTrace();
 		}
 	}
-
 
 	public static void deroulementJoueur(Joueur j,Partie partie)
 	{
@@ -247,30 +241,19 @@ public class Main {
 	public static int saisie(String saisie , int min , int max )
 	{
 		System.out.println(saisie);
-		Scanner saisie2 = new Scanner(System.in); 
-		int a = saisie2.nextInt();
-		
-		if (a<=max && a>=min)
-		{
-			/*System.out.println("Confirmer ? O/N");
-			Scanner saisie3 = new Scanner(System.in); 
-			String B = saisie3.nextLine();
-			if(B.equals("O") || B.equals("o"))
-			{*/
-				return a;
-			/*}
-			else
-			{
-				return Main.saisie(saisie, min, max);
-			}*/
-			
-			
-		}else
-		{
-			return Main.saisie(saisie, min, max);
+		Scanner saisie2 = new Scanner(System.in);		
+		try{
+			String a = saisie2.nextLine();
+			int b = Integer.parseInt(a);
+		    if (Integer.parseInt(a)<=max && Integer.parseInt(a)>=min)
+		    {
+				return Integer.parseInt(a);
+		    }else{
+		    	return Main.saisie(saisie, min, max);
+		    }
 		}
-	}			
-		
-	
+	    catch(NumberFormatException e){
+		     return Main.saisie(saisie, min, max);	
+	    }		
+	}
 }
-
