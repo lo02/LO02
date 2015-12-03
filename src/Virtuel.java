@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,6 +29,7 @@ public class Virtuel extends Joueur {
 		namesDisponible.remove(nombreAleatoire);	
 		return nom ;
 	}
+	@SuppressWarnings("rawtypes")
 	public List choisirCarte(Strategy strategie)
 	{
 		return strategie.choisirCarte(this);	

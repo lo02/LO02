@@ -6,7 +6,6 @@ public class StrategyNormal implements Strategy {
 	public List choisirCarte(Joueur joueur){	
 		int choixTemporaire = 0;
 		int action=0;
-		int[] retourne= new int[2];
 		// on regarde  le nombre de graines 
 		if(joueur.nbreGraine> 0 )
 		{

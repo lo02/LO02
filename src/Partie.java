@@ -78,7 +78,6 @@ public class Partie {
 			//this.listeJoueur.get(i).poserCarte( ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(0)), ((int) this.listeJoueur.get(i).choisirCarte(strategie).get(1)));
 			
 			// En fonction de la réponse de isOffensive si vrai on joue offensif sinon normal
-			int choix;
 			int carte = (int) strategie.choisirCarte(this.listeJoueur.get(i)).get(0);
 			
 			if (strategie.isOffensive())

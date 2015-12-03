@@ -12,6 +12,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in); 
 		System.out.println("Saisissez votre nom : ");
 		String nom = sc.nextLine();
+		
 		//On met le nom dans le joueur
 		Joueur j = new Joueur(nom,0,0); 
 		System.out.println("Vous vous appelez : " +nom +"\n" + j);
@@ -75,9 +76,9 @@ public class Main {
 					
 					System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
 					if(jeu == 0)
-						System.out.println("Vous demandez "+j.getMain().get(carte).getGeant()[partie.getTour()]+" graine(s)");
+						System.out.println("Vous demandez "+j.getMain().get(carte).getGeant()[Partie.getTour()]+" graine(s)");
 					else
-						System.out.println("Vous plantez "+j.getMain().get(carte).getEngrais()[partie.getTour()]+" graine(s)");
+						System.out.println("Vous plantez "+j.getMain().get(carte).getEngrais()[Partie.getTour()]+" graine(s)");
 					
 					j.poserCarte(carte, jeu);
 					
@@ -150,7 +151,10 @@ public class Main {
 	}
 	
 	public static void afficherActionoff(Joueur joueur, Joueur joueurcible, int carte){
-		System.out.println("Le joueur "+joueur.getNom()+" vole "+ joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]+ " graine(s) de "+joueurcible.getNom());
+		if (joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]<= joueurcible.getNbreGraine())
+			System.out.println("Le joueur "+joueur.getNom()+" vole "+ joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]+ " graine(s) de "+joueurcible.getNom());
+		else
+			System.out.println("Le joueur "+joueur.getNom()+" vole "+joueurcible.getNbreGraine() + " graine(s) de "+joueurcible.getNom());
 	}
 	
 	
@@ -206,9 +210,9 @@ public class Main {
 	{
 		System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
 		if(jeu == 0)
-			System.out.println("Vous demandez "+j.getMain().get(carte).getGeant()[partie.getTour()]+" graine(s)");
+			System.out.println("Vous demandez "+j.getMain().get(carte).getGeant()[Partie.getTour()]+" graine(s)");
 		else
-			System.out.println("Vous plantez "+j.getMain().get(carte).getEngrais()[partie.getTour()]+" graine(s)");
+			System.out.println("Vous plantez "+j.getMain().get(carte).getEngrais()[Partie.getTour()]+" graine(s)");
 		
 		j.poserCarte(carte, jeu);
 		
@@ -232,8 +236,6 @@ public class Main {
 				int cible = Main.saisie("", 1, partie.getListJoueur().size()-1);
 				j.jouerTaupe(partie.getListJoueur().get(cible));
 			}
-			
-	
 		}
 	}
 	}
@@ -242,9 +244,9 @@ public class Main {
 	{
 		System.out.println(saisie);
 		Scanner saisie2 = new Scanner(System.in);		
+		String a = saisie2.nextLine();
+		//saisie2.close();
 		try{
-			String a = saisie2.nextLine();
-			int b = Integer.parseInt(a);
 		    if (Integer.parseInt(a)<=max && Integer.parseInt(a)>=min)
 		    {
 				return Integer.parseInt(a);

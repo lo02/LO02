@@ -18,8 +18,7 @@ import org.w3c.dom.NodeList;
 public class Allie extends Card {
 
 	/**
-	 * Liste de carte
-	 * 
+	 * Liste de carte 
 	 */
 	private static List<Card> tasdecartes = new ArrayList<Card>();	
 	/**
@@ -35,7 +34,7 @@ public class Allie extends Card {
 	
 	
 	/**
-	 * Méthode qui va permettre de lire les cartes alliées du fichier XML et les dispose dans une liste de cartes
+	 * Méthode qui va permettre de lire les cartes alliées du fichier XML et les disposer dans une liste de cartes
 	 */
 	public void initialisationCartes() {
 		// TODO Auto-generated method stub
@@ -103,7 +102,6 @@ public class Allie extends Card {
 	 * Donne le tas de cartes
 	 */
 	public List<Card> getTasDeCartes() {
-		// TODO Auto-generated method stub
 		return tasdecartes;
 	}
 
@@ -111,12 +109,10 @@ public class Allie extends Card {
 	 * 
 	 */
 	public void setTasDeCartes(List<Card> cartes) {
-		// TODO Auto-generated method stub
 		tasdecartes.clear();
 		tasdecartes.addAll(cartes);
 	}
 	public void setTasDeCartes(Queue<Card> cartes) {
-		// TODO Auto-generated method stub
 		tasdecartes.clear();
 		tasdecartes.addAll(cartes);
 	}
