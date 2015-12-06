@@ -70,7 +70,6 @@ public class Ingredient extends Card {
 				}
 				else
 				{
-					System.out.println("laaa");
 				}
 				
 			}

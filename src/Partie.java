@@ -281,6 +281,12 @@ public class Partie {
 		return nouvelleListe;
 		
 	}
+	
+	public void finPartie(){
+		for(int i=0; i<this.getListJoueur().size(); i++ ){
+			this.getListJoueur().get(i).setNbreMenhir(this.getListJoueur().get(i).getCompteurMenhir());
+		}
+	}
 	public static int getTour() {
 		return tour;
 	}
