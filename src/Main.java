@@ -130,7 +130,8 @@ public class Main {
 				partie.initierPartieAvancee();
 				
 			}
-			System.out.println("\nScore Final : \n"+partie.getListJoueur()+"\nLe gagnant est : \n"+partie.getListJoueur().get(partie.chercherGagnantAvancee()));
+			partie.finPartie();
+			System.out.println("\nScore Final : \n"+ partie.getListJoueur()+"\nLe gagnant est : \n"+partie.getListJoueur().get(partie.chercherGagnantAvancee()));
 			
 		}
 		
