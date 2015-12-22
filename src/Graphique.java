@@ -105,7 +105,7 @@ public class Graphique extends JFrame{
 				Button button = new Button("Partie rapide");
 				button.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						JOptionPane.showMessageDialog(null, "Partie Rapide"+choice.getSelectedItem()+"  "+textField.getText());
+						JOptionPane.showMessageDialog(null, "Partie Rapide avec "+choice.getSelectedItem()+" joueur(s)\nDans le village : "+textField.getText());
 						  JLabel picLabel = new JLabel(new ImageIcon("background.jpg"));
 						    panel.add(picLabel);
 						    panel.setPreferredSize(panel.getSize());
@@ -150,8 +150,6 @@ public class Graphique extends JFrame{
 		
 		
 		layeredPane.add(panel);
-		
-		
 	}
 	
 

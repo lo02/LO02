@@ -1,14 +1,19 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.LayoutManager;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,6 +21,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 
 public class SelectionDeCarte {
 
@@ -61,8 +69,7 @@ public class SelectionDeCarte {
 		frame.getContentPane().add(layeredPane);
 		
 		JPanel panel = new JPanel();
-		panel.addMouseListener(new MouseAdapter() {
-			
+		panel.addMouseListener(new MouseAdapter() {	
 			public void mouseClicked(MouseEvent arg0) {
 				JOptionPane.showMessageDialog(null, "Vous avez séléctionné la carte : ");
 				System.exit(0);
@@ -72,6 +79,9 @@ public class SelectionDeCarte {
 		panel.setBounds(12, 75, 180, 180);
 		layeredPane.add(panel);
 		panel.setLayout(null);
+		JLabel picLabel = new JLabel(new ImageIcon("fee_verte.jpg"));
+	    panel.add(picLabel);
+	    
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.addMouseListener(new MouseAdapter() {
@@ -128,4 +138,15 @@ public class SelectionDeCarte {
 
 		
 	}
+	
+	 public void paintComponent(Graphics g){
+		    try {
+		      Image img = ImageIO.read(new File("arcenciel.jpg"));
+		      g.drawImage(img, 0, 0, (ImageObserver) this);
+		      //Pour une image de fond
+		      //g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+		    } catch (IOException e) {
+		      e.printStackTrace();
+		    }                
+		  } 
 }
