@@ -18,7 +18,7 @@ import org.w3c.dom.NodeList;
 public class Allie extends Card {
 
 	/**
-	 * Liste de carte 
+	 * Liste de cartes
 	 */
 	private static List<Card> tasdecartes = new ArrayList<Card>();	
 	/**

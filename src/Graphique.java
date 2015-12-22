@@ -25,10 +25,12 @@ import javax.swing.JTextField;
 import javax.swing.JLayeredPane;
 import java.awt.ScrollPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
-public class Graphique {
+public class Graphique extends JFrame{
 
 	private JFrame frame;
+	
 	private JTextField textField;
 
 
