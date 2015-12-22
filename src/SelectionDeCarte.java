@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -112,7 +113,8 @@ public class SelectionDeCarte {
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Vous avez séléctionné la carte : ");
+				
+				JOptionPane.showMessageDialog(null, "Vous avez séléctionné la carte : ","Carte choisie", JOptionPane.INFORMATION_MESSAGE, img);
 			}
 		});
 		btnNewButton.setBounds(395, 282, 97, 25);
