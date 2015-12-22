@@ -52,12 +52,12 @@ public class SelectionDeCarte {
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		    int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
 		    int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
-		frame.setBounds(x-(1024/2), y-(542/2) ,1024, 542);
+		frame.setBounds(x-(1024/2), y-(542/2) ,1013, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(12, 51, 982, 335);
+		layeredPane.setBounds(11, 2, 982, 335);
 		frame.getContentPane().add(layeredPane);
 		
 		JPanel panel = new JPanel();
@@ -65,6 +65,7 @@ public class SelectionDeCarte {
 			
 			public void mouseClicked(MouseEvent arg0) {
 				JOptionPane.showMessageDialog(null, "Vous avez séléctionné la carte : ");
+				System.exit(0);
 			}
 		});
 		panel.setBackground(Color.GRAY);
@@ -77,6 +78,7 @@ public class SelectionDeCarte {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JOptionPane.showMessageDialog(null, "Vous avez séléctionné la carte : ");
+				System.exit(0);
 
 			}
 		});
@@ -90,6 +92,7 @@ public class SelectionDeCarte {
 			
 			public void mouseClicked(MouseEvent arg0) {
 				JOptionPane.showMessageDialog(null, "Vous avez séléctionné la carte : ");
+				System.exit(0);
 			}
 		});
 		panel_2.setBackground(Color.GRAY);
@@ -102,6 +105,7 @@ public class SelectionDeCarte {
 			
 			public void mouseClicked(MouseEvent arg0) {
 				JOptionPane.showMessageDialog(null, "Vous avez séléctionné la carte : ");
+				System.exit(0);
 			}
 		});
 		panel_3.setBackground(Color.GRAY);
@@ -114,6 +118,7 @@ public class SelectionDeCarte {
 			
 			public void mouseClicked(MouseEvent arg0) {
 				JOptionPane.showMessageDialog(null, "Vous avez séléctionné la carte : ");
+				System.exit(0);
 			}
 		});
 		panel_4.setBackground(Color.GRAY);
