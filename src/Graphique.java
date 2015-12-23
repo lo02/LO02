@@ -1,4 +1,6 @@
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.LayoutManager;
 
 import javax.swing.JFrame;
 import java.awt.Panel;
@@ -30,7 +32,7 @@ import javax.swing.JRadioButton;
 public class Graphique extends JFrame{
 
 	private JFrame frame;
-	
+	private JLabel picLabel = new JLabel(new ImageIcon("geant/b.gif"));
 	private JTextField textField;
 
 
@@ -69,8 +71,10 @@ public class Graphique extends JFrame{
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JPanel panel = new JPanel();
+		JPanel panel = new JPanel( new FlowLayout(FlowLayout.CENTER, 0, 0) );
 		panel.setBounds(0, 0, 1008, 503);
+		JPanel panel_1 = new JPanel();
+		
 		
 		JLayeredPane layeredPane = new JLayeredPane();
 		frame.getContentPane().add(layeredPane, BorderLayout.CENTER);
@@ -103,15 +107,40 @@ public class Graphique extends JFrame{
 				layeredPane.add(choice);
 				
 				Button button = new Button("Partie rapide");
+				
+				panel.setBackground(new Color(0,0,0,0));
+				
 				button.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						JOptionPane.showMessageDialog(null, "Partie Rapide"+choice.getSelectedItem()+"  "+textField.getText());
-						  JLabel picLabel = new JLabel(new ImageIcon("background.jpg"));
-						    panel.add(picLabel);
-						    panel.setPreferredSize(panel.getSize());
-						    panel.setBounds(0,0,panel.getWidth(),panel.getHeight());
-						    layeredPane.add(panel, JLayeredPane.DEFAULT_LAYER);
-					}
+						//JOptionPane.showMessageDialog(null, "Partie Rapide"+choice.getSelectedItem()+"  "+textField.getText());
+						
+
+						
+							JLabel pic2 = new JLabel(new ImageIcon("png/menhir.png"));
+							panel.setBounds(0, 0, 100, 100);
+						    //panel_1.add(pic2);
+						    //panel.add(panel_1);
+						    
+							
+						    frame.add(picLabel, BorderLayout.CENTER);
+						    
+						    panel.add(pic2);
+						    
+						   // layeredPane.moveToFront(panel);
+						    layeredPane.revalidate();
+						    layeredPane.repaint();
+						    
+						    
+						    //layeredPane.moveToFront(panel);
+						    frame.revalidate();
+						    frame.repaint();
+						 
+						   
+						    
+						    
+						} 
+							
+					
 				});
 				
 				button.setBounds(412, 279, 100, 32);
@@ -120,6 +149,7 @@ public class Graphique extends JFrame{
 				Button button_1 = new Button("Partie avanc\u00E9e");
 				button_1.setBounds(512, 279, 100, 32);
 				layeredPane.add(button_1);
+				layeredPane.add(panel);
 			}
 		});
 		button.setBounds(461, 192, 100, 22);
@@ -150,6 +180,7 @@ public class Graphique extends JFrame{
 		
 		
 		layeredPane.add(panel);
+		
 		
 		
 	}
