@@ -24,10 +24,13 @@ import java.awt.event.MouseEvent;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
+import java.awt.Font;
+import javax.swing.JInternalFrame;
+import javax.swing.JToggleButton;
 
 public class SelectionDeCarte {
 
-	private JFrame frame;
+	private JFrame frmVotreMain;
 
 	/**
 	 * Launch the application.
@@ -37,7 +40,7 @@ public class SelectionDeCarte {
 			public void run() {
 				try {
 					SelectionDeCarte window = new SelectionDeCarte();
-					window.frame.setVisible(true);
+					window.frmVotreMain.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -56,17 +59,18 @@ public class SelectionDeCarte {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frmVotreMain = new JFrame();
+		frmVotreMain.setTitle("Votre main");
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		    int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
-		    int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
-		frame.setBounds(x-(1024/2), y-(542/2) ,1013, 400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		    int x = (int) ((dimension.getWidth() - frmVotreMain.getWidth()) / 2);
+		    int y = (int) ((dimension.getHeight() - frmVotreMain.getHeight()) / 2);
+		frmVotreMain.setBounds(x-(1024/2), y-(542/2) ,1013, 400);
+		frmVotreMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmVotreMain.getContentPane().setLayout(null);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
 		layeredPane.setBounds(11, 2, 982, 335);
-		frame.getContentPane().add(layeredPane);
+		frmVotreMain.getContentPane().add(layeredPane);
 		
 		JPanel panel = new JPanel();
 		panel.addMouseListener(new MouseAdapter() {	
@@ -79,9 +83,16 @@ public class SelectionDeCarte {
 		panel.setBounds(12, 75, 180, 180);
 		layeredPane.add(panel);
 		panel.setLayout(null);
-		JLabel picLabel = new JLabel(new ImageIcon("fee_verte.jpg"));
-	    panel.add(picLabel);
-	    
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.addMouseListener(new MouseAdapter() {
+			
+			public void mouseClicked(MouseEvent arg0) {
+				JOptionPane.showMessageDialog(null, "Vous avez séléctionné la carte : ");
+				System.exit(0);
+			}
+		});
+		
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.addMouseListener(new MouseAdapter() {
@@ -96,15 +107,6 @@ public class SelectionDeCarte {
 		panel_1.setBounds(204, 75, 180, 180);
 		layeredPane.add(panel_1);
 		panel_1.setLayout(null);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.addMouseListener(new MouseAdapter() {
-			
-			public void mouseClicked(MouseEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Vous avez séléctionné la carte : ");
-				System.exit(0);
-			}
-		});
 		panel_2.setBackground(Color.GRAY);
 		panel_2.setBounds(396, 75, 180, 180);
 		layeredPane.add(panel_2);
@@ -135,18 +137,12 @@ public class SelectionDeCarte {
 		panel_4.setBounds(781, 75, 180, 180);
 		layeredPane.add(panel_4);
 		panel_4.setLayout(null);
+		
+		JLabel lblSelectionnerLaCarte = new JLabel("Selectionner la carte que vous voulez jouer ?");
+		lblSelectionnerLaCarte.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblSelectionnerLaCarte.setBounds(46, 29, 338, 16);
+		layeredPane.add(lblSelectionnerLaCarte);
 
 		
 	}
-	
-	 public void paintComponent(Graphics g){
-		    try {
-		      Image img = ImageIO.read(new File("arcenciel.jpg"));
-		      g.drawImage(img, 0, 0, (ImageObserver) this);
-		      //Pour une image de fond
-		      //g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-		    } catch (IOException e) {
-		      e.printStackTrace();
-		    }                
-		  } 
 }
