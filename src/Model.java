@@ -8,7 +8,7 @@ public class Model {
 	private int menhir = 0;
 	private boolean geantAnimation = false ; 
 	private boolean farfadetAnimation = false;
-	
+	private boolean farfadetAnimation2 = false;
 	
 	// Echange entre interface et le jeu 
 	private int partieRapide;
@@ -168,6 +168,20 @@ public class Model {
 	public void setMessage(String message) {
 		
 		this.message = this.message +"<br>"+ message;
+	}
+
+	public boolean isFarfadetAnimation2() {
+		return farfadetAnimation2;
+	}
+
+	public void setFarfadetAnimation21(boolean farfadetAnimation2) {
+		this.farfadetAnimation2 = farfadetAnimation2;
+	}
+
+	public void setFarfadetAnimation2(boolean farfadetAnimation22) {
+		// TODO Auto-generated method stub
+		this.farfadetAnimation2 = farfadetAnimation22;
+		
 	}
 	
 	

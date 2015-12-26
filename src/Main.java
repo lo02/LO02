@@ -94,12 +94,14 @@ public class Main {
 				mod.setAction(-1);
 				if(jeu == 2)
 				{
+					
 					ChoixJoueur b = new ChoixJoueur(0);
 					while(mod.getIndexJoueurCible()==-1)
 					{
 						Thread.sleep(250);
 					}
-					
+					mod.setFarfadetAnimation2(true);
+					Thread.sleep(9500);
 					
 					int cible = mod.getIndexJoueurCible();
 					mod.setIndexJoueurCible(-1);

@@ -403,6 +403,47 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				    frame.repaint();
 					model.setFarfadetAnimation(false);
 				}
+				if(model.isFarfadetAnimation2()==true)
+				{
+					frame.remove(picLabel);
+					panel.removeAll();
+					for (int i=0; i<model.getListeJoueur().get(model.getIndexJoueurCible()).getNbreMenhir();i++)
+					{
+						 	ImageIcon icone2 = new ImageIcon("png/menhir.png");
+						 	JLabel pic2 = new JLabel();
+						    pic2.setIcon(icone2);
+						    panel.add(pic2);
+						
+					}
+					ImageIcon icon17 = new ImageIcon("geant/farfadet.gif");
+					JLabel picLabel21 = new JLabel(icon17);
+					frame.add(picLabel21, BorderLayout.CENTER);
+				    frame.revalidate();
+				    frame.repaint();
+					try {
+						Thread.sleep(9500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					panel.removeAll();
+					for (int i=0;i<model.getJoueurPrincipal().getNbreMenhir();i++)
+					{
+						 	ImageIcon icone2 = new ImageIcon("png/menhir.png");
+						 	JLabel pic2 = new JLabel();
+						    pic2.setIcon(icone2);
+						    panel.add(pic2);
+						
+					}
+					frame.remove(picLabel21);
+					frame.add(picLabel, BorderLayout.CENTER);
+					frame.revalidate();
+				    frame.repaint();
+					model.setFarfadetAnimation2(false);
+					
+					
+				}
+				
 				}
 				
 			}
