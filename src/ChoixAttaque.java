@@ -31,7 +31,7 @@ import java.awt.ScrollPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-public class Graphique2 extends JFrame implements ActionListener{
+public class ChoixAttaque extends JFrame implements ActionListener{
 
 	private JLabel picLabel = new JLabel(new ImageIcon("geant/b.gif"));
 	private JTextField textField;
@@ -48,7 +48,7 @@ public class Graphique2 extends JFrame implements ActionListener{
 	/**
 	 * Launch the application.
 	 */
-	public Graphique2 (Graphique a)
+	public ChoixAttaque (int a)
 	{
 		
 		
@@ -56,7 +56,7 @@ public class Graphique2 extends JFrame implements ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Graphique2 window = new Graphique2();
+					ChoixAttaque window = new ChoixAttaque();
 					window.frame2.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,7 +70,7 @@ public class Graphique2 extends JFrame implements ActionListener{
 	/**
 	 * Create the application.
 	 */
-	public Graphique2() {
+	private ChoixAttaque() {
 		initialize();
 	}
 
@@ -79,35 +79,38 @@ public class Graphique2 extends JFrame implements ActionListener{
 	 */
 	private void initialize() {
 		 frame2 = new JFrame();
+		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		    int x = (int) ((dimension.getWidth() - frame2.getWidth()) / 2);
+		    int y = (int) ((dimension.getHeight() - frame2.getHeight()) / 2);
+		frame2.setBounds(x-(178/2), y-(153/2) ,178, 153);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
 		frame2.getContentPane().add(layeredPane, BorderLayout.CENTER);
-		frame2.setBounds(0,0 , 110, 300);
 		
-		JButton btnNewButton = new JButton("+1 menhir");
+		
+		JButton btnNewButton = new JButton("Jouer g\u00E9ant");
 		this.menhirBouton=btnNewButton;
 		btnNewButton.addActionListener(this);
 		
 				
 				
 	
-		btnNewButton.setBounds(10, 11, 100, 23);
+		btnNewButton.setBounds(10, 11, 142, 23);
 		layeredPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("-1 graine");
+		JButton btnNewButton_1 = new JButton("Joueur engrais");
 		this.graineBouton=btnNewButton_1;
 		btnNewButton_1.addActionListener(this);
 	
-		btnNewButton_1.setBounds(10, 45, 100, 23);
+		btnNewButton_1.setBounds(10, 45, 142, 23);
 		layeredPane.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("+1 graine");
+		JButton btnNewButton_2 = new JButton("Jouer farfadet ");
 		this.grainesBouton=btnNewButton_2;
 		
 		btnNewButton_2.addActionListener(this);
-		btnNewButton_2.setBounds(10, 80, 100, 23);
+		btnNewButton_2.setBounds(10, 80, 142, 23);
 		layeredPane.add(btnNewButton_2);
-		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		JPanel panel_1 = new JPanel();
 		
 		
@@ -120,17 +123,23 @@ public class Graphique2 extends JFrame implements ActionListener{
 			if(source.equals( this.menhirBouton))
 			{
 			
-				mod.setMenhir(1);
+				mod.setAction(0);
+				frame2.setVisible(false);
+				frame2.dispose();
 				
 				
 			}
 			if(source.equals( this.grainesBouton))
-					{
-						mod.setGeantAnimation(true);
-					}
+			{
+				mod.setAction(2);
+				frame2.setVisible(false);
+				frame2.dispose();
+			}
 			if(source.equals( this.graineBouton))
 			{
-				mod.setFarfadetAnimation(true);
+				mod.setAction(1);
+				frame2.setVisible(false);
+				frame2.dispose();
 			}
 	
 		}

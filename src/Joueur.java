@@ -352,7 +352,8 @@ public class Joueur {
 	
 	public String toString()
 	{
-		return "Joueur " + this.nom +" :\n- Nombres ménhirs : "+ this.nbreMenhir +"\n- Nombres graines : "+ this.nbreGraine+"\n\n====================\n\n";
+		return "<tr><td style='background-color:677DC1; color:white;'>Village : " + this.nom +" <br><ul><li>Nombres ménhirs : "+ this.nbreMenhir +
+				"</li><li>Nombres graines : "+ this.nbreGraine+"</li></ul>";
 	
 	}
 }

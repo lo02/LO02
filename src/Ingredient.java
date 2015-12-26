@@ -192,7 +192,10 @@ public class Ingredient extends Card {
 		
 		return "\n\n\t"+name+"\n"+geant[0]+"\t"+geant[1]+"\t"+geant[2]+"\t"+geant[3]+"\n"+engrais[0]+"\t"+engrais[1]+"\t"+engrais[2]+"\t"+engrais[3]+"\n"+farfadet[0]+"\t"+farfadet[1]+"\t"+farfadet[2]+"\t"+farfadet[3];
 	}
-
+	public String toString2()
+	{
+		return "<html>"+name+"<table style='width:100%;'><tr><td>"+geant[0]+"</td><td>"+geant[1]+"</td><td>"+geant[2]+"</td><td>"+geant[3]+"</td></tr><tr><td>"+engrais[0]+"</td><td>"+engrais[1]+"</td><td>"+engrais[2]+"</td><td>"+engrais[3]+"</td></tr><tr><td>"+farfadet[0]+"</td><td>"+farfadet[1]+"</td><td>"+farfadet[2]+"</td><td>"+farfadet[3]+"</td></tr></table></html>";
+	}
 
 
 	}

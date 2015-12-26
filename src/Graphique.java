@@ -38,12 +38,15 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 	protected Model model;
 	protected Button button;
 	protected Button button2;
+	private Choice choice;
 	private Thread t;
+	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		
+	public Graphique(int a)
+	{
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -59,11 +62,11 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 			}
 		});
 	}
-
 	/**
 	 * Create the application.
 	 */
-	public Graphique() {
+	
+	private Graphique() {
 		initialize();
 		model = Model.getInstance();
 		
@@ -80,7 +83,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		    int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
 		    int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
-		frame.setBounds(x-(1024/2), y-(542/2) ,1024, 542);
+		frame.setBounds(x-(1024/2), 0 ,1024, 542);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -155,7 +158,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 					lblNombresDeJoueurs.setBounds(462, 233, 100, 14);
 					layeredPane.add(lblNombresDeJoueurs);
 					
-					Choice choice = new Choice();
+					choice = new Choice();
 					choice.add("1");
 					choice.add("2");
 					choice.add("3");
@@ -185,8 +188,14 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 		
 			if(source.equals( this.button2))
 			{
-
-				Graphique2 graph = new Graphique2(this);
+	
+		
+				layeredPane.removeAll();
+				layeredPane.add(panel);
+				model.setPartieRapide(1);
+				model.setNomJoueur(textField.getText());
+				model.setNombreJoueurs(Integer.parseInt(choice.getSelectedItem()));
+				
 			
 				
 				

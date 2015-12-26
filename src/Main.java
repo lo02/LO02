@@ -7,17 +7,31 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-	public static void main(String[] argc){
+	
+	// 
+	
+	
+	public static void main(String[] argc) throws InterruptedException{
+		 Model mod = Model.getInstance();
+		
+		// On lance l'interface principale 
+		Graphique inter = new Graphique(0);
+		while(mod.getNomJoueur() == null)
+		{
+			Thread.sleep(100);
+		}
+		
+		
 		//on demande au joueur physique de se donner un nom
-		Scanner sc = new Scanner(System.in); 
-		System.out.println("Saisissez votre nom : ");
-		String nom = sc.nextLine();
+		
+		String nom = mod.getNomJoueur();
 		
 		//On met le nom dans le joueur
 		Joueur j = new Joueur(nom,0,0); 
+		mod.setJoueurPrincipal(j);
 		System.out.println("Vous vous appelez : " +nom +"\n" + j);
 		// demande du nombre de joueurs
-		Partie partie = new Partie(Main.saisie("Saisissez le nombre de joueurs entre 1 et 5 ", 1, 5));
+		Partie partie = new Partie(mod.getNombreJoueurs());
 		
 		//On ajoute le joueur physique dans la liste des joueurs  
 		List<Joueur> listeTemp =  new ArrayList<Joueur>(); 
@@ -31,8 +45,8 @@ public class Main {
 		
 		// Partie Rapide ou Avancée 
 		boolean vrai = true;
-		System.out.println("");
-		int reponse = Main.saisie("1 - rapide\n2 - avancée ", 1, 2);
+		
+		int reponse = mod.getPartieRapide();
 		while(vrai)
 		{
 			switch (reponse)
@@ -43,51 +57,77 @@ public class Main {
 				case 2: partie.initierPartieAvancee();
 				vrai=false;
 				break;
-				default: System.out.println("Taper 1 ou 2" );
-				break;
+				
 			}
 		}
 		
 		if(reponse == 1)
 		{
 			j.setNbreGraine(2);
+			mod.setJoueursPoints(partie.getListJoueur().toString());
+			mod.setListeJoueur(partie.getListJoueur());
+			Score boiteDeScore = new Score(0);
+			MessageBox message = new MessageBox(0);
 			for(int tour=0 ; tour <4 ; tour++) 
 			{ 
 				
 				partie.setTour(tour);
 				//Donne la liste des joueurs qui composent la partie
-				System.out.println(partie.getListJoueur()+"\n"+j.getMain());
+				mod.setJoueursPoints(partie.getListJoueur().toString());
 				
-				int carte = Main.saisie("Choisir la carte à jouer 0 - "+(j.getMain().size()-1)+" \n", 0, j.getMain().size()-1);
-				int jeu = Main.saisie("Quel type de jeu : \n0- géant \n1- engrais\n2- Farfadet", 0, 2);
+				mod.setMain(j.getMain());
+				SelectionDeCarte c = new SelectionDeCarte(0);
+				while(mod.getCarteChoisie()==-1)
+				{
+					Thread.sleep(100);
+				}
+				
+				int carte = mod.getCarteChoisie();
+				mod.setCarteChoisie(-1);
+				ChoixAttaque a = new ChoixAttaque(0);
+				while(mod.getAction()==-1)
+				{
+					Thread.sleep(100);
+				}
+				
+				int jeu = mod.getAction();
+				mod.setAction(-1);
 				if(jeu == 2)
 				{
-					System.out.print("Quel joueur voulez vous voler ?");
-					for(int i = 1 ; i < partie.getListJoueur().size(); i++)
+					ChoixJoueur b = new ChoixJoueur(0);
+					while(mod.getIndexJoueurCible()==-1)
 					{
-						System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
+						Thread.sleep(250);
 					}
-					int cible = Main.saisie("", 1, partie.getListJoueur().size()-1);
-					System.out.println("Vous avez joué : \n "+j.getMain().get(carte)+"\nVous avez volé "+j.getMain().get(carte).getFarfadet()[Partie.getTour()]+" graine(s)");
+					
+					
+					int cible = mod.getIndexJoueurCible();
+					mod.setIndexJoueurCible(-1);
+					
+					//System.out.println("Vous avez joué : \n "+j.getMain().get(carte)+"\nVous avez volé "+j.getMain().get(carte).getFarfadet()[Partie.getTour()]+" graine(s)");
 					//System.out.println("Vous avez jou Farfadet avec une valeur de "+j.getMain().);
 					j.poserCarte(carte, partie.getListJoueur().get(cible));
 				}else
 				{
 					
-					System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
 					if(jeu == 0)
-						System.out.println("Vous demandez "+j.getMain().get(carte).getGeant()[Partie.getTour()]+" graine(s)");
+					{
+						mod.setMessage("Vous demandez "+j.getMain().get(carte).getGeant()[Partie.getTour()]+" graine(s)");
+						mod.setGeantAnimation(true);
+					}	
 					else
-						System.out.println("Vous plantez "+j.getMain().get(carte).getEngrais()[Partie.getTour()]+" graine(s)");
-					
+					{	mod.setMessage("Vous plantez "+j.getMain().get(carte).getEngrais()[Partie.getTour()]+" graine(s)");
+					mod.setMenhir(j.getMain().get(carte).getEngrais()[Partie.getTour()]);}
 					j.poserCarte(carte, jeu);
+					mod.setJoueursPoints(partie.getListJoueur().toString());
 					
 				}
 				
 				partie.gererTour();
-				pause();
+			
 			}
-			System.out.println("\nScore Final : \n"+partie.getListJoueur()+"\nLe gagnant est : \n"+ partie.chercherGagnantRapide());
+			mod.setJoueursPoints(partie.getListJoueur().toString());
+			mod.setMessage("Le gagnant est : <br>"+partie.chercherGagnantRapide().toString());
 			
 			
 			
@@ -152,21 +192,27 @@ public class Main {
 	}
 	
 	public static void afficherActionoff(Joueur joueur, Joueur joueurcible, int carte){
+		Model model = Model.getInstance();
+		if (joueurcible.equals(model.getJoueurPrincipal()))
+				{
+					model.setFarfadetAnimation(true);
+				}
 		if (joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]<= joueurcible.getNbreGraine())
-			System.out.println("Le joueur "+joueur.getNom()+" vole "+ joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]+ " graine(s) de "+joueurcible.getNom());
+			model.setMessage("Le joueur "+joueur.getNom()+" vole "+ joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]+ " graine(s) de "+joueurcible.getNom());
 		else
-			System.out.println("Le joueur "+joueur.getNom()+" vole "+joueurcible.getNbreGraine() + " graine(s) de "+joueurcible.getNom());
+			model.setMessage("Le joueur "+joueur.getNom()+" vole "+joueurcible.getNbreGraine() + " graine(s) de "+joueurcible.getNom());
 	}
 	
 	
 	public static void afficherAction(Joueur joueur, int carte, int action){
+		Model model = Model.getInstance();
 		//Géant
 		if (action == 0){
-			System.out.println("Le joueur "+joueur.getNom()+" demande "+ joueur.getMain().get(carte).getGeant()[Partie.getTour()] + " graine(s)" );
+			model.setMessage("Le joueur "+joueur.getNom()+" demande "+ joueur.getMain().get(carte).getGeant()[Partie.getTour()] + " graine(s)" );
 		}
 		//Engrais
 		if (action == 1){
-			System.out.println("Le joueur "+joueur.getNom()+" plante "+ joueur.getMain().get(carte).getEngrais()[Partie.getTour()] + " graine(s)");
+			model.setMessage("Le joueur "+joueur.getNom()+" plante "+ joueur.getMain().get(carte).getEngrais()[Partie.getTour()] + " graine(s)");
 		}	
 	}
 	
@@ -179,17 +225,18 @@ public class Main {
 		System.out.println("Le joueur "+joueur.getNom()+" protège "+valeur+" de ses graines");
 	}
 	
-	public static void pause()
+	public static void pause() 
 	{
 		
 		try {
-			System.in.read();
-			System.in.read();
-			
-		} catch (IOException e){
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
+	
 
 	public static void deroulementJoueur(Joueur j,Partie partie)
 	{

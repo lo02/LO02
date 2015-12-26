@@ -17,6 +17,7 @@ public abstract class Card {
 		public abstract String toString();
 		public abstract String getTitre();
 		public abstract void deleteAllie();	
+		public abstract String toString2();
 	}
 
 

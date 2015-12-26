@@ -196,6 +196,9 @@ public class Allie extends Card {
 		return "\t"+this.titre+"\n"+this.valeur[0]+"\t"+this.valeur[1]+"\t"+this.valeur[2]+"\t"+this.valeur[3];
 	
 	}
+	public String toString2(){
+		return "<html>"+titre+"<table style='width:100%;'><tr><td>"+valeur[0]+"</td><td>"+valeur[1]+"</td><td>"+valeur[2]+"</td><td>"+valeur[3]+"</td></tr></table></html>";
+	}
 
 	
 	
