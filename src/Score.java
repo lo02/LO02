@@ -72,7 +72,7 @@ public class Score extends JFrame implements Runnable {
 		
 		lblNewLabel = new JLabel("<html><table> <tr> <td>Village : <br><ul><li>Nombre de menhirs</li><li>Nombre de graines</li></ul></td></tr><tr><td>Village : <br><ul><li>Nombre de menhirs</li><li>Nombre de graines</li></ul></td></tr></table></html> ");
 		lblNewLabel.setForeground(Color.BLACK);
-		lblNewLabel.setBounds(0, 0, 400, 80*(model.getNombreJoueurs()+1));
+		lblNewLabel.setBounds(0, 0, 400, 90*(model.getNombreJoueurs()+1));
 		layeredPane.add(lblNewLabel);
 		initialize();
 		model = Model.getInstance();
@@ -91,7 +91,7 @@ public class Score extends JFrame implements Runnable {
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		    int x = (int) dimension.getWidth();
 		  
-		frame.setBounds(x-180,0 ,195, 100*(model.getNombreJoueurs()+1));
+		frame.setBounds(x-180,0 ,195, 110*(model.getNombreJoueurs()+1));
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	

@@ -116,8 +116,17 @@ public class Main {
 						mod.setGeantAnimation(true);
 					}	
 					else
-					{	mod.setMessage("Vous plantez "+j.getMain().get(carte).getEngrais()[Partie.getTour()]+" graine(s)");
+					{	if(j.getNbreGraine()>=j.getMain().get(carte).getEngrais()[Partie.getTour()] )
+					{
+						mod.setMessage("Vous plantez "+j.getMain().get(carte).getEngrais()[Partie.getTour()]+" graine(s)");
 					mod.setMenhir(j.getMain().get(carte).getEngrais()[Partie.getTour()]);}
+					else
+					{
+						mod.setMessage("Vous plantez "+j.getNbreGraine()+" graine(s)");
+						mod.setMenhir(j.getNbreGraine());}
+					
+					}
+					
 					j.poserCarte(carte, jeu);
 					mod.setJoueursPoints(partie.getListJoueur().toString());
 					
