@@ -29,7 +29,7 @@ public class Allie extends Card {
 	 * Variable qui contient le nom de la carte
 	 */
 	private String titre = "";
-
+	private String logo;
 	
 	
 	
@@ -45,15 +45,22 @@ public class Allie extends Card {
 				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 				Document doc = dBuilder.parse(fXmlFile);	
 				NodeList nList;
+				List<String> image = new ArrayList<String>();
+				image.add("img/taupe.jpg");
+				image.add("img/taupe.jpg");
+				image.add("img/taupe.jpg");
+				image.add("img/chien.jpg");
+				image.add("img/chien.jpg");
+				image.add("img/chien.jpg");
 				
 			
 				nList = doc.getElementsByTagName("printemps");
 				for (int i=0; i< nList.getLength() ; i++)
 				{	
 					Card carte= new Allie();
-					nList = doc.getElementsByTagName("ID"+i);
+					nList = doc.getElementsByTagName("ID"+i);	
 					Node nNode = nList.item(0);
-					
+					carte.setLogo(image.get(i));
 					Element eElement = (Element) nNode;
 					carte.setName(eElement.getAttribute("name"));
 					
@@ -203,13 +210,13 @@ public class Allie extends Card {
 	@Override
 	public void setLogo(String logo) {
 		// TODO Auto-generated method stub
-		
+		this.logo= logo;
 	}
 
 	@Override
 	public String getLogo() {
 		// TODO Auto-generated method stub
-		return null;
+		return logo;
 	}
 
 	

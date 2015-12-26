@@ -23,6 +23,7 @@ public class Model {
 	private int indexJoueurCible=-1;
 	private String message="";
 	private int choix = 0;
+	private Card allie;
 	
 	
 	private static Model instance;
@@ -110,6 +111,14 @@ public class Model {
 
 	public void setMain(List<Card> main) {
 		this.main = main;
+	}
+	
+	public Card getAllie(){
+		return allie;
+	}
+	
+	public void setAllie(Card allie){
+		this.allie = allie;
 	}
 
 	public int getCarteChoisie() {
