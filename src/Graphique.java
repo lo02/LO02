@@ -1,5 +1,6 @@
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
 import javax.swing.JFrame;
 import java.awt.Panel;
@@ -188,7 +189,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 		
 			if(source.equals( this.button2))
 			{
-	
+				Graphique2 graph = new Graphique2(this);
 		
 				layeredPane.removeAll();
 				layeredPane.add(panel);
@@ -218,13 +219,23 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 		}
 	
 		public void addMenhir(){
+			
 			panel.setBounds(270, 0, 470, 80);
+			panel.setBackground(new Color(0,0,0,0));
+			panel.setOpaque(false);
 		    //panel_1.add(pic2);
 		    //panel.add(panel_1);
-		    
-			JLabel pic2 = new JLabel(new ImageIcon("png/menhir.png"));
+		    ImageIcon icone = new ImageIcon("png/menhir.gif");
+		    icone.getImage().flush();
+			JLabel pic2 = new JLabel();
+			pic2.setBackground(new Color(0,0,0,0));
+			pic2.setIcon(icone);
+			frame.setOpacity(1);
 			panel.add(pic2);
+			
 		    frame.add(picLabel, BorderLayout.CENTER);
+		    
+		    
 		  
 		    
 		    
@@ -236,7 +247,17 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 		    //layeredPane.moveToFront(panel);
 		    frame.revalidate();
 		    frame.repaint();
-			
+		    try {
+				Thread.sleep(1300);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    ImageIcon icone2 = new ImageIcon("png/menhir.png");
+		    panel.remove(pic2);
+		    pic2.setIcon(icone2);
+		    panel.add(pic2);
+		    
 		}
 
 		@Override
