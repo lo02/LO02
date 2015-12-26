@@ -46,6 +46,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 	protected Model model;
 	protected Button button;
 	protected Button button2;
+	protected Button button3;
 	private Choice choice;
 	private Thread t;
 	
@@ -188,10 +189,11 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 					button2.setBounds(412, 279, 100, 32);
 					layeredPane.add(button2);
 					
-					Button button_1 = new Button("Partie avanc\u00E9e");
-					button_1.setBounds(512, 279, 100, 32);
-					layeredPane.add(button_1);
-					layeredPane.add(panel);
+					this.button3 = new Button("Partie avanc\u00E9e");
+					button3.setBounds(512, 279, 100, 32);
+					layeredPane.add(button3);
+					button3.addActionListener(this);
+					
 				}
 		
 			if(source.equals( this.button2))
@@ -237,6 +239,46 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 			    frame.repaint();
 			 
 			   
+			}
+			if (source.equals(this.button3)){
+				 try {
+			            FileInputStream fis     = new FileInputStream("mp3/mainSong.mp3");
+			            BufferedInputStream bis = new BufferedInputStream(fis);
+			            player = new Player(bis);
+			        }
+			        catch (Exception e1) {
+			            System.out.println("Problem playing file mainsong");
+			            System.out.println(e1);
+			        }
+
+			        // run in new thread to play in background
+			        new Thread() {
+			            public void run() {
+			                try { player.play(); }
+			                catch (Exception e) { System.out.println(e); }
+			            }
+			        }.start();
+				layeredPane.removeAll();
+				layeredPane.add(panel);
+				model.setPartieRapide(2);
+				model.setNomJoueur(textField.getText());
+				model.setNombreJoueurs(Integer.parseInt(choice.getSelectedItem()));
+				
+			
+				
+				
+			    frame.add(picLabel, BorderLayout.CENTER);
+			  
+			    
+			    
+			   // layeredPane.moveToFront(panel);
+			    layeredPane.revalidate();
+			    layeredPane.repaint();
+			    
+			    
+			    //layeredPane.moveToFront(panel);
+			    frame.revalidate();
+			    frame.repaint();
 			}
 			
 		}

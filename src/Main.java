@@ -143,18 +143,37 @@ public class Main {
 		}
 		else
 		if(reponse == 2){
+			mod.setJoueursPoints(partie.getListJoueur().toString());
+			mod.setListeJoueur(partie.getListJoueur());
+			Score boiteDeScore = new Score(0);
+			MessageBox message = new MessageBox(0);
 			for(int manche = 0 ; manche<partie.getListJoueur().size(); manche++)
 			{
 				
-				System.out.println("Début de la manche "+ (manche+1));
-				int choix= Main.saisie("Souhaitez vous prendre 2 graines (tapez 1) ou une alliée (tapez 2)?", 1, 2);
-				j.choixDebutManche(choix);
-				if (choix == 2){
+				
+				
+				mod.setMessage("Début de la manche "+ (manche+1));
+				ChoixDebutManche m = new ChoixDebutManche(0);
+				while(mod.getChoix()== 0)
+				{
+					Thread.sleep(100);
+				}
+				//int choix= Main.saisie("Souhaitez vous prendre 2 graines (tapez 1) ou une alliée (tapez 2)?", 1, 2);
+				j.choixDebutManche(mod.getChoix());
+				if (mod.getChoix() == 2){
 					System.out.println("Votre carte alliée :\n"+j.getAllie());
 				}
 				
 				for(int tour=0 ; tour <4 ; tour++) 
 				{
+					mod.setJoueursPoints(partie.getListJoueur().toString());
+					mod.setMain(j.getMain());
+					SelectionDeCarte c = new SelectionDeCarte(0);
+					while(mod.getCarteChoisie()==-1)
+					{
+						Thread.sleep(100);
+					}
+					
 					partie.setTour(tour);
 					for(int i=0;i<partie.getListJoueur().size();i++)
 					{
@@ -227,11 +246,13 @@ public class Main {
 	
 	public static void afficherActionAllieeTaupe(Joueur joueur , Joueur joueurCible , int valeur)
 	{
-		System.out.println("Le joueur "+joueur.getNom()+" détruit "+valeur+" ménhirs à "+joueurCible);
+		Model model = Model.getInstance();
+		model.setMessage("Le joueur "+joueur.getNom()+" détruit "+valeur+" ménhirs à "+joueurCible);
 	}
 	public static void afficherActionAllieeChien(Joueur joueur , int valeur)
 	{
-		System.out.println("Le joueur "+joueur.getNom()+" protège "+valeur+" de ses graines");
+		Model model = Model.getInstance();
+		model.setMessage("Le joueur "+joueur.getNom()+" protège "+valeur+" de ses graines");
 	}
 	
 	public static void pause() 

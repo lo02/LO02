@@ -22,6 +22,7 @@ public class Model {
 	private List<Joueur> listeJoueur;
 	private int indexJoueurCible=-1;
 	private String message="";
+	private int choix = 0;
 	
 	
 	private static Model instance;
@@ -127,6 +128,15 @@ public class Model {
 		this.action = action;
 	}
 
+	
+	public int getChoix() {
+		return choix;
+	}
+
+	public void setChoix(int choix) {
+		this.choix =choix;
+	}
+	
 	public Joueur getJoueurPrincipal() {
 		return joueurPrincipal;
 	}
