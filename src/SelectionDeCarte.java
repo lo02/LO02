@@ -38,7 +38,7 @@ import java.awt.Panel;
 public class SelectionDeCarte {
 
 	private JFrame frmVotreMain;
-	private JLabel picLabel = new JLabel(new ImageIcon("img/transparent.png"));
+	
 	private Model model = Model.getInstance();
 	
 
@@ -62,14 +62,20 @@ public class SelectionDeCarte {
 	 * Create the application.
 	 */
 	private SelectionDeCarte() {
-		initialize();
+		try {
+			initialize();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws IOException 
 	 */
 	
-	private void initialize() {
+	private void initialize() throws IOException {
 		
 		frmVotreMain = new JFrame();
 		frmVotreMain.setTitle("Votre main");
@@ -101,8 +107,9 @@ public class SelectionDeCarte {
 		
 		JLayeredPane layeredPane_1 = new JLayeredPane();
 		layeredPane_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		layeredPane_1.setForeground(new Color(0, 0, 102));
-		layeredPane_1.setBackground(new Color(0, 0, 102));
+		layeredPane_1.setForeground(new Color(0, 0, 0,0));
+		layeredPane_1.setBackground(new Color(0, 0, 102,90));
+		layeredPane_1.setOpaque(true);
 		layeredPane_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
@@ -117,6 +124,15 @@ public class SelectionDeCarte {
 		layeredPane.add(layeredPane_1);
 		
 		JPanel panel = new JPanel();
+		ImageIcon img89 = new ImageIcon(ImageIO.read(new File(model.getMain().get(0).getLogo()))
+                .getScaledInstance(136, 136, Image.SCALE_SMOOTH));
+		JLabel pic76 = new JLabel(img89);
+		//JLabel pic = new JLabel(new ImageIcon(model.getMain().get(0).getLogo()));
+		panel.add(pic76);
+		panel.setOpaque(true);
+		panel.setBackground(new Color(0,0,0,0));
+		
+		
 		panel.setBounds(10, 11, 136, 136);
 		layeredPane_1.add(panel);
 		
@@ -140,6 +156,9 @@ public class SelectionDeCarte {
 		layeredPane.add(layeredPane_5);
 		
 		JPanel panel_4 = new JPanel();
+		JLabel pic2 = new JLabel(new ImageIcon(model.getMain().get(1).getLogo()));
+		panel_4.add(pic2);
+		
 		panel_4.setBounds(10, 11, 136, 136);
 		layeredPane_5.add(panel_4);
 		
@@ -155,6 +174,8 @@ public class SelectionDeCarte {
 		layeredPane_2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		layeredPane_2.setBackground(new Color(0, 0, 102));
 		layeredPane_2.setBounds(174, 75, 154, 260);
+		layeredPane_2.setBackground(new Color(0, 0, 102,90));
+		layeredPane_2.setOpaque(true);
 		layeredPane_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
@@ -168,6 +189,12 @@ public class SelectionDeCarte {
 		layeredPane.add(layeredPane_2);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setOpaque(true);
+		panel_1.setBackground(new Color(0,0,0,0));
+		ImageIcon img0 = new ImageIcon(ImageIO.read(new File(model.getMain().get(1).getLogo()))
+                .getScaledInstance(136, 136, Image.SCALE_SMOOTH));
+		JLabel pic9 = new JLabel(img0);
+		panel_1.add(pic9);
 		panel_1.setBounds(10, 11, 136, 136);
 		layeredPane_2.add(panel_1);
 		
@@ -186,6 +213,8 @@ public class SelectionDeCarte {
 		layeredPane_3.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		layeredPane_3.setBackground(new Color(0, 0, 102));
 		layeredPane_3.setBounds(338, 75, 154, 260);
+		layeredPane_3.setBackground(new Color(0, 0, 102,90));
+		layeredPane_3.setOpaque(true);
 		layeredPane_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
@@ -199,6 +228,12 @@ public class SelectionDeCarte {
 		layeredPane.add(layeredPane_3);
 		
 		JPanel panel_3 = new JPanel();
+		ImageIcon img2 = new ImageIcon(ImageIO.read(new File(model.getMain().get(2).getLogo()))
+                .getScaledInstance(136, 136, Image.SCALE_SMOOTH));
+		JLabel pic4 = new JLabel(img2);
+		panel_3.setOpaque(true);
+		panel_3.setBackground(new Color(0,0,0,0));
+		panel_3.add(pic4);
 		panel_3.setBounds(10, 11, 136, 136);
 		layeredPane_3.add(panel_3);
 		
@@ -218,6 +253,8 @@ public class SelectionDeCarte {
 		layeredPane_4.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		layeredPane_4.setBackground(new Color(0, 0, 102));
 		layeredPane_4.setBounds(502, 75, 154, 260);
+		layeredPane_4.setBackground(new Color(0, 0, 102,90));
+		layeredPane_4.setOpaque(true);
 		layeredPane_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
@@ -236,6 +273,12 @@ public class SelectionDeCarte {
 		
 		JPanel panel_8 = new JPanel();
 		panel_8.setBounds(10, 158, 137, 91);
+		panel_7.setOpaque(true);
+		panel_7.setBackground(new Color(0,0,0,0));
+		ImageIcon img = new ImageIcon(ImageIO.read(new File(model.getMain().get(3).getLogo()))
+                .getScaledInstance(136, 136, Image.SCALE_SMOOTH));
+		JLabel pic5 = new JLabel(img);
+		panel_7.add(pic5);
 		layeredPane_4.add(panel_8);
 		
 		JLabel label_2 = new JLabel(model.getMain().get(3).toString2());

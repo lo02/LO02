@@ -200,6 +200,18 @@ public class Allie extends Card {
 		return "<html>"+titre+"<table style='width:100%;'><tr><td>"+valeur[0]+"</td><td>"+valeur[1]+"</td><td>"+valeur[2]+"</td><td>"+valeur[3]+"</td></tr></table></html>";
 	}
 
+	@Override
+	public void setLogo(String logo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getLogo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }

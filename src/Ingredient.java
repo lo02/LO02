@@ -15,6 +15,7 @@ public class Ingredient extends Card {
 	private int[] geant = new int[4];
 	private int[] farfadet = new int[4];
 	private int[] engrais = new int[4];
+	private String logo;
 	private static List<Card> tasdecartes = new ArrayList<Card>();	
 	
 	
@@ -28,17 +29,45 @@ public class Ingredient extends Card {
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse(fXmlFile);	
 		NodeList nList;
+		List<String> image = new ArrayList<String>();
 		
-	
+		image.add("img/fee_verte.jpg");
+		image.add("img/rayonlune.jpg");
+		image.add("img/rayonlune.jpg");
+		image.add("img/rayonlune.jpg");
+		image.add("img/sirene.jpg");
+		image.add("img/sirene.jpg");
+		image.add("img/sirene.jpg");
+		image.add("img/Dryade_bleu.jpg");
+		image.add("img/Dryade_bleu.jpg");
+		image.add("img/Dryade_bleu.jpg");
+		image.add("img/fontaine.jpg");
+		image.add("img/fontaine.jpg");
+		image.add("img/fontaine.jpg");
+		image.add("img/poudre.jpg");
+		image.add("img/poudre.jpg");
+		image.add("img/poudre.jpg");
+		image.add("img/arcenciel.jpg");
+		image.add("img/arcenciel.jpg");
+		image.add("img/arcenciel.jpg");
+		image.add("img/dolmen.jpg");
+		image.add("img/dolmen.jpg");
+		image.add("img/dolmen.jpg");
+		image.add("img/fee_verte.jpg");
+		image.add("img/fee_verte.jpg");
+		image.add("img/fee_verte.jpg");
+		
+		
 		nList = doc.getElementsByTagName("printemps");
 		for (int i=0; i< nList.getLength() ; i++)
 		{	
 			Card carte= new Ingredient();
 			nList = doc.getElementsByTagName("ID"+i);
 			Node nNode = nList.item(0);
-			
+			carte.setLogo(image.get(i));
 			Element eElement = (Element) nNode;
 			carte.setName(eElement.getAttribute("name"));
+			
 			
 			if (eElement.getAttribute("name").equals("Cheat Carte") )
 			{
@@ -65,7 +94,8 @@ public class Ingredient extends Card {
 					carte.setGeant(Integer.parseInt(eElement.getAttribute("géant")),j); 
 					carte.setEngrais(Integer.parseInt(eElement.getAttribute("engrais")),j); 
 					carte.setFarfadet(Integer.parseInt(eElement.getAttribute("farfadet")),j); 
-				}
+					
+					}
 				tasdecartes.add(carte);
 				}
 				else
@@ -197,6 +227,19 @@ public class Ingredient extends Card {
 		return "<html>"+name+"<table style='width:100%;'><tr><td>"+geant[0]+"</td><td>"+geant[1]+"</td><td>"+geant[2]+"</td><td>"+geant[3]+"</td></tr><tr><td>"+engrais[0]+"</td><td>"+engrais[1]+"</td><td>"+engrais[2]+"</td><td>"+engrais[3]+"</td></tr><tr><td>"+farfadet[0]+"</td><td>"+farfadet[1]+"</td><td>"+farfadet[2]+"</td><td>"+farfadet[3]+"</td></tr></table></html>";
 	}
 
+
+	public String getLogo() {
+		return logo;
+	}
+
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+
+
+
+	
 
 	}
 	

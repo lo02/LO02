@@ -30,6 +30,7 @@ import javax.swing.JLayeredPane;
 import java.awt.ScrollPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 
@@ -38,8 +39,8 @@ public class MessageBox extends JFrame implements Runnable{
 
 	private JFrame frame2;
 	private JLabel label;
-	
-
+	private JScrollPane scrollPane;
+	private JScrollBar barre;
 	private Model mod = Model.getInstance();
 
 	
@@ -91,7 +92,7 @@ public class MessageBox extends JFrame implements Runnable{
 		frame2.setBounds(0, y ,335, 233);
 		frame2.getContentPane().add(layeredPane, BorderLayout.CENTER);
 		
-		JScrollPane scrollPane = new JScrollPane();
+	 scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 299, 172);
 		scrollPane.getViewport().setBackground(Color.BLACK);
 		layeredPane.add(scrollPane);
@@ -116,6 +117,8 @@ public class MessageBox extends JFrame implements Runnable{
 			{
 				try {
 					Thread.sleep(100);
+					barre=scrollPane.getVerticalScrollBar();
+	                barre.setValue(scrollPane.getMaximumSize().height+30);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -124,6 +127,8 @@ public class MessageBox extends JFrame implements Runnable{
 			else
 			{
 				label.setText(mod.getMessage());
+				  barre=scrollPane.getVerticalScrollBar();
+	                barre.setValue(scrollPane.getMaximumSize().height+30);
 			}
 		}
 		

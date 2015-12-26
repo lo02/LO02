@@ -74,8 +74,8 @@ public class Main {
 				partie.setTour(tour);
 				//Donne la liste des joueurs qui composent la partie
 				mod.setJoueursPoints(partie.getListJoueur().toString());
-				
 				mod.setMain(j.getMain());
+				
 				SelectionDeCarte c = new SelectionDeCarte(0);
 				while(mod.getCarteChoisie()==-1)
 				{
