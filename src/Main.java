@@ -166,6 +166,14 @@ public class Main {
 				
 				for(int tour=0 ; tour <4 ; tour++) 
 				{
+					
+					
+					partie.setTour(tour);
+					for(int i=0;i<partie.getListJoueur().size();i++)
+					{
+					List<Joueur> listTemp = new LinkedList<Joueur>();
+					listTemp.addAll(partie.arrangerOrdreListe(manche));
+					
 					mod.setJoueursPoints(partie.getListJoueur().toString());
 					mod.setMain(j.getMain());
 					SelectionDeCarte c = new SelectionDeCarte(0);
@@ -174,11 +182,6 @@ public class Main {
 						Thread.sleep(100);
 					}
 					
-					partie.setTour(tour);
-					for(int i=0;i<partie.getListJoueur().size();i++)
-					{
-					List<Joueur> listTemp = new LinkedList<Joueur>();
-					listTemp.addAll(partie.arrangerOrdreListe(manche));
 					if(listTemp.get(i)==j)
 					{
 						Main.deroulementJoueur(j, partie);
