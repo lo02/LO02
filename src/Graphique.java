@@ -1,4 +1,5 @@
 import java.awt.EventQueue;
+import javazoom.jl.player.Player;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
@@ -9,6 +10,8 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Choice;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,11 +29,15 @@ import javax.swing.JLayeredPane;
 import java.awt.ScrollPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.print.DocFlavor.URL;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 public class Graphique extends JFrame implements ActionListener, Runnable{
 
 	protected JFrame frame;
 	protected JLabel picLabel = new JLabel(new ImageIcon("geant/b.gif"));
-
+    private Player player; 
 	private JLabel picLabel3 = new JLabel(new ImageIcon("geant/c.gif"));
 	private JLabel picLabel4 = new JLabel(new ImageIcon("geant/d.gif"));
 	private JTextField textField;
@@ -190,7 +197,23 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 			if(source.equals( this.button2))
 			{
 				Graphique2 graph = new Graphique2(this);
-		
+				  try {
+			            FileInputStream fis     = new FileInputStream("mp3/mainSong.mp3");
+			            BufferedInputStream bis = new BufferedInputStream(fis);
+			            player = new Player(bis);
+			        }
+			        catch (Exception e1) {
+			            System.out.println("Problem playing file mainsong");
+			            System.out.println(e1);
+			        }
+
+			        // run in new thread to play in background
+			        new Thread() {
+			            public void run() {
+			                try { player.play(); }
+			                catch (Exception e) { System.out.println(e); }
+			            }
+			        }.start();
 				layeredPane.removeAll();
 				layeredPane.add(panel);
 				model.setPartieRapide(1);
