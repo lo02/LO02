@@ -160,10 +160,12 @@ public class Main {
 				{
 					Thread.sleep(100);
 				}
+				int choix = mod.getChoix();
+				mod.setChoix(0);
 				//int choix= Main.saisie("Souhaitez vous prendre 2 graines (tapez 1) ou une alliée (tapez 2)?", 1, 2);
-				j.choixDebutManche(mod.getChoix());
+				j.choixDebutManche(choix);
 				
-				if (mod.getChoix() == 2){
+				if (choix == 2){
 					System.out.println("Votre carte alliée :\n"+j.getAllie());
 				}
 				
@@ -179,11 +181,7 @@ public class Main {
 					
 					mod.setJoueursPoints(partie.getListJoueur().toString());
 					mod.setMain(j.getMain());
-					SelectionDeCarte c = new SelectionDeCarte(0);
-					while(mod.getCarteChoisie()==-1)
-					{
-						Thread.sleep(100);
-					}
+					
 					
 					if(listTemp.get(i)==j)
 					{
@@ -274,54 +272,70 @@ public class Main {
 	}
 	
 
-	public static void deroulementJoueur(Joueur j,Partie partie)
+	public static void deroulementJoueur(Joueur j,Partie partie) throws InterruptedException
 	{
-		int carte = Main.saisie(j.getMain()+"\nChoisir la carte à jouer 0 - "+(j.getMain().size()-1)+" \n", 0, j.getMain().size()-1);
-		int jeu = Main.saisie("Quel type de jeu : \n0- géant \n1- engrais\n2- Farfadet", 0, 2);
-		
-	if(jeu == 2)
-	{
-		System.out.print("Quel joueur voulez vous voler ?");
-		for(int i = 1 ; i < partie.getListJoueur().size(); i++)
+		//int carte = Main.saisie(j.getMain()+"\nChoisir la carte à jouer 0 - "+(j.getMain().size()-1)+" \n", 0, j.getMain().size()-1);
+		//int jeu = Main.saisie("Quel type de jeu : \n0- géant \n1- engrais\n2- Farfadet", 0, 2);
+		Model mod = Model.getInstance();
+		SelectionDeCarte c = new SelectionDeCarte(0);
+		while(mod.getCarteChoisie()==-1)
 		{
-			System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
+			Thread.sleep(100);
 		}
-		int cible = Main.saisie("", 1, partie.getListJoueur().size()-1);
-		System.out.println("Vous avez joué : \n "+j.getMain().get(carte)+"\nVous avez volé "+j.getMain().get(carte).getFarfadet()[Partie.getTour()]+" graine(s)");
+		int carte = mod.getCarteChoisie();
+		mod.setCarteChoisie(-1);
+		ChoixAttaque a = new ChoixAttaque(0);
+		while(mod.getAction()==-1)
+		{
+			Thread.sleep(100);
+		}
+		
+		int jeu = mod.getAction();
+		mod.setAction(-1);
+		
+		if(jeu == 2)
+		{
+			System.out.print("Quel joueur voulez vous voler ?");
+			for(int i = 1 ; i < partie.getListJoueur().size(); i++)
+			{
+				System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
+			}
+			int cible = Main.saisie("", 1, partie.getListJoueur().size()-1);
+			System.out.println("Vous avez joué : \n "+j.getMain().get(carte)+"\nVous avez volé "+j.getMain().get(carte).getFarfadet()[Partie.getTour()]+" graine(s)");
+				
+			j.poserCarte(carte, partie.getListJoueur().get(cible));
+		}else
+		{
+			System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
+			if(jeu == 0)
+				System.out.println("Vous demandez "+j.getMain().get(carte).getGeant()[Partie.getTour()]+" graine(s)");
+			else
+				System.out.println("Vous plantez "+j.getMain().get(carte).getEngrais()[Partie.getTour()]+" graine(s)");
 			
-		j.poserCarte(carte, partie.getListJoueur().get(cible));
-	}else
-	{
-		System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
-		if(jeu == 0)
-			System.out.println("Vous demandez "+j.getMain().get(carte).getGeant()[Partie.getTour()]+" graine(s)");
-		else
-			System.out.println("Vous plantez "+j.getMain().get(carte).getEngrais()[Partie.getTour()]+" graine(s)");
-		
-		j.poserCarte(carte, jeu);
-		
-	}
-	if (j.getAllie() == null)
-	{
-		
-	}
-	else{
-		if(j.getAllie().getTitre().equals("Taupe géante")){
-			System.out.println("Voulez vous jouer votre Taupe Géante (O/N)?");
+			j.poserCarte(carte, jeu);
 			
-			Scanner scs = new Scanner(System.in); 
-			String reponse1 = scs.nextLine();
-			if (reponse1.equals("O")){
-				System.out.print("A quelle joueur souhaitez vous détruire les menhirs ?");
-				for(int i = 1 ; i < partie.getListJoueur().size(); i++)
-				{
-					System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
+		}
+		if (j.getAllie() == null)
+		{
+			
+		}
+		else{
+			if(j.getAllie().getTitre().equals("Taupe géante")){
+				System.out.println("Voulez vous jouer votre Taupe Géante (O/N)?");
+				
+				Scanner scs = new Scanner(System.in); 
+				String reponse1 = scs.nextLine();
+				if (reponse1.equals("O")){
+					System.out.print("A quelle joueur souhaitez vous détruire les menhirs ?");
+					for(int i = 1 ; i < partie.getListJoueur().size(); i++)
+					{
+						System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
+					}
+					int cible = Main.saisie("", 1, partie.getListJoueur().size()-1);
+					j.jouerTaupe(partie.getListJoueur().get(cible));
 				}
-				int cible = Main.saisie("", 1, partie.getListJoueur().size()-1);
-				j.jouerTaupe(partie.getListJoueur().get(cible));
 			}
 		}
-	}
 	}
 	
 	public static int saisie(String saisie , int min , int max )

@@ -170,7 +170,7 @@ public class SelectionDeCarte {
 				panel_9.setBounds(10, 158, 137, 67);
 				layeredPane_5.add(panel_9);
 				
-				JLabel label = new JLabel(model.getMain().get(1).toString2());
+				JLabel label = new JLabel(model.getAllie().toString2());
 				panel_9.add(label);
 			}
 		}
