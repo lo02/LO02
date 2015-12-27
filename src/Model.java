@@ -9,6 +9,8 @@ public class Model {
 	private boolean geantAnimation = false ; 
 	private boolean farfadetAnimation = false;
 	private boolean farfadetAnimation2 = false;
+	private boolean chienDeGarde = false;
+	private boolean chienDeGardeEnnemi = false;
 	
 	// Echange entre interface et le jeu 
 	private int partieRapide;
@@ -24,6 +26,7 @@ public class Model {
 	private String message="";
 	private int choix = 0;
 	private Card allie;
+	
 	
 	
 	private static Model instance;
@@ -191,6 +194,22 @@ public class Model {
 		// TODO Auto-generated method stub
 		this.farfadetAnimation2 = farfadetAnimation22;
 		
+	}
+
+	public boolean isChienDeGarde() {
+		return chienDeGarde;
+	}
+
+	public void setChienDeGarde(boolean chienDeGarde) {
+		this.chienDeGarde = chienDeGarde;
+	}
+
+	public boolean isChienDeGardeEnnemi() {
+		return chienDeGardeEnnemi;
+	}
+
+	public void setChienDeGardeEnnemi(boolean chienDeGardeEnnemi) {
+		this.chienDeGardeEnnemi = chienDeGardeEnnemi;
 	}
 	
 	

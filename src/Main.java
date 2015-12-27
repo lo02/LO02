@@ -162,6 +162,7 @@ public class Main {
 				}
 				//int choix= Main.saisie("Souhaitez vous prendre 2 graines (tapez 1) ou une alliée (tapez 2)?", 1, 2);
 				j.choixDebutManche(mod.getChoix());
+				
 				if (mod.getChoix() == 2){
 					System.out.println("Votre carte alliée :\n"+j.getAllie());
 				}

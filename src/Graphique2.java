@@ -120,7 +120,7 @@ public class Graphique2 extends JFrame implements ActionListener{
 			if(source.equals( this.menhirBouton))
 			{
 			
-				mod.setMenhir(1);
+				mod.setChienDeGarde(true);
 				
 				
 			}
@@ -130,7 +130,7 @@ public class Graphique2 extends JFrame implements ActionListener{
 					}
 			if(source.equals( this.graineBouton))
 			{
-				mod.setFarfadetAnimation(true);
+				mod.setChienDeGardeEnnemi(true);
 			}
 	
 		}

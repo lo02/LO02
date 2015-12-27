@@ -241,6 +241,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 			   
 			}
 			if (source.equals(this.button3)){
+				Graphique2 gra = new Graphique2(this);
 				 try {
 			            FileInputStream fis     = new FileInputStream("mp3/mainSong.mp3");
 			            BufferedInputStream bis = new BufferedInputStream(fis);
@@ -338,6 +339,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 					e.printStackTrace();
 				}
 				
+				// animation rajout menhirs 
 				if (model.getMenhir()!=0) {
 					for(int i=0;i<model.getMenhir();i++)
 					{
@@ -347,6 +349,8 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				}
 				else
 				{
+					
+					// animation Joueur principal demande des graines
 				if(model.isGeantAnimation())
 				{
 					panel.setVisible(false);
@@ -382,7 +386,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 					
 					model.setGeantAnimation(false);
 				}
-				
+				// Animation joueur principal  qui se fait voler 
 				if(model.isFarfadetAnimation()==true)
 				{
 					frame.remove(picLabel);
@@ -403,6 +407,31 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				    frame.repaint();
 					model.setFarfadetAnimation(false);
 				}
+				
+				// Animation joueur principal qui se fait voler mais réponds par un chien de garde
+				if(model.isChienDeGarde()==true)
+				{
+					frame.remove(picLabel);
+					JLabel picLabel9 = new JLabel(new ImageIcon("geant/chiendegarde.gif"));
+					frame.add(picLabel9, BorderLayout.CENTER);
+				    frame.revalidate();
+				    frame.repaint();
+					try {
+						Thread.sleep(6880);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					frame.remove(picLabel9);
+					
+					frame.add(picLabel, BorderLayout.CENTER);
+					frame.revalidate();
+				    frame.repaint();
+					model.setChienDeGarde(false);
+				}
+				
+				
+				// animation joueur principal qui vole 
 				if(model.isFarfadetAnimation2()==true)
 				{
 					frame.remove(picLabel);
@@ -443,6 +472,49 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 					
 					
 				}
+				
+				if(model.isChienDeGardeEnnemi()==true)
+				{
+					frame.remove(picLabel);
+					panel.removeAll();
+					
+					for (int i=0; i<model.getListeJoueur().get(model.getIndexJoueurCible()).getNbreMenhir();i++)
+					{
+						 	ImageIcon icone2 = new ImageIcon("png/menhir.png");
+						 	JLabel pic2 = new JLabel();
+						    pic2.setIcon(icone2);
+						    panel.add(pic2);
+						
+					}
+					ImageIcon icon17 = new ImageIcon("geant/CHIENDEGARDEennemi.gif");
+					JLabel picLabel21 = new JLabel(icon17);
+					frame.add(picLabel21, BorderLayout.CENTER);
+				    frame.revalidate();
+				    frame.repaint();
+					try {
+						Thread.sleep(12160);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					panel.removeAll();
+					for (int i=0;i<model.getJoueurPrincipal().getNbreMenhir();i++)
+					{
+						 	ImageIcon icone2 = new ImageIcon("png/menhir.png");
+						 	JLabel pic2 = new JLabel();
+						    pic2.setIcon(icone2);
+						    panel.add(pic2);
+						
+					}
+					frame.remove(picLabel21);
+					frame.add(picLabel, BorderLayout.CENTER);
+					frame.revalidate();
+				    frame.repaint();
+					model.setChienDeGardeEnnemi(false);
+					
+					
+				}
+				
 				
 				}
 				
