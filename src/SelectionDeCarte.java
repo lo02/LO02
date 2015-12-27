@@ -145,7 +145,8 @@ public class SelectionDeCarte {
 		
 		if (model.getPartieRapide()==2)
 		{
-			if(model.getChoix() == 2){
+			if(model.getAllie() != null){
+				
 				JLayeredPane layeredPane_5 = new JLayeredPane();
 				layeredPane_5.addMouseListener(new MouseAdapter() {
 					@Override
@@ -172,7 +173,7 @@ public class SelectionDeCarte {
 				
 				JLabel label = new JLabel(model.getAllie().toString2());
 				panel_9.add(label);
-			}
+			}else{}
 		}
 		
 		if(model.getMain().size()>=2)

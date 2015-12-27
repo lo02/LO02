@@ -164,7 +164,7 @@ public class Main {
 				mod.setChoix(0);
 				//int choix= Main.saisie("Souhaitez vous prendre 2 graines (tapez 1) ou une alliée (tapez 2)?", 1, 2);
 				j.choixDebutManche(choix);
-				
+				mod.setAllie(j.getAllie());
 				if (choix == 2){
 					System.out.println("Votre carte alliée :\n"+j.getAllie());
 				}
