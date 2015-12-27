@@ -147,33 +147,55 @@ public class SelectionDeCarte {
 		{
 			if(model.getAllie() != null){
 				
-				JLayeredPane layeredPane_5 = new JLayeredPane();
-				layeredPane_5.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						System.out.println("carte 1");
-					}
-				});
-				layeredPane_5.setBounds(722, 75, 154, 236);
-				layeredPane.add(layeredPane_5);
+					if (model.getAllie().getTitre() != ""){
+					
+					JLayeredPane layeredPane_5 = new JLayeredPane();
+					layeredPane_5.addMouseListener(new MouseAdapter() {
+						public void mouseReleased(MouseEvent arg0) {
+							/*
+							 * Model model = Model.getInstance();
+							 
+							ChoixJoueurTaupe t = new ChoixJoueurTaupe(0);
+							while(model.getIndexJoueurCible()==-1)
+							{
+								try {
+									Thread.sleep(250);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}
+							int cible = model.getIndexJoueurCible();
+							model.setIndexJoueurCible(-1);
+							
+							model.setMenhirADetruire(model.getAllie().getValeur()[Partie.getTour()]);;
+							frmVotreMain.setVisible(false);
+							frmVotreMain.dispose();
+							*/
+						}
+					});
+					layeredPane_5.setBounds(722, 75, 154, 236);
+					layeredPane.add(layeredPane_5);
+					
+					
+					JPanel panel_4 = new JPanel();
+					ImageIcon img01 = new ImageIcon(ImageIO.read(new File(model.getAllie().getLogo()))
+			                .getScaledInstance(136, 136, Image.SCALE_SMOOTH));
+					JLabel pic2 = new JLabel(img01);
+					panel_4.add(pic2);
+					
+					panel_4.setBounds(10, 11, 136, 136);
+					layeredPane_5.add(panel_4);
+					
 				
-				
-				JPanel panel_4 = new JPanel();
-				ImageIcon img01 = new ImageIcon(ImageIO.read(new File(model.getAllie().getLogo()))
-		                .getScaledInstance(136, 136, Image.SCALE_SMOOTH));
-				JLabel pic2 = new JLabel(img01);
-				panel_4.add(pic2);
-				
-				panel_4.setBounds(10, 11, 136, 136);
-				layeredPane_5.add(panel_4);
-				
-				JPanel panel_9 = new JPanel();
-				panel_9.setBounds(10, 158, 137, 67);
-				layeredPane_5.add(panel_9);
-				
-				JLabel label = new JLabel(model.getAllie().toString2());
-				panel_9.add(label);
-			}else{}
+					JPanel panel_9 = new JPanel();
+					panel_9.setBounds(10, 158, 137, 67);
+					layeredPane_5.add(panel_9);
+					
+					JLabel label = new JLabel(model.getAllie().toString2());
+					panel_9.add(label);
+				}
+			}
 		}
 		
 		if(model.getMain().size()>=2)

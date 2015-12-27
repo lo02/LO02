@@ -91,14 +91,15 @@ public class ChoixDebutManche extends JFrame implements ActionListener{
 		
 		
 		JButton btnNewButton = new JButton("Prendre 2 graines");
+		btnNewButton.setBounds(80, 13, 147, 23);
+		layeredPane.add(btnNewButton);
 		this.grainesBouton=btnNewButton;
 		btnNewButton.addActionListener(this);
 		
 				
 				
 	
-		btnNewButton.setBounds(80, 13, 147, 23);
-		layeredPane.add(btnNewButton);
+		
 		
 		JButton btnPrendreCarteAllie = new JButton("Prendre carte Alli\u00E9e");
 		btnPrendreCarteAllie.setBounds(80, 49, 147, 23);

@@ -29,6 +29,7 @@ public class Model {
 	private int indexJoueurCible=-1;
 	private String message="";
 	private int choix = 0;
+	private int choixTaupe = 0;
 	private Card allie;
 	private int menhirADetruire = -1;
 	
@@ -239,7 +240,12 @@ public class Model {
 	public void setMenhirADetruire(int menhirADetruire) {
 		this.menhirADetruire = menhirADetruire;
 	}
-	
+	public int getChoixTaupe(){
+		return choixTaupe;
+	}
+	public void setChoixTaupe(int choixTaupe){
+		this.choixTaupe = choixTaupe;
+	}
 	
 	
 	
