@@ -514,15 +514,145 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 					
 					
 				}
+				if(model.isTaupe()==true)
+				{
+					frame.remove(picLabel);
+					JLabel picLabel9 = new JLabel(new ImageIcon("geant/taupe.gif"));
+					frame.add(picLabel9, BorderLayout.CENTER);
+				    frame.revalidate();
+				    frame.repaint();
+					try {
+						Thread.sleep(3200);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					panel.removeAll();
+					for (int i=0; i<model.getListeJoueur().get(model.getIndexJoueurCible()).getNbreMenhir();i++)
+					{
+						 	ImageIcon icone2 = new ImageIcon("png/menhir.png");
+						 	JLabel pic2 = new JLabel();
+						    pic2.setIcon(icone2);
+						    panel.add(pic2);	
+					}
+					panel.setBounds(270, 0, 470, 80);
+					panel.setBackground(new Color(0,0,0,0));
+					panel.setOpaque(false);
+					for(int i=0;i<model.getMenhirADetruire();i++)
+					{
+						ImageIcon icone2 = new ImageIcon("png/menhirDetruit.gif");
+					 	JLabel pic2 = new JLabel();
+					    pic2.setIcon(icone2);
+					    panel.add(pic2);
+					 
+					}
+					 new Thread() {
+				            public void run() {
+				            	try {
+									Thread.sleep(1280);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+				            	panel.removeAll();
+				            	for (int i=0; i<model.getListeJoueur().get(model.getIndexJoueurCible()).getNbreMenhir();i++)
+								{
+									 	ImageIcon icone2 = new ImageIcon("png/menhir.png");
+									 	JLabel pic2 = new JLabel();
+									    pic2.setIcon(icone2);
+									    panel.add(pic2);	
+									    frame.revalidate();
+									    frame.repaint();
+									    
+								}
+				            
+					 }
+		        }.start();
+					 
+					frame.remove(picLabel9);
+					
+					frame.add(picLabel, BorderLayout.CENTER);
+					frame.revalidate();
+				    frame.repaint();
+					model.setTaupeEnnemi(false);
+				}
+				
+				if(model.isTaupeEnnemi()==true)
+				{
+					frame.remove(picLabel);
+					JLabel picLabel9 = new JLabel(new ImageIcon("geant/taupeEnnemi.gif"));
+					frame.add(picLabel9, BorderLayout.CENTER);
+				    frame.revalidate();
+				    frame.repaint();
+					try {
+						Thread.sleep(3400);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					panel.removeAll();
+					for (int i=0; i<model.getJoueurPrincipal().getNbreMenhir();i++)
+					{
+						 	ImageIcon icone2 = new ImageIcon("png/menhir.png");
+						 	JLabel pic2 = new JLabel();
+						    pic2.setIcon(icone2);
+						    panel.add(pic2);	
+					}
+					panel.setBounds(270, 0, 470, 80);
+					panel.setBackground(new Color(0,0,0,0));
+					panel.setOpaque(false);
+					for(int i=0;i<model.getMenhirADetruire();i++)
+					{
+						ImageIcon icone2 = new ImageIcon("png/menhirDetruit.gif");
+					 	JLabel pic2 = new JLabel();
+					    pic2.setIcon(icone2);
+					    panel.add(pic2);
+					 
+					}
+					 new Thread() {
+				            public void run() {
+				            	try {
+									Thread.sleep(1280);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+				            	panel.removeAll();
+				            	for (int i=0; i<model.getJoueurPrincipal().getNbreMenhir();i++)
+								{
+									 	ImageIcon icone2 = new ImageIcon("png/menhir.png");
+									 	JLabel pic2 = new JLabel();
+									    pic2.setIcon(icone2);
+									    panel.add(pic2);	
+									    frame.revalidate();
+									    frame.repaint();
+									    
+								}
+				            
+					 }
+		        }.start();
+					 
+					frame.remove(picLabel9);
+					
+					frame.add(picLabel, BorderLayout.CENTER);
+					frame.revalidate();
+				    frame.repaint();
+					model.setTaupe(false);
+				}
+				
+				
+				
 				
 				
 				}
 				
-			}
+			
 		}
-		
+		}
+}
+
 		  
-	}
+
 
 
 		

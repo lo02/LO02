@@ -11,6 +11,10 @@ public class Model {
 	private boolean farfadetAnimation2 = false;
 	private boolean chienDeGarde = false;
 	private boolean chienDeGardeEnnemi = false;
+	private boolean taupeEnnemi = false;
+	private boolean taupe = false;
+	
+	
 	
 	// Echange entre interface et le jeu 
 	private int partieRapide;
@@ -26,7 +30,7 @@ public class Model {
 	private String message="";
 	private int choix = 0;
 	private Card allie;
-	
+	private int menhirADetruire = -1;
 	
 	
 	private static Model instance;
@@ -210,6 +214,30 @@ public class Model {
 
 	public void setChienDeGardeEnnemi(boolean chienDeGardeEnnemi) {
 		this.chienDeGardeEnnemi = chienDeGardeEnnemi;
+	}
+
+	public boolean isTaupeEnnemi() {
+		return taupeEnnemi;
+	}
+
+	public void setTaupeEnnemi(boolean taupeEnnemi) {
+		this.taupeEnnemi = taupeEnnemi;
+	}
+
+	public boolean isTaupe() {
+		return taupe;
+	}
+
+	public void setTaupe(boolean taupe) {
+		this.taupe = taupe;
+	}
+
+	public int getMenhirADetruire() {
+		return menhirADetruire;
+	}
+
+	public void setMenhirADetruire(int menhirADetruire) {
+		this.menhirADetruire = menhirADetruire;
 	}
 	
 	

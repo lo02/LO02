@@ -120,7 +120,8 @@ public class Graphique2 extends JFrame implements ActionListener{
 			if(source.equals( this.menhirBouton))
 			{
 			
-				mod.setChienDeGarde(true);
+				mod.setTaupeEnnemi(true);
+				mod.setMenhirADetruire(2);
 				
 				
 			}
