@@ -353,6 +353,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 					// animation Joueur principal demande des graines
 				if(model.isGeantAnimation())
 				{
+					panel.setBounds(270, 0, 470, 80);
 					panel.setVisible(false);
 					frame.remove(picLabel);
 					ImageIcon icon = new ImageIcon("geant/e.gif");
@@ -383,14 +384,14 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				    frame.revalidate();
 				    frame.repaint();
 					
-					
+				    panel.setBounds(270, 0, 470, 80);
 					model.setGeantAnimation(false);
 				}
 				// Animation joueur principal  qui se fait voler 
 				if(model.isFarfadetAnimation()==true)
 				{
 					frame.remove(picLabel);
-					
+					panel.setBounds(270, 0, 470, 80);
 					frame.add(picLabel4, BorderLayout.CENTER);
 				    frame.revalidate();
 				    frame.repaint();
@@ -411,6 +412,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				// Animation joueur principal qui se fait voler mais réponds par un chien de garde
 				if(model.isChienDeGarde()==true)
 				{
+					panel.setBounds(270, 0, 470, 80);
 					frame.remove(picLabel);
 					JLabel picLabel9 = new JLabel(new ImageIcon("geant/chiendegarde.gif"));
 					frame.add(picLabel9, BorderLayout.CENTER);
@@ -434,6 +436,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				// animation joueur principal qui vole 
 				if(model.isFarfadetAnimation2()==true)
 				{
+					panel.setBounds(270, 0, 470, 80);
 					frame.remove(picLabel);
 					panel.removeAll();
 					for (int i=0; i<model.getListeJoueur().get(model.getIndexJoueurCible()).getNbreMenhir();i++)
@@ -475,6 +478,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				
 				if(model.isChienDeGardeEnnemi()==true)
 				{
+					panel.setBounds(270, 0, 470, 80);
 					frame.remove(picLabel);
 					panel.removeAll();
 					
@@ -516,6 +520,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				}
 				if(model.isTaupe()==true)
 				{
+					panel.setBounds(270, 0, 470, 80);
 					panel.removeAll();
 					
 					frame.remove(picLabel);
@@ -615,6 +620,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				
 				if(model.isTaupeEnnemi()==true)
 				{
+					panel.setBounds(270, 0, 470, 80);
 					panel.removeAll();
 					
 					frame.remove(picLabel);

@@ -116,6 +116,7 @@ public class Main {
 					{
 						mod.setMessage("Vous demandez "+j.getMain().get(carte).getGeant()[Partie.getTour()]+" graine(s)");
 						mod.setGeantAnimation(true);
+						Thread.sleep(8000);
 					}	
 					else
 					{	if(j.getNbreGraine()>=j.getMain().get(carte).getEngrais()[Partie.getTour()] )
@@ -169,6 +170,12 @@ public class Main {
 	            		mod.setTaupe(true);
 	            		Main.afficherActionAllieeTaupe(j, mod.getListeJoueur().get(mod.getIndexJoueurCibleTaupe()), mod.getMenhirADetruire());
 	            		j.jouerTaupe(partie.getListJoueur().get(mod.getIndexJoueurCibleTaupe()));
+	            		try {
+							Thread.sleep(4000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 	            		mod.setJoueursPoints(partie.getListJoueur().toString());
 	            		mod.setIndexJoueurCibleTaupe(99);
 	            		
@@ -220,7 +227,7 @@ public class Main {
 						
 						mod.setJoueursPoints(partie.getListJoueur().toString());
 						mod.setMain(j.getMain());
-						
+						mod.setAllie(j.getAllie());
 						// On veut jouer la taupe ici à n'importe qu'elle moment durant le tour
 						//A chaque fois qu'un joueur voudra jouer on pourra utiliser la taupe
 						
@@ -287,14 +294,30 @@ public class Main {
 		
 	}
 	
-	public static boolean danger(int valeur, String j, Joueur joueurCible){
-		System.out.println("Le joueur "+j+" veut vous voler "+valeur+" graine(s) avec un farfadet!!!\nVoulez vous utilisez votre chien de garde (O/N)?");
-		Scanner sc = new Scanner(System.in); 
-		String reponse = sc.nextLine();
-		if (reponse.equals("O")){
+	public static boolean danger(int valeur, Joueur j, Joueur joueurCible){
+		Model model = Model.getInstance();
+		model.setMessage2("<html>Le joueur "+j.getNom()+" veut vous voler "+valeur+" graine(s) avec un farfadet!!!<br>Voulez vous utilisez votre chien de garde ?</html>");
+		
+		ChienDeGarde c = new ChienDeGarde("");
+		while(model.getChienDeGardeAction()==-1)
+		{
+			try {
+				Thread.sleep(250);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		if (model.getChienDeGardeAction()==1){
+			model.setChienDeGarde(true);
+			model.setMessage("Le joueur "+model.getJoueurPrincipal().getNom()+"Défends "+model.getJoueurPrincipal().getAllie().getValeur()[Partie.getTour()]+" de ses graines");
+			model.setChienDeGardeAction(-1);
 			return true;
 		}
 		else{
+			model.setFarfadetAnimation(true);
+			model.setChienDeGardeAction(-1);
 			return false;
 		}
 	}
@@ -303,8 +326,30 @@ public class Main {
 		Model model = Model.getInstance();
 		if (joueurcible.equals(model.getJoueurPrincipal()))
 				{
-					model.setFarfadetAnimation(true);
-				}
+					if(model.getAllie().equals("Chien de garde"))
+					{
+						while(model.getChienDeGardeAction()==-1)
+						{
+							try {
+								Thread.sleep(100);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+						if(model.getChienDeGardeAction()==0)
+						{
+							model.setFarfadetAnimation(true);
+							model.setChienDeGardeAction(-1);
+						}
+						if(model.getChienDeGardeAction()==1)
+							model.setChienDeGarde(true);
+							model.setChienDeGardeAction(-1);
+						}
+					}
+					
+			
+
 		if (joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]<= joueurcible.getNbreGraine())
 			model.setMessage("Le joueur "+joueur.getNom()+" vole "+ joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]+ " graine(s) de "+joueurcible.getNom());
 		else
@@ -348,7 +393,7 @@ public class Main {
 			model.setMessage("Le joueur "+joueur.getNom()+" détruit "+joueurCible.getNbreMenhir()+" ménhirs à "+joueurCible.getNom());
 		}
 	}
-	public static void afficherActionAllieeChien(Joueur joueur , int valeur)
+	public static void afficherActionAllieeChien(Joueur joueur , int valeur , Joueur j)
 	{
 		Model model = Model.getInstance();
 		model.setMessage("Le joueur "+joueur.getNom()+" protège "+valeur+" de ses graines");
@@ -405,14 +450,36 @@ public class Main {
 			{
 				Thread.sleep(250);
 			}
-			mod.setFarfadetAnimation2(true);
-			Thread.sleep(9500);
+			//mod.setFarfadetAnimation2(true);
+			
 			
 			int cible = mod.getIndexJoueurCible();
-			mod.setIndexJoueurCible(-1);
 			
 			mod.setMessage("Vous avez volé "+j.getMain().get(carte).getFarfadet()[Partie.getTour()]+ " graine(s) au joueur "+partie.getListJoueur().get(cible).getNom());
-			j.poserCarte(carte, partie.getListJoueur().get(cible));
+			j.poserCarteBis(carte, partie.getListJoueur().get(cible));
+			while(mod.getCas()==-1)
+			{
+				System.out.println("en attente");
+				Thread.sleep(100);
+			}
+			if(mod.getCas()==0)
+			{
+				
+				mod.setFarfadetAnimation2(true);
+				Thread.sleep(9500);
+			}
+			else
+				if(mod.getCas()==1)
+				{
+					mod.setChienDeGardeEnnemi(true);
+					Thread.sleep(12160);
+				}
+			mod.setCas(-1);
+			mod.setIndexJoueurCible(-1);
+			
+			
+			
+			
 		}else
 		{
 			/*System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
@@ -428,6 +495,7 @@ public class Main {
 			{
 				mod.setMessage("Vous demandez "+j.getMain().get(carte).getGeant()[Partie.getTour()]+" graine(s)");
 				mod.setGeantAnimation(true);
+				Thread.sleep(8000);
 			}	
 			else
 			{	if(j.getNbreGraine()>=j.getMain().get(carte).getEngrais()[Partie.getTour()] ){

@@ -108,31 +108,36 @@ public class SelectionCarteAlliee {
 					JLayeredPane layeredPane_5 = new JLayeredPane();
 					layeredPane_5.setBackground(new Color(0, 0, 102,90));
 					layeredPane_5.setOpaque(true);
-					layeredPane_5.addMouseListener(new MouseAdapter() {
-						public void mouseReleased(MouseEvent arg0) {
+					if (model.getAllie().getTitre().equals("Taupe géante"))
+					{
+						layeredPane_5.addMouseListener(new MouseAdapter() {
 							
-							Model model = Model.getInstance();
-							 
-							ChoixJoueurTaupe t = new ChoixJoueurTaupe(0);
-							/*
-							while(model.getIndexJoueurCible()==-1)
-							{
-								try {
-									Thread.sleep(250);
-								} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-							}*/
-							//int cible = model.getIndexJoueurCible();
-							//model.setIndexJoueurCible(-1);
+							public void mouseReleased(MouseEvent arg0) {
+								
+								Model model = Model.getInstance();
 							
-							//model.setMenhirADetruire(model.getAllie().getValeur()[Partie.getTour()]);;
-							frmVotreMain.setVisible(false);
-							frmVotreMain.dispose();
-							
-						}
-					});
+								ChoixJoueurTaupe t = new ChoixJoueurTaupe(0);
+								/*
+								while(model.getIndexJoueurCible()==-1)
+								{
+									try {
+										Thread.sleep(250);
+									} catch (InterruptedException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}*/
+								//int cible = model.getIndexJoueurCible();
+								//model.setIndexJoueurCible(-1);
+								
+								//model.setMenhirADetruire(model.getAllie().getValeur()[Partie.getTour()]);;
+								frmVotreMain.setVisible(false);
+								frmVotreMain.dispose();
+								
+							}
+						});
+					}
+					
 					layeredPane_5.setBounds(0, 75, 154, 236);
 					layeredPane.add(layeredPane_5);
 					
@@ -155,6 +160,24 @@ public class SelectionCarteAlliee {
 					
 					JLabel label = new JLabel(model.getAllie().toString2());
 					panel_9.add(label);
+					 new Thread() {
+				            public void run() {
+					while(!(model.getAllie().getTitre().equals("")))
+					{
+						
+						try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+					}
+					frmVotreMain.setVisible(false);
+					frmVotreMain.dispose();
+				            }
+				        }.start();
+					
 				}
 			}
 		}

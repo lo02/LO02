@@ -35,6 +35,10 @@ public class Model {
 	private int indexJoueurCibleTaupe = 99;
 	private int indexJoueurCibleTaupe2 = 0;
 	private int ancienPointCible;
+	private int chienDeGardeAction = -1;
+	private String message2;
+	private boolean possetionChienDeGarde= false;
+	private int cas=-1;
 	
 	
 	private static Model instance;
@@ -272,6 +276,38 @@ public class Model {
 
 	public void setAncienPointCible(int ancienPointCible) {
 		this.ancienPointCible = ancienPointCible;
+	}
+
+	public int getChienDeGardeAction() {
+		return chienDeGardeAction;
+	}
+
+	public void setChienDeGardeAction(int chienDeGardeAction) {
+		this.chienDeGardeAction = chienDeGardeAction;
+	}
+
+	public String getMessage2() {
+		return message2;
+	}
+
+	public void setMessage2(String message2) {
+		this.message2 = message2;
+	}
+
+	public boolean isPossetionChienDeGarde() {
+		return possetionChienDeGarde;
+	}
+
+	public void setPossetionChienDeGarde(boolean possetionChienDeGarde) {
+		this.possetionChienDeGarde = possetionChienDeGarde;
+	}
+
+	public int getCas() {
+		return cas;
+	}
+
+	public void setCas(int cas) {
+		this.cas = cas;
 	}
 	
 	
