@@ -39,7 +39,7 @@ public class Model {
 	private String message2;
 	private boolean possetionChienDeGarde= false;
 	private int cas=-1;
-	
+	private Thread a;
 	
 	private static Model instance;
 
@@ -308,6 +308,14 @@ public class Model {
 
 	public void setCas(int cas) {
 		this.cas = cas;
+	}
+
+	public Thread getA() {
+		return a;
+	}
+
+	public void setA(Thread a) {
+		this.a = a;
 	}
 	
 	

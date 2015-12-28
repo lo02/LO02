@@ -255,7 +255,9 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 			        // run in new thread to play in background
 			        new Thread() {
 			            public void run() {
-			                try { player.play(); }
+			            	
+			                try { player.play(); 
+			                }
 			                catch (Exception e) { System.out.println(e); }
 			            }
 			        }.start();

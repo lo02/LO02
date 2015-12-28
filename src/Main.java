@@ -6,14 +6,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+import javax.swing.JPanel;
+
+public class Main extends JPanel{
 	
 	// 
 	
 	
 	public static void main(String[] argc) throws InterruptedException{
 		 Model mod = Model.getInstance();
-		
+		mod.setA(Thread.currentThread());
 		// On lance l'interface principale 
 		Graphique inter = new Graphique(0);
 		while(mod.getNomJoueur() == null)
@@ -155,6 +157,7 @@ public class Main {
 			
 			new Thread() {
 	            public void run() {
+	            
 	            	while(true)
 	            	{
 	            		try {
