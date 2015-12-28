@@ -103,17 +103,33 @@ public class Virtuel extends Joueur {
 		
 	}
 	
-	public int jouerChien(int valeur, String j, Joueur joueurCible){
+	public int jouerChien(int valeur, Joueur j, Joueur joueurCible){
 		//on regarde si il peut jouer son chien
-		if(this.getAllie().getValeur()[Partie.getTour()] > 0){
-			int val = this.getAllie().getValeur()[Partie.getTour()];
-			this.getAllie().deleteAllie();
-			Main.afficherActionAllieeChien(this, val);
-			return val;
-		}
-		else{
+		if(this.getAllie().getTitre().equals(""))
+		{
 			return 0;
 		}
+		else
+		{
+		if(this.getAllie().getTitre().equals("Chien de garde"))
+		{
+			if(this.getAllie().getValeur()[Partie.getTour()] > 0){
+				int val = this.getAllie().getValeur()[Partie.getTour()];
+				this.getAllie().deleteAllie();
+				Main.afficherActionAllieeChien(this, val, j);
+				return val;
+			}
+			else{
+				return 0;
+			}
+		}
+		else
+		{
+			return 0;
+		}
+			
+		}
+		
 		
 		
 	}
@@ -164,6 +180,10 @@ public class Virtuel extends Joueur {
 			}
 		}
 		return id;	
+	}
+	public boolean isVirtuel()
+	{
+		return true;
 	}
 }
 	
