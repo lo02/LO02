@@ -4,20 +4,61 @@ import java.util.List;
 import java.util.Scanner;
 
 //C'est dans cette classe que le déroulement d'une partie va s'organiser
+/**
+ * 
+ * @author Gilles
+ * Partie est la classe qui permet de gérer tous le contenu du jeu du menhir.
+ */
 public class Partie {
+	/**
+	 * Valeur qui va gérer les tours
+	 * @see Partie#setTour(int)
+	 * @see Partie#getTour()
+	 */
 	protected static int tour = 0;
+	/**
+	 * Valeur de la manche en cours
+	 * @see Partie#setManche(int)
+	 * @see Partie#getManche()
+	 */
 	protected static int manche = 0;
+	/**
+	 * Valeur qui contient le nombre de joueurs dans la partie
+	 * @see Partie#setNbreJoueur(int)
+	 * @see Partie#getNbreJoueur()
+	 */
 	protected int nbreJoueur = 0;
+	/**
+	 * Liste qui contient chaque joueur de la partie en cours
+	 * @see Partie#setListJoueur(List)
+	 * @see Partie#getListJoueur()
+	 */
 	protected List<Joueur> listeJoueur = new LinkedList<Joueur>();
-	
-	protected int action;
-	protected int valeur;
+	/**
+	 * 
+	 */
+	//protected int action;
+	/**
+	 * 
+	 */
+	//protected int valeur;
 	
 
+	/**
+	 * Construteur d'une Partie de jeu du menhir.
+	 * Il prend en paramètre le nombre de joueur qui compose une partie.
+	 * @param nbreJoueur
+	 * 					C'est le nombre de joueur
+	 */
 	public Partie (int nbreJoueur){
 		this.nbreJoueur = nbreJoueur;
 	}
 	//Méthodes qui vont nous permettre de jouer les deux types de partie.
+	/**
+	 * Cette méthode permet d'initier une partie rapide. Elle va se charger de créer le carte ingrédient,
+	 * de remplir la main de chaque joueur ainsi que de leur attribuer les 2 graines pour le début de la 
+	 * partie.
+	 */
 	public void initierPartieRapide(){
 		//On crée un instance carte qui va contenir notre tas de carte
 		Card carte = new Ingredient();
@@ -31,6 +72,12 @@ public class Partie {
 		}	
 	}
 	//Fonction pour Initier la partie
+	/**
+	 * Cette méthode permet d'initier une partie avancée. Elle va se charger de créer les cartes Ingrédient, 
+	 * ainsi que les cartes alliées. Elle permet de remplir la main de chaque joueurs. A chaque début de manche,
+	 * elle va enregistrer le nombre de menhir de la manche précedente pour chaque joueur. Elle va 
+	 * également demander pour chaque joueur virtuel, le choix qu'il souhaite faire pour le début de la manche.
+	 */
 	public void initierPartieAvancee(){
 	
 		Card carte = new Ingredient();
@@ -52,6 +99,9 @@ public class Partie {
 	}
 	/* Méthodes qui va nous permettre de créer des joueurs en partie rapide
 	 */
+	/**
+	 * Méthode qui va permettre de créer les joueurs pour chaque partie.
+	 */
 	public void factoryJoueurs()
 	{
 		// On va créer tous les joueurs nécessaires pour le déroulement du jeu
@@ -64,6 +114,10 @@ public class Partie {
 		}
 	}
 	//Méthode qui va nous permettre de gérer un tour en partie rapide
+	/**
+	 * Méthode qui va permettre de gérer un tour lors d'une partie avancée
+	 * pour les joueurs virtuels.
+	 */
 	public void gererTour(){
 		for(int i=1;i<this.listeJoueur.size();i++)
 		{
@@ -106,6 +160,11 @@ public class Partie {
 			}	
 		}
 	}
+	/**
+	 * Méthode permettant de gérer un tour lors d'une partie avancée pour les joueurs virtuels.
+	 * @param joueur
+	 * 			Variable qui contient les données d'une joueur virtuel
+	 */
 	public void gererTourAvancee(Joueur joueur){
 		
 			// choisirCarte[0] : la carte jouer 
@@ -144,6 +203,11 @@ public class Partie {
 			}	
 		
 	}
+	/**
+	 * Méthode qui va chercher un gagant. Elle retourne la position du joueur dans la liste.
+	 * @return 
+	 * 				Position du joueur dans la liste des joueurs
+	 */
 	public int chercherGagnant()
 	{	
 		int max=0;
@@ -158,7 +222,10 @@ public class Partie {
 		}
 		return id;
 	}
-	
+	/**
+	 * Méthode qui va chercher un gagnant dans une partie rapide.
+	 * @return
+	 */
 	public List<Joueur> chercherGagnantRapide(){
 		int max=0;
 		int id = 0;
@@ -199,7 +266,10 @@ public class Partie {
 		else
 			return listeJoueurBis;
 	}
-	
+	/**
+	 * Méthodes qui va chercher un gagnant dans une partie avancée
+	 * @return
+	 */
 	public int chercherGagnantAvancee(){
 		int max = 0;
 		int id = 0;
@@ -217,6 +287,11 @@ public class Partie {
 		//return listeJoueur;
 	}
 	
+	/**
+	 * Méthodes qui va chercher le joueur qui posséde le plus de graines.
+	 * @return 
+	 * 			Retourne le joueur qui posséde le plus de graines
+	 */
 	public Joueur chercherJoueurGrainesMax()
 	{
 		int max=0;
@@ -230,6 +305,13 @@ public class Partie {
 		}
 		return this.listeJoueur.get(id);
 	}
+	
+	/**
+	 * Méthode qui va chercher le joueur qui posséde le plus de menhir.
+	 * @return
+	 * 			Retourne le joueur qui à le plus de menhir
+	 * 
+	 */
 	public Joueur chercherJoueurMenhirMax()
 	{
 		int max=0;
@@ -243,6 +325,11 @@ public class Partie {
 		}
 		return this.listeJoueur.get(id);
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Joueur chercherJoueurSecondMax()
 	{
 		
@@ -259,6 +346,15 @@ public class Partie {
 		}
 		return this.listeJoueur.get(id[1]);
 	}
+	
+	/**
+	 * Méthode qui permettre de changer l'ordre des joueurs à chaque début de manche lors d'une partie
+	 * avancée.
+	 * @param decale
+	 * 
+	 * @return
+	 * 			Retourne la nouvelle liste de joueurs
+	 */
 	public List<Joueur> arrangerOrdreListe(int decale)
 	{
 		
@@ -282,33 +378,84 @@ public class Partie {
 		
 	}
 	
+	/**
+	 * Méthode qui va
+	 */
 	public void finPartie(){
 		for(int i=0; i<this.getListJoueur().size(); i++ ){
 			this.getListJoueur().get(i).setNbreMenhir(this.getListJoueur().get(i).getCompteurMenhir());
 		}
 	}
+	
+	/**
+	 * Méthode qui donne la valeur du tour.
+	 * @return
+	 * 		renvoie la valeur du tour
+	 */
 	public static int getTour() {
 		return tour;
 	}
+	
+	/**
+	 * Méthode qui donne la valeur de la manche.
+	 * @return
+	 * 		renvoie la valeur de la manche
+	 */
 	public int getManche() {
 		return manche;
 	}
+	
+	/**
+	 * Méthode qui donne la liste de joueur de la partie.
+	 * @return
+	 * 		renvoie la liste de joueur de la partie
+	 */
 	public List<Joueur> getListJoueur()
 	{
 		return this.listeJoueur;
 	}
+	
+	/**
+	 * Méthode qui donne le nombre de joueur de la partie.
+	 * @return
+	 * 		renvoie le nombre de joueur de la partie
+	 */
 	public int getNbreJoueur() {
 		return nbreJoueur;
 	}
+	
+	/**
+	 * Méthode qui actualise la valeur de la manche
+	 * @param manche
+	 * 				nouvelle valeur de la manche 
+	 */
 	public void setManche(int manche) {
 		this.manche = manche;
 	}
+	
+	/**
+	 * Méthode qui actualise la valeur de la manche.
+	 * @param manche
+	 * 				nouvelle valeur de la manche 
+	 */
 	public void setNbreJoueur(int nbreJoueur) {
 		this.nbreJoueur = nbreJoueur;
 	}
+	
+	/**
+	 * Méthode qui actualise la valeur du tour.
+	 * @param manche
+	 * 				nouvelle valeur du tour
+	 */
 	public void setTour(int tour) {
 		this.tour = tour;
 	}
+	
+	/**
+	 * Méthode qui actualise la liste de joueur
+	 * @param manche
+	 * 				nouvelle liste de joueur
+	 */
 	public void setListJoueur(List<Joueur> listeJoueur)
 	{
 		this.listeJoueur = listeJoueur;
