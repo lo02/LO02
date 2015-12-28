@@ -146,11 +146,17 @@ public class Joueur {
 		int nbrGrainesJoueur = joueurCible.getNbreGraine();
 		// variable qui contient le nombre de graine que le farfadet peut voler
 		
-	
+		Model model = Model.getInstance();
 		int nbrGrainesCarte = this.main.get(index).getFarfadet()[Partie.getTour()];
 		if(joueurCible.getAllie()==null)
 		{
 			//Sinon on joue normalement
+			if (!(this.isVirtuel()))
+			{
+				System.out.println("kjkj");
+				model.setCas(0);
+			}
+			
 			poserCarte(index , joueurCible);
 		}
 		else
@@ -159,12 +165,29 @@ public class Joueur {
 		if(joueurCible.getAllie().getTitre().equals("Chien de garde"))
 		{
 			//Si le joueur joue le chien de garde le nombre de graine diminue en fonction du chien de garde
-			nbrGrainesCarte = nbrGrainesCarte - joueurCible.jouerChien(nbrGrainesCarte,this.getNom(),joueurCible);
+			int points = joueurCible.jouerChien(nbrGrainesCarte,this,joueurCible);
+		
+			nbrGrainesCarte = nbrGrainesCarte - points;
+			
+			if (!(this.isVirtuel()))
+			{
+				if(points == 0)
+				{
+					model.setCas(0);
+				}
+				else
+				{
+					model.setCas(1);
+				}
+				
+				// WESH 
+			}
 			// On joue seulement si on peut lui prendre des graines
 			if (nbrGrainesCarte > 0){
 				if(nbrGrainesCarte <= nbrGrainesJoueur)
 				{
-				
+					
+					
 					joueurCible.setNbreGraine(nbrGrainesJoueur - nbrGrainesCarte); 
 					this.nbreGraine = this.nbreGraine + nbrGrainesCarte;
 				}else
@@ -181,7 +204,10 @@ public class Joueur {
 			}
 		else
 		{
+			model.setCas(0);
 			poserCarte(index , joueurCible);
+			
+			
 		}
 		}
 		
@@ -190,7 +216,7 @@ public class Joueur {
 		//this.main.remove(index);
 	}
 
-	public int jouerChien(int valeur, String j, Joueur joueurCible){
+	public int jouerChien(int valeur, Joueur j, Joueur joueurCible){
 		if(Main.danger(valeur, j, joueurCible)){
 			//On recupere la valeur du chien de garde lors de cette saison
 			int val = this.getAllie().getValeur()[Partie.getTour()];
@@ -355,5 +381,9 @@ public class Joueur {
 		return "<tr><td style='background-color:677DC1; color:white;'>Village : " + this.nom +" <br><ul><li>Nombres ménhirs : "+ this.nbreMenhir +
 				"</li><li>Nombres graines : "+ this.nbreGraine+"</li></ul>";
 	
+	}
+	public boolean isVirtuel()
+	{
+		return false;
 	}
 }
