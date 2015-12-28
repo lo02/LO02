@@ -615,13 +615,31 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				
 				if(model.isTaupeEnnemi()==true)
 				{
+					panel.removeAll();
+					
 					frame.remove(picLabel);
 					JLabel picLabel9 = new JLabel(new ImageIcon("geant/taupeEnnemi.gif"));
 					frame.add(picLabel9, BorderLayout.CENTER);
 				    frame.revalidate();
 				    frame.repaint();
+					
+				    panel.setBounds(270, 0, 470, 80);
+					panel.setBackground(new Color(0,0,0,0));
+					panel.setOpaque(false);
+					
+					for (int i=0; i<model.getAncienPointCible();i++)
+					{
+							ImageIcon icone2 = new ImageIcon("png/menhir.png");
+						 	JLabel pic2 = new JLabel();
+						    pic2.setIcon(icone2);
+						    panel.add(pic2);
+						   	
+						 
+					}
+					panel.revalidate();
+					panel.repaint();
 					try {
-						Thread.sleep(3400);
+						Thread.sleep(2500);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -629,24 +647,42 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 					panel.removeAll();
 					for (int i=0; i<model.getJoueurPrincipal().getNbreMenhir();i++)
 					{
-						 	ImageIcon icone2 = new ImageIcon("png/menhir.png");
+							ImageIcon icone2 = new ImageIcon("png/menhir.png");
 						 	JLabel pic2 = new JLabel();
 						    pic2.setIcon(icone2);
-						    panel.add(pic2);	
+						    panel.add(pic2);
+						   	
+						 
 					}
-					panel.setBounds(270, 0, 470, 80);
-					panel.setBackground(new Color(0,0,0,0));
-					panel.setOpaque(false);
+				if (model.getAncienPointCible()<model.getMenhirADetruire())
+				{
+					for(int i=0;i<model.getAncienPointCible();i++)
+					{
+						ImageIcon icone2 = new ImageIcon("png/menhirDetruit.gif");
+					 	JLabel pic2 = new JLabel();
+					    pic2.setIcon(icone2);
+					    panel.add(pic2);
+					    panel.revalidate();
+					    panel.repaint();
+					 
+					}
+				}
+				else
+				{
 					for(int i=0;i<model.getMenhirADetruire();i++)
 					{
 						ImageIcon icone2 = new ImageIcon("png/menhirDetruit.gif");
 					 	JLabel pic2 = new JLabel();
 					    pic2.setIcon(icone2);
 					    panel.add(pic2);
+					    panel.revalidate();
+					    panel.repaint();
 					 
 					}
-					 new Thread() {
-				            public void run() {
+				}
+					
+					 
+				        
 				            	try {
 									Thread.sleep(1280);
 								} catch (InterruptedException e) {
@@ -654,22 +690,22 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 									e.printStackTrace();
 								}
 				            	panel.removeAll();
+				            	
 				            	for (int i=0; i<model.getJoueurPrincipal().getNbreMenhir();i++)
 								{
 									 	ImageIcon icone2 = new ImageIcon("png/menhir.png");
 									 	JLabel pic2 = new JLabel();
 									    pic2.setIcon(icone2);
 									    panel.add(pic2);	
-									    frame.revalidate();
-									    frame.repaint();
+									    panel.revalidate();
+									    panel.repaint();
 									    
 								}
+				            	
 				            
-					 }
-		        }.start();
+				
 					 
 					frame.remove(picLabel9);
-					
 					frame.add(picLabel, BorderLayout.CENTER);
 					frame.revalidate();
 				    frame.repaint();

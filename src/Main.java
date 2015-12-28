@@ -150,6 +150,7 @@ public class Main {
 			mod.setListeJoueur(partie.getListJoueur());
 			Score boiteDeScore = new Score(0);
 			MessageBox message = new MessageBox(0);
+			j.setNbreMenhir(5);
 			
 			new Thread() {
 	            public void run() {
@@ -179,6 +180,7 @@ public class Main {
 			for(int manche = 0 ; manche<partie.getListJoueur().size(); manche++)
 			{
 				
+				j.setNbreMenhir(10);
 				
 				
 				mod.setMessage("Début de la manche "+ (manche+1));
@@ -200,8 +202,7 @@ public class Main {
 					System.out.println("Votre carte alliée :\n"+j.getAllie());
 					
 					SelectionCarteAlliee B = new SelectionCarteAlliee(0);
-					
-						
+				
 					
 					
 					
@@ -326,6 +327,18 @@ public class Main {
 	public static void afficherActionAllieeTaupe(Joueur joueur , Joueur joueurCible , int valeur)
 	{
 		Model model = Model.getInstance();
+		if(joueur.isVirtuel())
+		{
+			if(!(joueurCible.isVirtuel()))
+			{
+			
+			model.setAncienPointCible(joueurCible.getNbreMenhir());
+    		model.setMenhirADetruire(joueur.getAllie().getValeur()[Partie.getTour()]);
+    		model.setTaupeEnnemi(true);
+			}
+			
+    		
+		}
 		if(joueurCible.getNbreMenhir()>=valeur)
 		{
 			model.setMessage("Le joueur "+joueur.getNom()+" détruit "+valeur+" ménhirs à "+joueurCible.getNom());
