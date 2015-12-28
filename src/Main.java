@@ -162,10 +162,15 @@ public class Main {
 							e.printStackTrace();
 						}
 	            	if (!(mod.getIndexJoueurCibleTaupe()==99)){
+	            		mod.setAncienPointCible(partie.getListJoueur().get(mod.getIndexJoueurCibleTaupe()).getNbreMenhir());
 	            		mod.setMenhirADetruire(j.getAllie().getValeur()[Partie.getTour()]);
+	            		mod.setIndexJoueurCibleTaupe2(mod.getIndexJoueurCibleTaupe());
 	            		mod.setTaupe(true);
+	            		Main.afficherActionAllieeTaupe(j, mod.getListeJoueur().get(mod.getIndexJoueurCibleTaupe()), mod.getMenhirADetruire());
 	            		j.jouerTaupe(partie.getListJoueur().get(mod.getIndexJoueurCibleTaupe()));
+	            		mod.setJoueursPoints(partie.getListJoueur().toString());
 	            		mod.setIndexJoueurCibleTaupe(99);
+	            		
 	            	}
 	            	
 	            	}
@@ -321,7 +326,14 @@ public class Main {
 	public static void afficherActionAllieeTaupe(Joueur joueur , Joueur joueurCible , int valeur)
 	{
 		Model model = Model.getInstance();
-		model.setMessage("Le joueur "+joueur.getNom()+" détruit "+valeur+" ménhirs à "+joueurCible);
+		if(joueurCible.getNbreMenhir()>=valeur)
+		{
+			model.setMessage("Le joueur "+joueur.getNom()+" détruit "+valeur+" ménhirs à "+joueurCible.getNom());
+		}
+		else
+		{
+			model.setMessage("Le joueur "+joueur.getNom()+" détruit "+joueurCible.getNbreMenhir()+" ménhirs à "+joueurCible.getNom());
+		}
 	}
 	public static void afficherActionAllieeChien(Joueur joueur , int valeur)
 	{

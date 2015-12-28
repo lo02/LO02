@@ -33,6 +33,8 @@ public class Model {
 	private Card allie;
 	private int menhirADetruire = -1;
 	private int indexJoueurCibleTaupe = 99;
+	private int indexJoueurCibleTaupe2 = 0;
+	private int ancienPointCible;
 	
 	
 	private static Model instance;
@@ -254,6 +256,22 @@ public class Model {
 
 	public void setIndexJoueurCibleTaupe(int indexJoueurCibleTaupe) {
 		this.indexJoueurCibleTaupe = indexJoueurCibleTaupe;
+	}
+
+	public int getIndexJoueurCibleTaupe2() {
+		return indexJoueurCibleTaupe2;
+	}
+
+	public void setIndexJoueurCibleTaupe2(int indexJoueurCibleTaupe2) {
+		this.indexJoueurCibleTaupe2 = indexJoueurCibleTaupe2;
+	}
+
+	public int getAncienPointCible() {
+		return ancienPointCible;
+	}
+
+	public void setAncienPointCible(int ancienPointCible) {
+		this.ancienPointCible = ancienPointCible;
 	}
 	
 	
