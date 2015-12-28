@@ -35,6 +35,13 @@ public class Virtuel extends Joueur {
 		return strategie.choisirCarte(this);	
 	}
 	// Méthode qui va permettre au joueur virtuel de séléctionner la meillleur stratégie entre normal et offensive
+	/**
+	 * Méthode qui permet aux joueurs virtuels de choisir la meilleur stratégie possible.
+	 * @param joueur
+	 * @param chercherJoueurGrainesMax
+	 * @return
+	 * 		renvoie la strategie que le joueur virtuel à choisi
+	 */
 	public Strategy choisirStrategie(Joueur joueur , Joueur joueurCible)
 	{	
 		boolean farfadet = false ;		
@@ -81,6 +88,9 @@ public class Virtuel extends Joueur {
 	/*Méthode qui va permettre de choisir soit une carte alliée soit 2 graines en début de manche en partie
 	 * avancée;
 	*/
+	/**
+	 * Méthode qui permet aux joueurs virtuels d'effectuer leurs choix au début d'une manche en partie avancée
+	 */
 	public void choixDebutManche(){
 		//On regarde le nombre de graine, s'il n'as pas de graine il en prend
 		
@@ -134,6 +144,11 @@ public class Virtuel extends Joueur {
 		
 	}
 	
+	/**
+	 * Méthode pour jouer l'allié taupe d'un joueur virtuel
+	 * @param j
+	 * @param j2
+	 */
 	public void jouerTaupe(Joueur joueurCible , Joueur joueurSecond){
 		if(this.getAllie() == null){
 			
