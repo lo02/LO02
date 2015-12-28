@@ -85,14 +85,10 @@ public class SelectionDeCarte {
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		    int x = (int) ((dimension.getWidth() - frmVotreMain.getWidth()) / 2);
 		    int y = (int) ((dimension.getHeight() - frmVotreMain.getHeight()) / 2);
-		    if (model.getPartieRapide()==1)
-		    {
-		    	frmVotreMain.setBounds(x-(738/2), y ,738, 400);
-		    }
-		    else
-		    {
-		    	frmVotreMain.setBounds(x-(938/2), y ,938, 400);
-		    }
+		   
+		   frmVotreMain.setBounds(x-(938/2), y ,738, 400);
+		    
+		    
 		
 		frmVotreMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmVotreMain.getContentPane().setLayout(null);
@@ -143,7 +139,7 @@ public class SelectionDeCarte {
 		JLabel lblRayonDeLune = new JLabel(model.getMain().get(0).toString2());
 		panel_5.add(lblRayonDeLune);
 		
-		if (model.getPartieRapide()==2)
+		/*if (model.getPartieRapide()==2)
 		{
 			if(model.getAllie() != null){
 				
@@ -171,11 +167,12 @@ public class SelectionDeCarte {
 							model.setMenhirADetruire(model.getAllie().getValeur()[Partie.getTour()]);;
 							frmVotreMain.setVisible(false);
 							frmVotreMain.dispose();
-							*/
+							
 						}
 					});
 					layeredPane_5.setBounds(722, 75, 154, 236);
 					layeredPane.add(layeredPane_5);
+					
 					
 					
 					JPanel panel_4 = new JPanel();
@@ -185,18 +182,18 @@ public class SelectionDeCarte {
 					panel_4.add(pic2);
 					
 					panel_4.setBounds(10, 11, 136, 136);
-					layeredPane_5.add(panel_4);
+					//layeredPane_5.add(panel_4);
 					
 				
 					JPanel panel_9 = new JPanel();
 					panel_9.setBounds(10, 158, 137, 67);
-					layeredPane_5.add(panel_9);
+					//layeredPane_5.add(panel_9);
 					
 					JLabel label = new JLabel(model.getAllie().toString2());
 					panel_9.add(label);
 				}
 			}
-		}
+		}*/
 		
 		if(model.getMain().size()>=2)
 		{

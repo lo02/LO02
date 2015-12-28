@@ -516,24 +516,28 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				}
 				if(model.isTaupe()==true)
 				{
+					panel.removeAll();
+					
 					frame.remove(picLabel);
 					JLabel picLabel9 = new JLabel(new ImageIcon("geant/taupe.gif"));
 					frame.add(picLabel9, BorderLayout.CENTER);
 				    frame.revalidate();
 				    frame.repaint();
-					try {
-						Thread.sleep(3200);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					panel.removeAll();
-					for (int i=0; i<model.getListeJoueur().get(model.getIndexJoueurCible()).getNbreMenhir();i++)
+					
+					
+					
+					for (int i=0; i<model.getListeJoueur().get(model.getIndexJoueurCibleTaupe()).getNbreMenhir();i++)
 					{
 						 	ImageIcon icone2 = new ImageIcon("png/menhir.png");
 						 	JLabel pic2 = new JLabel();
 						    pic2.setIcon(icone2);
 						    panel.add(pic2);	
+					}
+					try {
+						Thread.sleep(3200);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 					panel.setBounds(270, 0, 470, 80);
 					panel.setBackground(new Color(0,0,0,0));
@@ -555,7 +559,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 									e.printStackTrace();
 								}
 				            	panel.removeAll();
-				            	for (int i=0; i<model.getListeJoueur().get(model.getIndexJoueurCible()).getNbreMenhir();i++)
+				            	for (int i=0; i<model.getListeJoueur().get(model.getIndexJoueurCibleTaupe()).getNbreMenhir();i++)
 								{
 									 	ImageIcon icone2 = new ImageIcon("png/menhir.png");
 									 	JLabel pic2 = new JLabel();
@@ -574,7 +578,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 					frame.add(picLabel, BorderLayout.CENTER);
 					frame.revalidate();
 				    frame.repaint();
-					model.setTaupeEnnemi(false);
+					model.setTaupe(false);
 				}
 				
 				if(model.isTaupeEnnemi()==true)

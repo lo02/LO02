@@ -145,10 +145,32 @@ public class Main {
 		}
 		else
 		if(reponse == 2){
+			//SelectionCarteAlliee A = new SelectionCarteAlliee(0);
 			mod.setJoueursPoints(partie.getListJoueur().toString());
 			mod.setListeJoueur(partie.getListJoueur());
 			Score boiteDeScore = new Score(0);
 			MessageBox message = new MessageBox(0);
+			
+			new Thread() {
+	            public void run() {
+	            	while(true)
+	            	{
+	            		try {
+							Thread.sleep(300);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	            	if (!(mod.getIndexJoueurCibleTaupe()==99)){
+	            		mod.setMenhirADetruire(j.getAllie().getValeur()[Partie.getTour()]);
+	            		mod.setTaupe(true);
+	            		j.jouerTaupe(partie.getListJoueur().get(mod.getIndexJoueurCibleTaupe()));
+	            		mod.setIndexJoueurCibleTaupe(99);
+	            	}
+	            	
+	            	}
+	            }
+	        }.start();
 			for(int manche = 0 ; manche<partie.getListJoueur().size(); manche++)
 			{
 				
@@ -160,13 +182,24 @@ public class Main {
 				{
 					Thread.sleep(100);
 				}
+				
+				
+				
 				int choix = mod.getChoix();
 				mod.setChoix(0);
 				//int choix= Main.saisie("Souhaitez vous prendre 2 graines (tapez 1) ou une alliée (tapez 2)?", 1, 2);
 				j.choixDebutManche(choix);
-				mod.setAllie(j.getAllie());
+				
 				if (choix == 2){
+					mod.setAllie(j.getAllie());
 					System.out.println("Votre carte alliée :\n"+j.getAllie());
+					
+					SelectionCarteAlliee B = new SelectionCarteAlliee(0);
+					
+						
+					
+					
+					
 				}
 				
 				for(int tour=0 ; tour <4 ; tour++) 
@@ -184,18 +217,7 @@ public class Main {
 						
 						// On veut jouer la taupe ici à n'importe qu'elle moment durant le tour
 						//A chaque fois qu'un joueur voudra jouer on pourra utiliser la taupe
-						/*mod.setMessage("yo1");
-						if (j.getAllie().getTitre().equals("Taupe géante")){
-							mod.setMessage("yo");
-							
-							DemandeTaupe t = new DemandeTaupe(0);
-							while(mod.getChoixTaupe()== 0)
-							{
-								Thread.sleep(100);
-							}
-							
-						}
-						mod.setMessage("yo2");*/
+						
 						if(listTemp.get(i)==j)
 						{
 							Main.deroulementJoueur(j, partie);
@@ -238,20 +260,8 @@ public class Main {
 						}else
 						{
 							partie.gererTourAvancee(listTemp.get(i));
-							/*System.out.println("Tapez une touche pour continuer");
+							//System.out.println("Tapez une touche pour continuer");
 							pause();
-							mod.setMessage("yo1");
-							if (j.getAllie().getTitre().equals("Taupe géante")){
-								mod.setMessage("yo");
-								
-								DemandeTaupe t = new DemandeTaupe(0);
-								while(mod.getChoixTaupe()== 0)
-								{
-									Thread.sleep(100);
-								}
-								
-							}*/
-						
 						}		
 					}
 					System.out.println(partie.getListJoueur());
@@ -406,6 +416,8 @@ public class Main {
 			j.poserCarte(carte, jeu);
 			mod.setJoueursPoints(partie.getListJoueur().toString());
 		}
+		
+		
 		
 		//On ne veut pas forcément jouer la taupe à la fin de notre tour, on veut pouvoir la jouer à n'importe qu'elle moment
 		

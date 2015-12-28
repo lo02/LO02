@@ -32,6 +32,7 @@ public class Model {
 	private int choixTaupe = 0;
 	private Card allie;
 	private int menhirADetruire = -1;
+	private int indexJoueurCibleTaupe = 99;
 	
 	
 	private static Model instance;
@@ -245,6 +246,14 @@ public class Model {
 	}
 	public void setChoixTaupe(int choixTaupe){
 		this.choixTaupe = choixTaupe;
+	}
+
+	public int getIndexJoueurCibleTaupe() {
+		return indexJoueurCibleTaupe;
+	}
+
+	public void setIndexJoueurCibleTaupe(int indexJoueurCibleTaupe) {
+		this.indexJoueurCibleTaupe = indexJoueurCibleTaupe;
 	}
 	
 	

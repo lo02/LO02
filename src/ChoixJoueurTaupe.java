@@ -120,7 +120,7 @@ public class ChoixJoueurTaupe extends JFrame implements ActionListener{
 			if(source.equals( this.menhirBouton))
 			{
 				int a = choice.getSelectedIndex();
-				mod.setIndexJoueurCible(a+1);
+				mod.setIndexJoueurCibleTaupe(a+1);
 				frame2.setVisible(false);
 				frame2.dispose();
 			}
