@@ -135,6 +135,7 @@ public class Graphique2 extends JFrame implements ActionListener{
 				mod.setPartieRapide(-1);
 				mod.setResetAll(true);
 				mod.setRestart(true);
+				System.exit(0);
 				
 				
 			}

@@ -48,7 +48,6 @@ public class Main {
 	            		        }
 	            		        cmd.append("-cp ").append(ManagementFactory.getRuntimeMXBean().getClassPath()).append(" ");
 	            		        cmd.append(Main.class.getName()).append(" ");
-	            		        String args;
 								for (String arg : argc) {
 	            		            cmd.append(arg).append(" ");
 	            		        }
@@ -58,7 +57,11 @@ public class Main {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
-	            		        System.exit(0);
+	            		        while(true)
+	            		        {
+	            		        	System.exit(0);
+	            		        }
+	            		        
 	            		}
 	            		mod.getA().interrupt();
 	            		Thread.sleep(500);
