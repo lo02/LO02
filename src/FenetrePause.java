@@ -20,6 +20,7 @@ public class FenetrePause {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					Model.getInstance().getA().suspend();
 					FenetrePause window = new FenetrePause();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
@@ -61,8 +62,10 @@ public class FenetrePause {
 		layeredPane.add(btnRecommencerPartie);
 		btnRecommencerPartie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				model.getA().resume();
 				model.setRestart(true);
+				frame.setVisible(false);
+				frame.dispose();
 			}
 		});
 		
