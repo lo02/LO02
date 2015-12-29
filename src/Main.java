@@ -207,7 +207,9 @@ public class Main {
 			
 			}
 			mod.setJoueursPoints(partie.getListJoueur().toString());
-			mod.setMessage("Le gagnant est : <br>"+partie.chercherGagnantRapide().toString());
+			mod.setListeJoueurGagnant(partie.chercherGagnantRapide());
+			FenetreFin f = new FenetreFin(0);
+			//mod.setMessage("Le gagnant est : <br>"+partie.chercherGagnantRapide().toString());
 			
 			
 			
@@ -347,14 +349,18 @@ public class Main {
 						}		
 					}
 					System.out.println(partie.getListJoueur());
+					
 					//System.out.println("Tapez une touche pour continuer");
 					//pause();	
 				}
 				
 				partie.initierPartieAvancee();
 				
+				
 			}
 			partie.finPartie();
+			mod.setJoueurGagnant(partie.getListJoueur().get(partie.chercherGagnantAvancee()));
+			FenetreFin f = new FenetreFin(0);
 			System.out.println("\nScore Final : \n"+ partie.getListJoueur()+"\nLe gagnant est : \n"+partie.getListJoueur().get(partie.chercherGagnantAvancee()));
 			
 		}

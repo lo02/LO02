@@ -28,6 +28,10 @@ public class Model {
 	private int action= -1;
 	private Joueur joueurPrincipal;
 	private List<Joueur> listeJoueur;
+	//contient liste des gagnant partie rapide
+	private List<Joueur> listeJoueurGagnant;
+	//contient joueur gagnant partie avancée
+	private Joueur joueurGagnant;
 	private int indexJoueurCible=-1;
 	private String message="";
 	private int choix = 0;
@@ -385,6 +389,22 @@ public class Model {
 
 	public void setSong(Player song) {
 		this.song = song;
+	}
+
+	public List<Joueur> getListeJoueurGagnant() {
+		return listeJoueurGagnant;
+	}
+
+	public void setListeJoueurGagnant(List<Joueur> listeJoueurGagnant) {
+		this.listeJoueurGagnant = listeJoueurGagnant;
+	}
+
+	public Joueur getJoueurGagnant() {
+		return joueurGagnant;
+	}
+
+	public void setJoueurGagnant(Joueur joueurGagnant) {
+		this.joueurGagnant = joueurGagnant;
 	}
 	
 	
