@@ -79,6 +79,22 @@ public class ChoixAttaque extends JFrame implements ActionListener{
 	 */
 	private void initialize() {
 		 frame2 = new JFrame();
+		 new Thread() {
+	            public void run() {
+	            	
+	            	while(!(mod.isFinished()))
+	            	{
+	            		try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	            	}
+	            	frame2.setVisible(false);
+	            	frame2.dispose();
+	            }
+		 }.start();
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		    int x = (int) ((dimension.getWidth() - frame2.getWidth()) / 2);
 		    int y = (int) ((dimension.getHeight() - frame2.getHeight()) / 2);

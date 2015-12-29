@@ -80,7 +80,22 @@ public class ChoixJoueur extends JFrame implements ActionListener{
 	 */
 	private void initialize() {
 		 frame2 = new JFrame();
-		
+		 new Thread() {
+	            public void run() {
+	            	
+	            	while(!(mod.isFinished()))
+	            	{
+	            		try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	            	}
+	            	frame2.setVisible(false);
+	            	frame2.dispose();
+	            }
+		 }.start();
 		JLayeredPane layeredPane = new JLayeredPane();
 
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();

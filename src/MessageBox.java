@@ -82,6 +82,22 @@ public class MessageBox extends JFrame implements Runnable{
 	 */
 	private void initialize() {
 		 frame2 = new JFrame();
+		 new Thread() {
+	            public void run() {
+	            	
+	            	while(!(mod.isFinished()))
+	            	{
+	            		try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	            	}
+	            	frame2.setVisible(false);
+	            	frame2.dispose();
+	            }
+		 }.start();
 		 frame2.setUndecorated(true);
 		frame2.setBackground(new Color(1.0f,1.0f,1.0f,0));
 		JLayeredPane layeredPane = new JLayeredPane();

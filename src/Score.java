@@ -86,6 +86,22 @@ public class Score extends JFrame implements Runnable {
 	private void initialize() {
 		frame = new JFrame();
 		frame.add(layeredPane);
+		 new Thread() {
+	            public void run() {
+	            	
+	            	while(!(model.isFinished()))
+	            	{
+	            		try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	            	}
+	            	frame.setVisible(false);
+	            	frame.dispose();
+	            }
+		 }.start();
 		frame.setUndecorated(true);
 		frame.setBackground(new Color(1.0f,1.0f,1.0f,0));
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
