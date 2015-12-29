@@ -224,7 +224,29 @@ public class Ingredient extends Card {
 	}
 	public String toString2()
 	{
-		return "<html>"+name+"<table style='width:100%;'><tr><td>"+geant[0]+"</td><td>"+geant[1]+"</td><td>"+geant[2]+"</td><td>"+geant[3]+"</td></tr><tr><td>"+engrais[0]+"</td><td>"+engrais[1]+"</td><td>"+engrais[2]+"</td><td>"+engrais[3]+"</td></tr><tr><td>"+farfadet[0]+"</td><td>"+farfadet[1]+"</td><td>"+farfadet[2]+"</td><td>"+farfadet[3]+"</td></tr></table></html>";
+		/*if (Partie.getTour() == 0){
+			return "<html>"+name+"<table style='width:100%;  '><tr><td style='background-color:green;'>"+geant[0]+"</td><td>"+geant[1]+"</td><td>"+geant[2]+"</td><td>"+geant[3]+"</td></tr><tr><td style='background-color:green;'>"+engrais[0]+"</td><td>"+engrais[1]+"</td><td>"+engrais[2]+"</td><td>"+engrais[3]+"</td></tr><tr><td style='background-color:green;'>"+farfadet[0]+"</td><td>"+farfadet[1]+"</td><td>"+farfadet[2]+"</td><td>"+farfadet[3]+"</td></tr></table></html>";
+		}*/
+		
+		if (Partie.getTour()==0)
+		{
+			return "<html>"+name+"<table style='width:100%;'><tr><td style='background-color:green; text-align:center'>"+geant[0]+"<br>"+engrais[0]+"<br>"+farfadet[0]+"</td><td style='text-align:center;'>"+geant[1]+"<br>"+engrais[1]+"<br>"+farfadet[1]+"</td><td style='text-align:center;'>"+geant[2]+"<br>"+engrais[2]+"<br>"+farfadet[2]+"</td><td style='text-align:center;'>"+geant[3]+"<br>"+engrais[3]+"<br>"+farfadet[3]+"</td></tr></table></html>";
+		}
+		if (Partie.getTour()==1)
+		{
+			return "<html>"+name+"<table style='width:100%;'><tr><td style='text-align:center;'>"+geant[0]+"<br>"+engrais[0]+"<br>"+farfadet[0]+"</td><td style='background-color:green;text-align:center;'>"+geant[1]+"<br>"+engrais[1]+"<br>"+farfadet[1]+"</td><td style='text-align:center;'>"+geant[2]+"<br>"+engrais[2]+"<br>"+farfadet[2]+"</td><td style='text-align:center;'>"+geant[3]+"<br>"+engrais[3]+"<br>"+farfadet[3]+"</td></tr></table></html>";
+		}
+		if (Partie.getTour()==2)
+		{
+			return "<html>"+name+"<table style='width:100%;'><tr><td style='text-align:center;'>"+geant[0]+"<br>"+engrais[0]+"<br>"+farfadet[0]+"</td><td>"+geant[1]+"<br>"+engrais[1]+"<br>"+farfadet[1]+"</td><td style='background-color:green;text-align:center;'>"+geant[2]+"<br>"+engrais[2]+"<br>"+farfadet[2]+"</td><td style='text-align:center;'>"+geant[3]+"<br>"+engrais[3]+"<br>"+farfadet[3]+"</td></tr></table></html>";
+		}
+		if (Partie.getTour()==3)
+		{
+			return "<html>"+name+"<table style='width:100%;'><tr><td style='text-align:center;'>"+geant[0]+"<br>"+engrais[0]+"<br>"+farfadet[0]+"</td><td>"+geant[1]+"<br>"+engrais[1]+"<br>"+farfadet[1]+"</td><td style='text-align:center;'>"+geant[2]+"<br>"+engrais[2]+"<br>"+farfadet[2]+"</td><td style='background-color:green;text-align:center;'>"+geant[3]+"<br>"+engrais[3]+"<br>"+farfadet[3]+"</td></tr></table></html>";
+		}
+		else{
+			return "bug";
+		}
 	}
 
 
