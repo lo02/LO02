@@ -10,6 +10,8 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Choice;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.awt.event.ActionEvent;
@@ -76,10 +78,10 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 	 * Create the application.
 	 */
 	
-	private Graphique() {
+	private Graphique()   {
 		initialize();
 		model = Model.getInstance();
-		
+		//frame.addKeyListener(this);
 		
 	}
 
@@ -180,9 +182,30 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 					}}
 		}.start();
 					
-		
+		/*frame.addKeyListener(new KeyAdapter() {
+			/**
+		       * When you type the character "esc" into the text field you will see
+		       * an information dialog box
+		       
+		      public void keyReleased(KeyEvent ke) {
+		        int keyCode = ke.getKeyCode();
+		        //(ke.getKeyCode() == KeyEvent.VK_ESCAPE
+		        if (keyCode == KeyEvent.VK_ESCAPE) {
+		          System.out.println("You Typed esc ");
+		        }
+		      }
+		 });*/
 				
-				
+		frame.addKeyListener(new KeyAdapter() {
+	         public void keyReleased(KeyEvent e) {                
+	             if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+	            	 //System.out.println("You Typed esc ");
+	            	 model.getA().suspend();
+	            	 FenetrePause p = new FenetrePause(0);
+	            	 
+	             }
+	          }        
+	       });
 		
 		
 	}
@@ -242,7 +265,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 		
 			if(source.equals( this.button2))
 			{
-				Graphique2 graph = new Graphique2(this);
+				
 				  try {
 			            FileInputStream fis     = new FileInputStream("mp3/mainSong.mp3");
 			            BufferedInputStream bis = new BufferedInputStream(fis);

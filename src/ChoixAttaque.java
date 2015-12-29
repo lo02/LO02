@@ -95,6 +95,7 @@ public class ChoixAttaque extends JFrame implements ActionListener{
 	            	frame2.dispose();
 	            }
 		 }.start();
+		 frame2.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		    int x = (int) ((dimension.getWidth() - frame2.getWidth()) / 2);
 		    int y = (int) ((dimension.getHeight() - frame2.getHeight()) / 2);

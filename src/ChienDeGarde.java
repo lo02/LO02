@@ -56,7 +56,7 @@ public class ChienDeGarde {
 	            	frame.dispose();
 	            }
 		 }.start();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
 		frame.getContentPane().add(layeredPane, BorderLayout.CENTER);

@@ -96,6 +96,7 @@ public class ChoixDebutManche extends JFrame implements ActionListener{
 	            	frame2.dispose();
 	            }
 		 }.start();
+		 frame2.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		JLayeredPane layeredPane = new JLayeredPane();
 
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();

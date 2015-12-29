@@ -1,7 +1,12 @@
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 
 public class FenetrePause {
@@ -11,7 +16,7 @@ public class FenetrePause {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public FenetrePause(int a) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -36,8 +41,15 @@ public class FenetrePause {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 229, 171);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Model model = Model.getInstance();
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+	    int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+	   
+	   frame.setBounds(x-(229/2), y-(171/2) ,229, 171);
+		
+		 frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
 		frame.getContentPane().setLayout(null);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
@@ -45,16 +57,40 @@ public class FenetrePause {
 		frame.getContentPane().add(layeredPane);
 		
 		JButton btnRecommencerPartie = new JButton("Recommencer Partie");
-		btnRecommencerPartie.setBounds(12, 13, 151, 25);
+		btnRecommencerPartie.setBounds(12, 13, 160, 25);
 		layeredPane.add(btnRecommencerPartie);
+		btnRecommencerPartie.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				model.setRestart(true);
+			}
+		});
 		
 		JButton btnRetourAuMenu = new JButton("Retour au menu");
-		btnRetourAuMenu.setBounds(12, 39, 151, 25);
+		btnRetourAuMenu.setBounds(12, 39, 160, 25);
 		layeredPane.add(btnRetourAuMenu);
+		btnRetourAuMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				model.getSong().close();
+				model.setPartieRapide(-1);
+				model.setResetAll(true);
+				model.setRestart(true);
+				System.exit(0);
+			}
+		});
 		
 		JButton btnAnnuler = new JButton("Annuler");
-		btnAnnuler.setBounds(12, 65, 151, 25);
+		btnAnnuler.setBounds(12, 65, 160, 25);
 		layeredPane.add(btnAnnuler);
+		btnAnnuler.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				model.getA().resume();
+				frame.setVisible(false);
+				frame.dispose();
+			}
+		});
 	}
 	
 	

@@ -19,6 +19,8 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -81,6 +83,16 @@ public class SelectionDeCarte {
 	            	
 		
 		frmVotreMain = new JFrame();
+		frmVotreMain.addKeyListener(new KeyAdapter() {
+	         public void keyReleased(KeyEvent e) {                
+	             if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+	            	 //System.out.println("You Typed esc ");
+	            	 model.getA().suspend();
+	            	 FenetrePause p = new FenetrePause(1);
+	            	 
+	             }
+	          }        
+	       });
 		frmVotreMain.setTitle("Votre main");
 		frmVotreMain.setUndecorated(true);
 		frmVotreMain.setBackground(new Color(1.0f,1.0f,1.0f,0));
@@ -109,7 +121,7 @@ public class SelectionDeCarte {
 		    
 		    
 		
-		frmVotreMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		frmVotreMain.getContentPane().setLayout(null);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
