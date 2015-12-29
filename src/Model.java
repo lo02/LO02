@@ -17,7 +17,7 @@ public class Model {
 	
 	
 	// Echange entre interface et le jeu 
-	private int partieRapide;
+	private int partieRapide = -1;
 	private String nomJoueur;
 	private int nombreJoueurs;
 	private String joueursPoints = new String();
@@ -40,6 +40,18 @@ public class Model {
 	private boolean possetionChienDeGarde= false;
 	private int cas=-1;
 	private Thread a;
+	
+	
+	
+	private boolean restart = false ; // Juste pour amorcer le reset 
+	private boolean doNotRelaunch = false; // Juste pour ne pas relancer l'interface graphique 
+	private boolean resetPrincipalInterface = false; // reset l'interface graphique 
+	private boolean finished = false; // ferme toutes les autres fenêtres 
+	private boolean resetAll = false ; // Ferme et re-ouvre l'interface principale  
+	
+	
+	
+	
 	
 	private static Model instance;
 
@@ -316,6 +328,52 @@ public class Model {
 
 	public void setA(Thread a) {
 		this.a = a;
+	}
+
+	public boolean isRestart() {
+		return restart;
+	}
+
+	public void setRestart(boolean restart) {
+		this.restart = restart;
+	}
+
+	public boolean isDoNotRelaunch() {
+		return doNotRelaunch;
+	}
+
+	public void setDoNotRelaunch(boolean doNotRelaunch) {
+		this.doNotRelaunch = doNotRelaunch;
+	}
+
+	public boolean isResetPrincipalInterface() {
+		return resetPrincipalInterface;
+	}
+
+	public void setResetPrincipalInterface(boolean resetPrincipalInterface) {
+		this.resetPrincipalInterface = resetPrincipalInterface;
+	}
+
+	public boolean isFinished() {
+		return finished;
+	}
+
+	public void setFinished(boolean finished) {
+		this.finished = finished;
+	}
+	
+	public void clearBox()
+	{
+		this.message="";
+	}
+
+	public boolean isResetAll() {
+		return resetAll;
+	}
+
+	public void setResetAll(boolean resetAll) {
+		this.resetAll = resetAll;
+		this.setNomJoueur(null);
 	}
 	
 	

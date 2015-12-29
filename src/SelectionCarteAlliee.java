@@ -78,6 +78,22 @@ public class SelectionCarteAlliee {
 	private void initialize() throws IOException {
 		
 		frmVotreMain = new JFrame();
+		 new Thread() {
+	            public void run() {
+	            	
+	            	while(!(model.isFinished()))
+	            	{
+	            		try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	            	}
+	            	frmVotreMain.setVisible(false);
+	            	frmVotreMain.dispose();
+	            }
+		 }.start();
 		frmVotreMain.setTitle("Votre main");
 		frmVotreMain.setUndecorated(true);
 		frmVotreMain.setBackground(new Color(1.0f,1.0f,1.0f,0));

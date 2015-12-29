@@ -1,6 +1,8 @@
 //Code réalisée par EZZAAMARI Anass et JAUVION Gilles
 
+import java.io.File;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.Scanner;
 
 import javax.swing.JPanel;
 
-public class Main extends JPanel{
+public class Main {
 	
 	// 
 	
@@ -16,8 +18,72 @@ public class Main extends JPanel{
 	public static void main(String[] argc) throws InterruptedException{
 		 Model mod = Model.getInstance();
 		mod.setA(Thread.currentThread());
-		// On lance l'interface principale 
-		Graphique inter = new Graphique(0);
+		 new Thread() {
+	            public void run() {
+	            	
+	            	while(!(mod.isRestart()))
+	            	{
+	            		try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	            		
+	            		
+	            	}
+	            	
+	            	try {
+	            		mod.getA().interrupt();
+	            		mod.setRestart(false);
+	            		mod.setResetPrincipalInterface(true);
+	            		mod.setFinished(true);
+	            		if(!(mod.isResetAll()))
+	            		{
+	            			mod.setDoNotRelaunch(true);
+	            		}
+	            		else
+	            		{
+	            			 StringBuilder cmd = new StringBuilder();
+	            		        cmd.append(System.getProperty("java.home") + File.separator + "bin" + File.separator + "java ");
+	            		        for (String jvmArg : ManagementFactory.getRuntimeMXBean().getInputArguments()) {
+	            		            cmd.append(jvmArg + " ");
+	            		        }
+	            		        cmd.append("-cp ").append(ManagementFactory.getRuntimeMXBean().getClassPath()).append(" ");
+	            		        cmd.append(Main.class.getName()).append(" ");
+	            		        String args;
+								for (String arg : argc) {
+	            		            cmd.append(arg).append(" ");
+	            		        }
+	            		        try {
+									Runtime.getRuntime().exec(cmd.toString());
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+	            		        System.exit(0);
+	            		}
+	            		Thread.sleep(500);
+	            		mod.setFinished(false);
+	            		mod.getA().interrupt();
+	            		mod.clearBox();
+	            		Thread.sleep(1000);
+	            		
+						main(argc);
+						
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	            }
+		 }.start();
+		 
+		// On lance l'interface principale
+		 if(!(mod.isDoNotRelaunch()))
+		 {
+			 Graphique inter = new Graphique(0);
+		 }
+		
 		while(mod.getNomJoueur() == null)
 		{
 			Thread.sleep(100);
@@ -34,7 +100,6 @@ public class Main extends JPanel{
 		System.out.println("Vous vous appelez : " +nom +"\n" + j);
 		// demande du nombre de joueurs
 		Partie partie = new Partie(mod.getNombreJoueurs());
-		
 		//On ajoute le joueur physique dans la liste des joueurs  
 		List<Joueur> listeTemp =  new ArrayList<Joueur>(); 
 		listeTemp = partie.getListJoueur();
@@ -329,6 +394,8 @@ public class Main extends JPanel{
 		Model model = Model.getInstance();
 		if (joueurcible.equals(model.getJoueurPrincipal()))
 				{
+					if(model.getPartieRapide()==2)
+					{
 					if(model.getAllie().equals("Chien de garde"))
 					{
 						while(model.getChienDeGardeAction()==-1)
@@ -346,12 +413,13 @@ public class Main extends JPanel{
 							model.setChienDeGardeAction(-1);
 						}
 						if(model.getChienDeGardeAction()==1)
+						{	
 							model.setChienDeGarde(true);
 							model.setChienDeGardeAction(-1);
 						}
 					}
-					
-			
+				}
+				}
 
 		if (joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]<= joueurcible.getNbreGraine())
 			model.setMessage("Le joueur "+joueur.getNom()+" vole "+ joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]+ " graine(s) de "+joueurcible.getNom());

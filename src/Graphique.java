@@ -48,20 +48,21 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 	protected Button button2;
 	protected Button button3;
 	private Choice choice;
-	private Thread t;
-	
+	private Thread thread;
+	private Thread t2;
 	/**
 	 * Launch the application.
 	 */
 	public Graphique(int a)
 	{
-
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Graphique window = new Graphique();
-					Thread thread = new Thread(window);
+					thread = new Thread(window);
 					thread.start();
+					
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -140,6 +141,49 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 		layeredPane.add(panel);
 		
 		
+		new Thread()
+		{ public void run(){
+			Model model = Model.getInstance();
+					while(true){
+						try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						if(model.isResetAll())
+						{
+							frame.setVisible(false);
+							frame.dispose();
+							
+							model.setResetAll(false);
+						}
+						else
+						{
+							if(model.isRestart())
+							{
+								
+								t2.interrupt();
+								try {
+									Thread.sleep(700);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								t2.interrupt();
+								layeredPane.removeAll();
+								layeredPane.add(panel);
+							}
+						}
+						
+						
+					}}
+		}.start();
+					
+		
+				
+				
+		
 		
 	}
 	
@@ -214,6 +258,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 			            public void run() {
 			                try { player.play(); }
 			                catch (Exception e) { System.out.println(e); }
+			                
 			            }
 			        }.start();
 				layeredPane.removeAll();
@@ -259,8 +304,10 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 			                try { player.play(); 
 			                }
 			                catch (Exception e) { System.out.println(e); }
+			               
 			            }
 			        }.start();
+			        
 				layeredPane.removeAll();
 				layeredPane.add(panel);
 				model.setPartieRapide(2);
@@ -331,9 +378,18 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
-			
+			setT2(Thread.currentThread());
 			while(true)
 			{
+				
+			 	if (model.isResetPrincipalInterface())
+				{
+            		
+					panel.removeAll();
+					model.setResetPrincipalInterface(false);
+				
+				    
+				}
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
@@ -728,6 +784,12 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				
 			
 		}
+		}
+		public Thread getT2() {
+			return t2;
+		}
+		public void setT2(Thread t2) {
+			this.t2 = t2;
 		}
 }
 

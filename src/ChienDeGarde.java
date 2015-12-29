@@ -40,6 +40,22 @@ public class ChienDeGarde {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 432, 183);
+		 new Thread() {
+	            public void run() {
+	            	
+	            	while(!(model.isFinished()))
+	            	{
+	            		try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	            	}
+	            	frame.setVisible(false);
+	            	frame.dispose();
+	            }
+		 }.start();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLayeredPane layeredPane = new JLayeredPane();

@@ -77,11 +77,30 @@ public class SelectionDeCarte {
 	
 	private void initialize() throws IOException {
 		
+		
+	            	
+		
 		frmVotreMain = new JFrame();
 		frmVotreMain.setTitle("Votre main");
 		frmVotreMain.setUndecorated(true);
 		frmVotreMain.setBackground(new Color(1.0f,1.0f,1.0f,0));
-		
+		 new Thread() {
+	            public void run() {
+	            	
+	            	while(!(model.isFinished()))
+	            	{
+	            		try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	            	}
+	            	frmVotreMain.setVisible(false);
+	            	frmVotreMain.dispose();
+	            }
+		 }.start();
+		 
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		    int x = (int) ((dimension.getWidth() - frmVotreMain.getWidth()) / 2);
 		    int y = (int) ((dimension.getHeight() - frmVotreMain.getHeight()) / 2);
