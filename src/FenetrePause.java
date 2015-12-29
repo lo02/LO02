@@ -63,6 +63,7 @@ public class FenetrePause {
 		btnRecommencerPartie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.getA().resume();
+				model.setMain(null);
 				model.setRestart(true);
 				frame.setVisible(false);
 				frame.dispose();
@@ -75,7 +76,7 @@ public class FenetrePause {
 		btnRetourAuMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				model.getSong().close();
+
 				model.setPartieRapide(-1);
 				model.setResetAll(true);
 				model.setRestart(true);

@@ -1,6 +1,8 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
@@ -20,10 +22,12 @@ public class FenetreFin {
 
 	private JFrame frame;
 	Model model = Model.getInstance();
+	private MyAudioPlayer a;
+	private MyAudioPlayer b;
 	/**
 	 * Launch the application.
 	 */
-	public FenetreFin(int a){
+	public /*static void main(String[] arg){*/ FenetreFin(int a){
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -48,37 +52,62 @@ public class FenetreFin {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 910, 553);
+		
+		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		    int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+		    int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+		frame.setBounds(x-(910/2), 51 ,910, 506);
+		//frame.setBounds(100, 100, 910, 553);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setUndecorated(true);
+		frame.setBackground(new Color(1.0f,1.0f,1.0f,0));
 		
 		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(0, 0, 892, 506);
+		layeredPane.setBounds(0, 0, 892, 461);
 		frame.getContentPane().add(layeredPane);
+		JPanel panelScore = new JPanel();
+		panelScore.setBackground(Color.BLACK);
+		panelScore.setBounds(125, 234, 647, 189);
+		layeredPane.add(panelScore);
+		panelScore.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.BLACK);
+		panel.setBounds(125, 406, 647, 42);
+		layeredPane.add(panel);
+		panel.setLayout(null);
 		
 		JButton btnRecommencerUnePartie = new JButton("Recommencer une Partie");
-		btnRecommencerUnePartie.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				model.setRestart(true);
-				frame.setVisible(false);
-				frame.dispose();
-			}
-		});
-		btnRecommencerUnePartie.setBounds(12, 467, 205, 25);
-		layeredPane.add(btnRecommencerUnePartie);
+		btnRecommencerUnePartie.setBounds(442, 17, 205, 25);
+		panel.add(btnRecommencerUnePartie);
 		
 		JButton btnRetour = new JButton("Retour \u00E0 la page d'accueil");
+		btnRetour.setBounds(0, 17, 205, 25);
+		panel.add(btnRetour);
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				model.getSong().close();
+				
+				
+				a.close();
 				model.setPartieRapide(-1);
 				model.setResetAll(true);
 				model.setRestart(true);
 				System.exit(0);
 			}
 		});
-		btnRetour.setBounds(675, 467, 205, 25);
-		layeredPane.add(btnRetour);
+		btnRecommencerUnePartie.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				a.close();
+				b = new MyAudioPlayer("mp3/mainSong.mp3", true);
+				b.start();
+				model.setAudio(b);
+				model.setRestart(true);
+				frame.setVisible(false);
+				frame.dispose();
+				
+			}
+		});
 		
 		JPanel panelImageResultat = new JPanel();
 		if (model.getPartieRapide()==1)
@@ -87,6 +116,9 @@ public class FenetreFin {
 		{
 			ImageIcon img89;
 			try {
+				model.getAudio().close();
+				a = new MyAudioPlayer("mp3/victorySong.mp3", true);
+				a.start();
 				img89 = new ImageIcon(ImageIO.read(new File("img/sdad.png"))
 				        .getScaledInstance(892, 215, Image.SCALE_SMOOTH));
 				JLabel pic76 = new JLabel(img89);
@@ -100,6 +132,9 @@ public class FenetreFin {
 		{
 		ImageIcon img89;
 		try {
+			model.getAudio().close();
+			a = new MyAudioPlayer("mp3/defeatSong.mp3", true);
+			a.start();
 			img89 = new ImageIcon(ImageIO.read(new File("img/defeat.png"))
 			        .getScaledInstance(892, 215, Image.SCALE_SMOOTH));
 			JLabel pic76 = new JLabel(img89);
@@ -150,11 +185,6 @@ public class FenetreFin {
 		panelImageResultat.setBounds(0, 0, 892, 215);
 		layeredPane.add(panelImageResultat);
 		layeredPane.setBackground(Color.BLACK);
-		JPanel panelScore = new JPanel();
-		panelScore.setBackground(Color.BLACK);
-		panelScore.setBounds(125, 234, 647, 189);
-		layeredPane.add(panelScore);
-		panelScore.setLayout(null);
 		if(model.getPartieRapide() == 1){
 			//partie rapide
 			List<Joueur> listGagnant = new ArrayList<Joueur>();
@@ -200,5 +230,4 @@ public class FenetreFin {
 			
 		}
 	}
-
 }

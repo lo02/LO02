@@ -1,6 +1,7 @@
 import java.util.List;
 
 import javazoom.jl.player.Player;
+import javazoom.jl.player.advanced.AdvancedPlayer;
 
 public class Model {
 	
@@ -46,6 +47,7 @@ public class Model {
 	private boolean possetionChienDeGarde= false;
 	private int cas=-1;
 	private Thread a;
+	private MyAudioPlayer audio;
 	
 	
 	
@@ -54,7 +56,7 @@ public class Model {
 	private boolean resetPrincipalInterface = false; // reset l'interface graphique 
 	private boolean finished = false; // ferme toutes les autres fenêtres 
 	private boolean resetAll = false ; // Ferme et re-ouvre l'interface principale  
-	private Player song;
+	private AdvancedPlayer song;
 	
 	
 	
@@ -383,12 +385,12 @@ public class Model {
 		this.setNomJoueur(null);
 	}
 
-	public Player getSong() {
+	public AdvancedPlayer getSong() {
 		return song;
 	}
 
-	public void setSong(Player song) {
-		this.song = song;
+	public void setSong(AdvancedPlayer player) {
+		this.song = player;
 	}
 
 	public List<Joueur> getListeJoueurGagnant() {
@@ -405,6 +407,14 @@ public class Model {
 
 	public void setJoueurGagnant(Joueur joueurGagnant) {
 		this.joueurGagnant = joueurGagnant;
+	}
+
+	public MyAudioPlayer getAudio() {
+		return audio;
+	}
+
+	public void setAudio(MyAudioPlayer audio) {
+		this.audio = audio;
 	}
 	
 	

@@ -1,4 +1,4 @@
-//Code réalisée par EZZAAMARI Anass et JAUVION Gilles
+//Code réalisé par EZZAAMARI Anass et JAUVION Gilles
 
 import java.io.File;
 import java.io.IOException;

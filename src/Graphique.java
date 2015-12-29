@@ -1,5 +1,7 @@
 import java.awt.EventQueue;
 import javazoom.jl.player.Player;
+import javazoom.jl.player.advanced.AdvancedPlayer;
+
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
@@ -39,7 +41,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 
 	protected JFrame frame;
 	protected JLabel picLabel = new JLabel(new ImageIcon("geant/b.gif"));
-    private Player player; 
+
 	private JLabel picLabel3 = new JLabel(new ImageIcon("geant/c.gif"));
 	private JLabel picLabel4 = new JLabel(new ImageIcon("geant/d.gif"));
 	private JTextField textField;
@@ -52,6 +54,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 	private Choice choice;
 	private Thread thread;
 	private Thread t2;
+	private MyAudioPlayer a;
 	/**
 	 * Launch the application.
 	 */
@@ -90,7 +93,8 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		
+		a = new MyAudioPlayer("mp3/menuSong.mp3", true);
+		a.start();
 		
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		    int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
@@ -262,30 +266,17 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 					button3.addActionListener(this);
 					
 				}
-		
+
 			if(source.equals( this.button2))
 			{
 				
-				  try {
-			            FileInputStream fis     = new FileInputStream("mp3/mainSong.mp3");
-			            BufferedInputStream bis = new BufferedInputStream(fis);
-			            player = new Player(bis);
-			            model.setSong(player);
-			        }
-			        catch (Exception e1) {
-			            System.out.println("Problem playing file mainsong");
-			            System.out.println(e1);
-			        }
 
-			        // run in new thread to play in background
-			        new Thread() {
-			            public void run() {
-			                try { player.play();
-			                	}
-			                catch (Exception e) { System.out.println(e); }
-			                
-			            }
-			        }.start();
+		        // run in new thread to play in background
+				
+				a.close();
+				MyAudioPlayer b = new MyAudioPlayer("mp3/mainSong.mp3",true);
+				model.setAudio(b);
+				b.start();
 				layeredPane.removeAll();
 				layeredPane.add(panel);
 				model.setPartieRapide(1);
@@ -311,28 +302,13 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 			   
 			}
 			if (source.equals(this.button3)){
-				Graphique2 gra = new Graphique2(this);
-				 try {
-			            FileInputStream fis     = new FileInputStream("mp3/mainSong.mp3");
-			            BufferedInputStream bis = new BufferedInputStream(fis);
-			            player = new Player(bis);
-			            model.setSong(player);
-			        }
-			        catch (Exception e1) {
-			            System.out.println("Problem playing file mainsong");
-			            System.out.println(e1);
-			        }
-
-			        // run in new thread to play in background
-			        new Thread() {
-			            public void run() {
-			            	
-			                try { player.play(); 
-			                }
-			                catch (Exception e) { System.out.println(e); }
-			               
-			            }
-			        }.start();
+				
+				a.close();
+				MyAudioPlayer b = new MyAudioPlayer("mp3/mainSong.mp3",true);
+				model.setAudio(b);
+				b.start();
+				 
+			        
 			        
 				layeredPane.removeAll();
 				layeredPane.add(panel);
