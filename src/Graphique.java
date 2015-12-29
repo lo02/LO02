@@ -247,6 +247,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 			            FileInputStream fis     = new FileInputStream("mp3/mainSong.mp3");
 			            BufferedInputStream bis = new BufferedInputStream(fis);
 			            player = new Player(bis);
+			            model.setSong(player);
 			        }
 			        catch (Exception e1) {
 			            System.out.println("Problem playing file mainsong");
@@ -256,7 +257,8 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 			        // run in new thread to play in background
 			        new Thread() {
 			            public void run() {
-			                try { player.play(); }
+			                try { player.play();
+			                	}
 			                catch (Exception e) { System.out.println(e); }
 			                
 			            }
@@ -291,6 +293,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 			            FileInputStream fis     = new FileInputStream("mp3/mainSong.mp3");
 			            BufferedInputStream bis = new BufferedInputStream(fis);
 			            player = new Player(bis);
+			            model.setSong(player);
 			        }
 			        catch (Exception e1) {
 			            System.out.println("Problem playing file mainsong");

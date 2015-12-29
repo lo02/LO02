@@ -1,5 +1,7 @@
 import java.util.List;
 
+import javazoom.jl.player.Player;
+
 public class Model {
 	
 	
@@ -48,6 +50,7 @@ public class Model {
 	private boolean resetPrincipalInterface = false; // reset l'interface graphique 
 	private boolean finished = false; // ferme toutes les autres fenêtres 
 	private boolean resetAll = false ; // Ferme et re-ouvre l'interface principale  
+	private Player song;
 	
 	
 	
@@ -374,6 +377,14 @@ public class Model {
 	public void setResetAll(boolean resetAll) {
 		this.resetAll = resetAll;
 		this.setNomJoueur(null);
+	}
+
+	public Player getSong() {
+		return song;
+	}
+
+	public void setSong(Player song) {
+		this.song = song;
 	}
 	
 	

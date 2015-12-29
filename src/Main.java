@@ -31,7 +31,7 @@ public class Main {
 	            	}
 	            	
 	            	try {
-	            		mod.getA().interrupt();
+	            		
 	            		mod.setRestart(false);
 	            		mod.setResetPrincipalInterface(true);
 	            		mod.setFinished(true);
@@ -60,6 +60,7 @@ public class Main {
 								}
 	            		        System.exit(0);
 	            		}
+	            		mod.getA().interrupt();
 	            		Thread.sleep(500);
 	            		mod.setFinished(false);
 	            		mod.getA().interrupt();

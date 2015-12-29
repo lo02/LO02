@@ -127,11 +127,11 @@ public class Graphique2 extends JFrame implements ActionListener{
 			}
 			if(source.equals( this.grainesBouton))
 					{
-				
 				mod.setRestart(true);
 					}
 			if(source.equals( this.graineBouton))
 			{
+				mod.getSong().close();
 				mod.setPartieRapide(-1);
 				mod.setResetAll(true);
 				mod.setRestart(true);
