@@ -112,10 +112,46 @@ public class FenetreFin {
 		JPanel panelImageResultat = new JPanel();
 		if (model.getPartieRapide()==1)
 		{
-		if(model.getListeJoueurGagnant().contains(model.getJoueurPrincipal()))
+			if(model.getListeJoueurGagnant().contains(model.getJoueurPrincipal()))
+			{
+				ImageIcon img89;
+				try {
+					model.getAudio().close();
+					a = new MyAudioPlayer("mp3/victorySong.mp3", true);
+					a.start();
+					img89 = new ImageIcon(ImageIO.read(new File("img/sdad.png"))
+					        .getScaledInstance(892, 215, Image.SCALE_SMOOTH));
+					JLabel pic76 = new JLabel(img89);
+					panelImageResultat.add(pic76);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			else
+			{
+			ImageIcon img89;
+			try {
+				model.getAudio().close();
+				a = new MyAudioPlayer("mp3/defeatSong.mp3", true);
+				a.start();
+				img89 = new ImageIcon(ImageIO.read(new File("img/defeat.png"))
+				        .getScaledInstance(892, 215, Image.SCALE_SMOOTH));
+				JLabel pic76 = new JLabel(img89);
+				panelImageResultat.add(pic76);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}else
+	{
+		
+		if(model.getJoueurGagnant().equals(model.getJoueurPrincipal()))
 		{
 			ImageIcon img89;
 			try {
+				
 				model.getAudio().close();
 				a = new MyAudioPlayer("mp3/victorySong.mp3", true);
 				a.start();
@@ -130,28 +166,12 @@ public class FenetreFin {
 		}
 		else
 		{
-		ImageIcon img89;
-		try {
-			model.getAudio().close();
-			a = new MyAudioPlayer("mp3/defeatSong.mp3", true);
-			a.start();
-			img89 = new ImageIcon(ImageIO.read(new File("img/defeat.png"))
-			        .getScaledInstance(892, 215, Image.SCALE_SMOOTH));
-			JLabel pic76 = new JLabel(img89);
-			panelImageResultat.add(pic76);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		}
-	}else
-	{
-		
-		if(model.getJoueurGagnant().equals(model.getJoueurPrincipal()))
-		{
 			ImageIcon img89;
 			try {
-				img89 = new ImageIcon(ImageIO.read(new File("img/sdad.png"))
+				model.getAudio().close();
+				a = new MyAudioPlayer("mp3/defeatSong.mp3", true);
+				a.start();
+				img89 = new ImageIcon(ImageIO.read(new File("img/defeat.png"))
 				        .getScaledInstance(892, 215, Image.SCALE_SMOOTH));
 				JLabel pic76 = new JLabel(img89);
 				panelImageResultat.add(pic76);
@@ -159,19 +179,6 @@ public class FenetreFin {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		}
-		else
-		{
-		ImageIcon img89;
-		try {
-			img89 = new ImageIcon(ImageIO.read(new File("img/defeat.png"))
-			        .getScaledInstance(892, 215, Image.SCALE_SMOOTH));
-			JLabel pic76 = new JLabel(img89);
-			panelImageResultat.add(pic76);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		}
 		
 		
