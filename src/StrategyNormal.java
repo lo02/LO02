@@ -1,8 +1,21 @@
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * 
+ * @author Anass et Gilles
+ * Cette classe permet aux joueurs virtuel de jouer Engrais ou Géant.
+ * Ici les joueurs virtuels ont une technique normale. Ils cherchent soit à planter des graines, soit à
+ * en demander.
+ */
 public class StrategyNormal implements Strategy {
-
+	
+	/**
+	 * Méthode qui permet de choisir qu'elle carte jouer
+	 * @param joueur
+	 * 				Variable qui contient le joueur virtuel qui veut choisir une carte
+	 * @return
+	 * 			Renvoie une liste qui dépend du choix du joueur virtuel, 
+	 */
 	public List choisirCarte(Joueur joueur){	
 		int choixTemporaire = 0;
 		int action=0;
@@ -34,6 +47,13 @@ public class StrategyNormal implements Strategy {
 		liste.add(1,action);
 		return liste;
 	}
+	
+	/**
+	 * Méthode qui permet de jouer Engrais
+	 * @param joueur
+	 * @return
+	 * 		renvoie la valeur de la carte à jouer
+	 */
 	public int jouerEngrais(Joueur joueur)
 	{
 		// on crée une collection de tableau 
@@ -67,6 +87,13 @@ public class StrategyNormal implements Strategy {
 			}
 					return choixTemporaire;
 	}
+	
+	/**
+	 * Méthode qui permet de jouer Géant.
+	 * @param joueur
+	 * @return
+	 * 		renvoie la valeur de la carte à jouer
+	 */
 	public int jouerGeant(Joueur joueur){
 		int choix = 0;
 		int choixTemp = 0;
@@ -88,12 +115,14 @@ public class StrategyNormal implements Strategy {
 		}
 		return choix;
 	}
+	
+	/**
+	 * Méthode qui permet de savoir si le joueur virtuel v a jouer offensivement
+	 * @return
+	 * 			renvoie un booléen 
+	 */
 	public boolean isOffensive()
 	{
 	return false;
-	}
-	public String toString()
-	{
-		return "";
-	}	
+	}		
 }

@@ -1,13 +1,40 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Anass et Gilles
+ * classe qui permet aux joueurs virtuel de jouer farfadet ou engrais.
+ * Ici les joueurs virtuels ont une technique offensive. Ils cherchent soit à voler des graines, soit
+ * à les planter
+ */
 public class StrategyOffensive implements Strategy{
+	/**
+	 * Booléen qui permet d'indiquer que l'on joue farfadet.
+	 */
 	private boolean farfadet = true;
+	/**
+	 * Variable de type Joueur qui contient le joueur cible.
+	 */
 	private Joueur joueurCible;
 	
 	
-	
-	
+	/**
+	 * Constructeur de StrategyOffensive
+	 * @param joueur
+	 */
+	public StrategyOffensive(Joueur joueur)
+	{
+		this.joueurCible = joueur;
+	}
+
+	/**
+	 * Méthode qui permet de choisir qu'elle carte jouer
+	 * @param joueur
+	 * 				Variable qui contient le joueur virtuel qui veut choisir une carte
+	 * @return
+	 * 			Renvoie une liste qui dépend du choix du joueur virtuel, 
+	 */
 	public List choisirCarte(Joueur joueur ){
 		int choixTemporaire = -1;
 		int action ; 
@@ -44,15 +71,23 @@ public class StrategyOffensive implements Strategy{
 		liste.add(2,this.joueurCible );
 		return liste;
 	}
-	
-	public StrategyOffensive(Joueur joueur)
-	{
-		this.joueurCible = joueur;
-	}
+	/**
+	 * Méthode qui permet de jouer farfadet.
+	 * @param joueur
+	 * @return
+	 * 		renvoie la valeur de la carte à jouer.
+	 */
 	public int jouerFarfadet(Joueur joueur){
 		int[] farfadet = joueur.getFarfadetAllCard();
 		return  this.cardMax(farfadet ,joueur.getMain().size());	
 	}
+	
+	/**
+	 * Méthode qui permet de jouer Engrais
+	 * @param joueur
+	 * @return
+	 * 		renvoie la valeur de la carte à jouer
+	 */
 	public int jouerEngrais(Joueur joueur){
 		// on crée une collection de tableau 
 		List<int[]> engrais = new ArrayList<int[]>();
@@ -95,6 +130,13 @@ public class StrategyOffensive implements Strategy{
 	}
 	
 	// méthodes qui permet le maximum dans un tableau, ici la valeur max de farfadet
+	/**
+	 * Méthode qui permet de chercher la carte qui posséde la plus grande valeur
+	 * @param cartes
+	 * @param z
+	 * @return
+	 * 		renvoie la carte la plus forte
+	 */
 	public int cardMax(int[] cartes, int z )
 	{
 		int max=0;
@@ -110,13 +152,13 @@ public class StrategyOffensive implements Strategy{
 		return id;
 	}
 	
+	/**
+	 * Méthode qui permet de savoir si le joueur virtuel v a jouer offensivement
+	 * @return
+	 * 			renvoie un booléen 
+	 */
 	public boolean isOffensive()
 	{
 		return this.farfadet;
-	}
-
-	public String toString()
-	{
-		return "";
 	}
 }

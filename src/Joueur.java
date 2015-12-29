@@ -6,29 +6,72 @@ import java.util.Random;
 
 public class Joueur {
 
+	/**
+	 * Attribut qui contient le nom du joueur
+	 * @see Joueur#getNom()
+	 * @see Joueur#setNom(String)
+	 */
 	protected String nom = "";
+	/**
+	 * Attribut qui contient le nombre de menhirs d'un joueur
+	 * @see Joueur#getNbreMenhir()
+	 * @see Joueur#setNbreMenhir(int)
+	 */
 	protected int nbreMenhir = 0;
+	/**
+	 * Attibut qui contient le nombre de graines d'un joueur
+	 * @see Joueur#getNbreGraine()
+	 * @see Joueur#setNbreGraine(int)
+	 */
 	protected int nbreGraine = 0;
-	protected List<Card> main = new ArrayList<Card>();	
+	/**
+	 * Attribut qui contient la main d'un joueur
+	 * @see Joueur#getMain()
+	 * 
+	 */
+	protected List<Card> main = new ArrayList<Card>();
+	/**
+	 * Atribut qui contient la carte allié d'un joueur
+	 * @see Joueur#getAllie()
+	 */
 	protected Card allie  ;
+	/**
+	 * Attribut qui va compter les menhirs d'un joueur
+	 */
 	protected int compteurMenhir = 0;
 	
+	/**
+	 * Construteur par défaut de Joueur
+	 */
 	public Joueur (){
 		this.nom = "";
 	}
-
+	/**
+	 * Construteur de Joueur avec des paramètres
+	 * @param nom
+	 * @param nbreMenhir
+	 * @param nbreGraine
+	 */
 	public Joueur(String nom, int nbreMenhir, int nbreGraine) {
 		this.nom = nom;
 		this.nbreMenhir = nbreMenhir;
 		this.nbreGraine = nbreGraine;
 	}
 
+	/**
+	 * Méthode qui permet aux joueurs virtuels d'effectuer leurs choix au début d'une manche en partie avancée
+	 */
 	public void choixDebutManche(){};
 	
 	/*Méthode qui va permettre de choisir soit une carte alliée soit 2 graines en début de manche en partie
 	 * avancée;
 	 * Pour prendre des graines en met 1, on met 2 pour avoir une carte alliée.
 	*/
+	/**
+	 * Méthode qui permet d'attribuer au joueur physique le choix entre une carte alliée ou bien deux graines, au
+	 * début d'une manche en partie avancée.
+	 * @param choix
+	 */
 	public void choixDebutManche(int choix){
 		if (choix == 1){
 			this.setNbreGraine(this.getNbreGraine()+2);
@@ -44,6 +87,9 @@ public class Joueur {
 			}
 	}
 
+	/**
+	 * Méthode qui permet de remplir la main de chaque joueur.
+	 */
 	public void remplirMainJoueur()
 	{
 		Card tasDeCarte = new Ingredient();		
@@ -58,6 +104,9 @@ public class Joueur {
 		tasDeCarte.setTasDeCartes(tempTas);			
 	}
 	
+	/**
+	 * Méthode qui permet de mettre un allié dans la main d'un joueur
+	 */
 	public void remplirMainJoueurAllie()
 	{
 		Card tasDeCarte = new Allie();		
@@ -68,11 +117,22 @@ public class Joueur {
 		tasDeCarte.setTasDeCartes(tas);
 	}
 
-	public Strategy choisirStrategie(Joueur joueur, Joueur chercherJoueurGrainesMax) {
-		// TODO Auto-generated method stub
+	/**
+	 * Méthode qui permet aux joueurs virtuels de choisir la meilleur stratégie possible.
+	 * @param joueur
+	 * @param chercherJoueurGrainesMax
+	 * @return
+	 * 		renvoie null, car cette méthode est redéfinie dans virtuel
+	 */
+	public Strategy choisirStrategie(Joueur joueur, Joueur joueurCible) {
 		return null;
 	}
 
+	/**
+	 * Recherche la valeur maximum d'une carte pour l'action Géant
+	 * @return
+	 * 		renvoie la carte qui possède la valeur la plus grande pour l'action Géant
+	 */
 	public int valeurMaxGeant()
 	{
 		int max= 0;
@@ -87,6 +147,11 @@ public class Joueur {
 	}
 
 	// Méthode poser carte qui va permettre de jouer Engrais ou Géant
+	/**
+	 * Méthode qui permet de poser une carte lorsque l'on joue Engrais ou Géant
+	 * @param index
+	 * @param action
+	 */
 	public void poserCarte(int index , int action )
 	{
 		// Si le joueur joue le géant, alors il entre dans cette condition
@@ -108,6 +173,11 @@ public class Joueur {
 	}
 
 	//Méthode poserCarte pour l'action farfadet
+	/**
+	 * Méthide qui permet de poser une carte lorsque l'on joue Farfadet
+	 * @param index
+	 * @param joueurCible
+	 */
 	public void poserCarte(int index , Joueur joueurCible)
 	{
 	
@@ -139,6 +209,12 @@ public class Joueur {
 	}
 
 	//On se place dans le cas d'une partie avancée avec un joueur qui peut jouer un farfadet.
+	/**
+	 * Méthode qui permet de poser une carte losque l'on joue Farfadet lors d'une partie avancée. 
+	 * Il faut prendre en compte si le joueur attaqué possède un chien de garde.
+	 * @param index
+	 * @param joueurCible
+	 */
 	public void poserCarteBis(int index , Joueur joueurCible)
 	{
 	
@@ -216,6 +292,15 @@ public class Joueur {
 		//this.main.remove(index);
 	}
 
+	/**
+	 * Méthode qui permet de jouer l'allié chien de garde.
+	 * Elle demande à l'utilisateur si il veut se défendre.
+	 * @param valeur
+	 * @param j
+	 * @param joueurCible
+	 * @return
+	 * 		renvoie le choix de l'utilisateur(s'il veut se défendre ou non)
+	 */
 	public int jouerChien(int valeur, Joueur j, Joueur joueurCible){
 		if(Main.danger(valeur, j, joueurCible)){
 			//On recupere la valeur du chien de garde lors de cette saison
@@ -229,6 +314,10 @@ public class Joueur {
 		}
 	}
 
+	/**
+	 * Méthode qui permet de jouer l'allié taupe.
+	 * @param joueurCible
+	 */
 	public void jouerTaupe(Joueur joueurCible){
 		if(this.getAllie() == null){
 			
@@ -250,18 +339,23 @@ public class Joueur {
 		}
 		
 	}
-
+	/**
+	 * Méthode pour jouer l'allié taupe d'un joueur virtuel
+	 * @param j
+	 * @param j2
+	 */
 	public void jouerTaupe(Joueur j , Joueur j2)
 	{
 		
 	}
 
-	public Strategy choisirStrategie(Joueur joueur )
-	{
-		return null;
-		
-	}
-
+	/**
+	 * Méthode qui permet de chercher la carte avec la plus grande valeur
+	 * @param cartes
+	 * @param z
+	 * @return
+	 * 		renvoie la carte la plus forte
+	 */
 	public int cardMax(int[] cartes, int z )
 	{
 		int max=0;
@@ -276,7 +370,12 @@ public class Joueur {
 		}
 		return id;
 	}
-
+	
+	/**
+	 * Recherche la valeur maximum d'une carte pour l'action Farfadet
+	 * @return
+	 * 		renvoie la carte qui possède la valeur la plus grande pour l'action Farfadet
+	 */
 	public int valeurMaxFarfadet()
 	{
 		int max= 0;
@@ -290,6 +389,10 @@ public class Joueur {
 		return max;
 	}
 
+	/**
+	 * Méthode qui permet de planter des graines.
+	 * @param nbrGrainesCarte
+	 */
 	public void planterGraines(int nbrGrainesCarte){
 		if(nbrGrainesCarte <= this.nbreGraine)
 		{
@@ -305,55 +408,117 @@ public class Joueur {
 		}	
 	}
 
+	/**
+	 * Méthode qui permet de choisir un carte pour un joueur virtuel
+	 * @param strategie
+	 * @return
+	 * 		
+	 */
 	public List choisirCarte(Strategy strategie)
 	{		
 		return null;
 	}
-
+	/**
+	 * Méthode qui actualise le nom d'un  joueur
+	 * @param nom
+	 * 		nouveau nom
+	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
+	/**
+	 * Méthode qui actualise le nombre de Menhir d'un joueur
+	 * @param nom
+	 * 		nouveau nombre de menhir
+	 */
 	public void setNbreMenhir(int nbreMenhir) {
 		this.nbreMenhir = nbreMenhir;
 	}
-
+	/**
+	 * Méthode qui actualise le nombre de graine d'un  joueur
+	 * @param nom
+	 * 		nouveau nombre de graine
+	 */
 	public void setNbreGraine(int nbreGraine) {
 		this.nbreGraine = nbreGraine;
 	}
 	
+	/**
+	 * Méthode qui actualise une carte allie
+	 * @param nom
+	 * 		nouvelle carte alliée
+	 */
 	public void setAllie(Card allie) {
 		this.allie = allie;
 	}
-
+	
+	/**
+	 * Méthode qui actualise la valeur pour compter les menhirs d'un  joueur
+	 * @param nom
+	 * 		nouvelle valeur de menhirs
+	 */
 	public void setCompteurMenhir(int compteurMenhir) {
 		this.compteurMenhir = compteurMenhir;
 	}
 
+	/**
+	 * Methode qui donne le nombre de menhir d'un joueur
+	 * @return
+	 * 		renvoie le nombre de menhir
+	 */
 	public int getNbreMenhir() {
 		return nbreMenhir;
 	}
-
+	
+	/**
+	 * Methode qui donne le compteur de menhir d'un joueur
+	 * @return
+	 * 		renvoie le compteur de menhir
+	 */
 	public int getCompteurMenhir() {
 		return compteurMenhir;
 	}
 
+	/**
+	 * Methode qui donne le nom d'un joueur
+	 * @return
+	 * 		renvoie le nom
+	 */
 	public String getNom() {
 		return nom;
 	}
 
+	/**
+	 * Methode qui donne le nombre de graine d'un joueur
+	 * @return
+	 * 		renvoie le nombre de graine
+	 */
 	public int getNbreGraine() {
 		return nbreGraine;
 	}
 
+	/**
+	 * Methode qui donne la main d'un joueur
+	 * @return
+	 * 		renvoie la main
+	 */
 	public List<Card> getMain(){
 		return this.main;
 	}
-
+	/**
+	 * Methode qui donne a carte alliée d'un joueur
+	 * @return
+	 * 		renvoie la carte alliée
+	 */
 	public Card getAllie() {
 		return allie;
 	}
-
+	
+	/**
+	 * Methode qui donne toutes les valeurs de Farfadet d'un main
+	 * @return
+	 * 		renvoie un tableau avec les valeurs de farfadet
+	 */
 	public int[] getFarfadetAllCard()
 	{
 		int[] farfadet = new int[this.main.size()];
@@ -365,6 +530,11 @@ public class Joueur {
 		return farfadet;
 	}
 	
+	/**
+	 * Methode qui donne toutes les valeurs de Géant d'un main
+	 * @return
+	 * 		renvoie un tableau avec les valeurs de Géant
+	 */
 	public int[] getGeantAllCard()
 	{
 		int[] geant = new int[this.main.size()];
@@ -376,12 +546,21 @@ public class Joueur {
 		return geant;
 	}
 	
+	/**
+	 * Méthode qui permet d'afficher un message sur la console.
+	 * 
+	 */
 	public String toString()
 	{
 		return "<tr><td style='background-color:677DC1; color:white;'>Village : " + this.nom +" <br><ul><li>Nombres ménhirs : "+ this.nbreMenhir +
 				"</li><li>Nombres graines : "+ this.nbreGraine+"</li></ul>";
 	
 	}
+	/**
+	 * Methode qui permet de savoir si le joueur est un joueur virtuel
+	 * @return
+	 * 		return un booléen
+	 */
 	public boolean isVirtuel()
 	{
 		return false;

@@ -12,9 +12,6 @@ import javax.swing.JPanel;
 
 public class Main {
 	
-	// 
-	
-	
 	public static void main(String[] argc) throws InterruptedException{
 		 Model mod = Model.getInstance();
 		mod.setA(Thread.currentThread());
