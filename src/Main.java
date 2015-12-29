@@ -261,6 +261,7 @@ public class Main {
 				j.setNbreMenhir(10);
 				
 				
+				
 				mod.setMessage("Début de la manche "+ (manche+1));
 				ChoixDebutManche m = new ChoixDebutManche(0);
 				while(mod.getChoix()== 0)
@@ -348,7 +349,6 @@ public class Main {
 							pause();
 						}		
 					}
-					System.out.println(partie.getListJoueur());
 					
 					//System.out.println("Tapez une touche pour continuer");
 					//pause();	
@@ -402,7 +402,9 @@ public class Main {
 		if (joueurcible.equals(model.getJoueurPrincipal()))
 				{
 					if(model.getPartieRapide()==2)
-					{
+					{	
+				if(model.getAllie()!= null)
+				{
 					if(model.getAllie().equals("Chien de garde"))
 					{
 						while(model.getChienDeGardeAction()==-1)
@@ -417,6 +419,12 @@ public class Main {
 						if(model.getChienDeGardeAction()==0)
 						{
 							model.setFarfadetAnimation(true);
+							try {
+								Thread.sleep(4000);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							model.setChienDeGardeAction(-1);
 						}
 						if(model.getChienDeGardeAction()==1)
@@ -425,14 +433,34 @@ public class Main {
 							model.setChienDeGardeAction(-1);
 						}
 					}
+					else{
+						Main.farfadetAnimation(joueur, joueurcible, carte);
+						}
 				}
+				else{
+					
+					Main.farfadetAnimation(joueur, joueurcible, carte);
 				}
-
-		if (joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]<= joueurcible.getNbreGraine())
-			model.setMessage("Le joueur "+joueur.getNom()+" vole "+ joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]+ " graine(s) de "+joueurcible.getNom());
+				
+				}
+					else
+					{
+						
+						Main.farfadetAnimation(joueur, joueurcible, carte);
+					}
+				}
 		else
-			model.setMessage("Le joueur "+joueur.getNom()+" vole "+joueurcible.getNbreGraine() + " graine(s) de "+joueurcible.getNom());
-	}
+		{
+			if (joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]<= joueurcible.getNbreGraine())
+			{
+				
+				model.setMessage("Le village "+joueur.getNom()+" a volé "+ joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]+ " graine(s) à "+joueurcible.getNom());
+			}else{
+				
+				model.setMessage("Le village "+joueur.getNom()+" a volé "+joueurcible.getNbreGraine() + " graine(s) à "+joueurcible.getNom());
+			}
+		}
+		}
 	
 	
 	public static void afficherAction(Joueur joueur, int carte, int action){
@@ -638,4 +666,28 @@ public class Main {
 		     return Main.saisie(saisie, min, max);	
 	    }		
 	}
+	
+	
+	public static void farfadetAnimation(Joueur joueur , Joueur joueurcible , int carte)
+	{
+			Model model = Model.getInstance();
+			model.setFarfadetAnimation(true);
+			try {
+				Thread.sleep(4000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]<= joueurcible.getNbreGraine())
+			{
+				
+				model.setMessage("Le joueur "+joueur.getNom()+" vous a volé "+ joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]+ " graine(s)");
+			}else{
+				
+				model.setMessage("Le joueur "+joueur.getNom()+" vous a volé "+joueurcible.getNbreGraine() + " graine(s)");
+			}
+			
+		}
+
+	
 }
