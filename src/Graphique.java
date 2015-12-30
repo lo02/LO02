@@ -401,9 +401,16 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				
 				// animation rajout menhirs 
 				if (model.getMenhir()!=0) {
+					if(model.getMenhir()==-1)
+					{
+						panel.removeAll();
+					}
+					else
+					{
 					for(int i=0;i<model.getMenhir();i++)
 					{
 						addMenhir();
+					}
 					}
 					model.setMenhir(0);
 				}

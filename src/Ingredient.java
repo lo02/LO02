@@ -167,7 +167,10 @@ public class Ingredient extends Card {
 		tasdecartes.addAll(cartes);
 	}
 
-	
+	public static void resetTasDeCartes()
+	{
+		tasdecartes.clear();
+	}
 	@Override
 	public void setValeur(int parseInt, int j) {
 		// TODO Auto-generated method stub

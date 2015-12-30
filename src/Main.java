@@ -15,6 +15,31 @@ public class Main {
 	public static void main(String[] argc) throws InterruptedException{
 		 Model mod = Model.getInstance();
 		mod.setA(Thread.currentThread());
+	
+		 
+		// On lance l'interface principale
+		 if(!(mod.isDoNotRelaunch()))
+		 {
+			 Graphique inter = new Graphique(0);
+		 }
+		
+		while(mod.getNomJoueur() == null)
+		{
+			Thread.sleep(100);
+		}
+		
+		
+		//on demande au joueur physique de se donner un nom
+		
+		String nom = mod.getNomJoueur();
+		
+		//On met le nom dans le joueur
+		Joueur j = new Joueur(nom,0,0); 
+		mod.setJoueurPrincipal(j);
+		System.out.println("Vous vous appelez : " +nom +"\n" + j);
+		// demande du nombre de joueurs
+		Partie partie = new Partie(mod.getNombreJoueurs());
+		
 		 new Thread() {
 	            public void run() {
 	            	
@@ -69,38 +94,16 @@ public class Main {
 	            		mod.getA().interrupt();
 	            		mod.clearBox();
 	            		Thread.sleep(1000);
-	            		
+	            		Ingredient.resetTasDeCartes();
 						main(argc);
-						
+					
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 	            }
 		 }.start();
-		 
-		// On lance l'interface principale
-		 if(!(mod.isDoNotRelaunch()))
-		 {
-			 Graphique inter = new Graphique(0);
-		 }
 		
-		while(mod.getNomJoueur() == null)
-		{
-			Thread.sleep(100);
-		}
-		
-		
-		//on demande au joueur physique de se donner un nom
-		
-		String nom = mod.getNomJoueur();
-		
-		//On met le nom dans le joueur
-		Joueur j = new Joueur(nom,0,0); 
-		mod.setJoueurPrincipal(j);
-		System.out.println("Vous vous appelez : " +nom +"\n" + j);
-		// demande du nombre de joueurs
-		Partie partie = new Partie(mod.getNombreJoueurs());
 		//On ajoute le joueur physique dans la liste des joueurs  
 		List<Joueur> listeTemp =  new ArrayList<Joueur>(); 
 		listeTemp = partie.getListJoueur();
@@ -262,7 +265,7 @@ public class Main {
 				
 				
 				
-				mod.setMessage("Début de la manche "+ (manche+1));
+				mod.setMessage("Début de la manche "+ (manche+1)+"<br>");
 				ChoixDebutManche m = new ChoixDebutManche(0);
 				while(mod.getChoix()== 0)
 				{
@@ -278,8 +281,7 @@ public class Main {
 				
 				if (choix == 2){
 					mod.setAllie(j.getAllie());
-					System.out.println("Votre carte alliée :\n"+j.getAllie());
-					
+				
 					SelectionCarteAlliee B = new SelectionCarteAlliee(0);
 				
 					
@@ -353,7 +355,7 @@ public class Main {
 					//System.out.println("Tapez une touche pour continuer");
 					//pause();	
 				}
-				
+				mod.setMenhir(-1);
 				partie.initierPartieAvancee();
 				
 				
@@ -483,7 +485,7 @@ public class Main {
 			if(!(joueurCible.isVirtuel()))
 			{
 			
-			model.setAncienPointCible(joueurCible.getNbreMenhir());
+			model.setAncienPointCible(joueurCible.getNbreMenhir()+joueur.getAllie().getValeur()[Partie.getTour()]);
     		model.setMenhirADetruire(joueur.getAllie().getValeur()[Partie.getTour()]);
     		model.setTaupeEnnemi(true);
 			}
@@ -671,6 +673,18 @@ public class Main {
 	public static void farfadetAnimation(Joueur joueur , Joueur joueurcible , int carte)
 	{
 			Model model = Model.getInstance();
+			
+			if(joueurcible.getAllie()!= null)
+			{
+				if(joueurcible.getAllie().getTitre().equals("Chien de garde"))
+				{
+					
+				}
+			}
+			else
+			{
+				
+			
 			model.setFarfadetAnimation(true);
 			try {
 				Thread.sleep(4000);
@@ -686,7 +700,7 @@ public class Main {
 				
 				model.setMessage("Le joueur "+joueur.getNom()+" vous a volé "+joueurcible.getNbreGraine() + " graine(s)");
 			}
-			
+			}
 		}
 
 	
