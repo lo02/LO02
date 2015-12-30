@@ -107,9 +107,9 @@ public class Score extends JFrame implements Runnable {
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		    int x = (int) dimension.getWidth();
 		  
-		frame.setBounds(x-180,0 ,195, 110*(model.getNombreJoueurs()+1));
-		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(x-190,0 ,180, 110*(model.getNombreJoueurs()+1));
+		frame.setFocusableWindowState(false);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	
 		
 		
@@ -127,10 +127,18 @@ public class Score extends JFrame implements Runnable {
 		// TODO Auto-generated method stub
 		while(true)
 		{
-			if(lblNewLabel.getText().equals("<html><table>"+model.getJoueursPoints()+"</table></html>"))
+			String points = "<html><table>";
+			for(int i = 0 ;i<model.getListeJoueur().size();i++)
+			{
+				points = points + model.getListeJoueur().get(i).toString();
+			
+			}
+			
+			if(lblNewLabel.getText().equals(points))
 			{
 				try {
 					Thread.sleep(250);
+					points = "";
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -139,7 +147,8 @@ public class Score extends JFrame implements Runnable {
 			}
 			else
 			{
-				lblNewLabel.setText("<html><table>"+model.getJoueursPoints()+"</table></html>");
+				
+				lblNewLabel.setText(points);
 			}
 		}
 		

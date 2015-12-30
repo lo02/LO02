@@ -1,9 +1,7 @@
 import java.awt.EventQueue;
-import javazoom.jl.player.Player;
-import javazoom.jl.player.advanced.AdvancedPlayer;
-
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.LayoutManager;
 import javax.swing.JFrame;
 import java.awt.Panel;
@@ -15,7 +13,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -33,6 +33,7 @@ import javax.swing.JLayeredPane;
 import java.awt.ScrollPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.imageio.ImageIO;
 import javax.print.DocFlavor.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -47,6 +48,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 	private JTextField textField;
 	protected JLayeredPane layeredPane;
 	protected JPanel panel;
+	private JPanel panel4;
 	protected Model model;
 	protected Button button;
 	protected Button button2;
@@ -55,6 +57,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 	private Thread thread;
 	private Thread t2;
 	private MyAudioPlayer a;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -99,17 +102,37 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		    int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
 		    int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
-		frame.setBounds(x-(1024/2), 0 ,1024, 542);
-		
+		frame.setBounds(x-(1024/2), 0 ,1008, 503);
+		frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBackground(Color.black);
+	
 		
 		this.panel = new JPanel( new FlowLayout(FlowLayout.LEFT, 0, 0) );
-		panel.setBounds(0, 0, 1008, 503);
+		
+		this.panel4 = new JPanel( new FlowLayout(FlowLayout.LEFT, 0, 0) );
+		
+		panel4.setBounds(0, 0, 1024, 542);
 		JPanel panel_1 = new JPanel();
 		
 		
 		layeredPane = new JLayeredPane();
+		
+		
 		frame.getContentPane().add(layeredPane, BorderLayout.CENTER);
+		
+		ImageIcon img89;
+		try {
+			img89 = new ImageIcon(ImageIO.read(new File("img/background.jpg"))
+			        .getScaledInstance(1024, 542, Image.SCALE_SMOOTH));
+			JLabel pic76 = new JLabel(img89);
+			pic76.setBounds(x-(1024/2), 0 ,1024, 542);
+			panel4.add(pic76);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		
 		this.button = new Button("Nouvelle partie");
 		button.addActionListener(this);
@@ -120,7 +143,12 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 		button.setBounds(461, 192, 100, 22);
 		layeredPane.add(button);
 		
-		Button button_1 = new Button("Param\u00E8tres ");
+		Button button_1 = new Button("Règles du jeu ");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FenetreRegles a = new FenetreRegles(0);
+			}
+		});
 		button_1.setBounds(461, 220, 100, 22);
 		layeredPane.add(button_1);
 		
@@ -144,7 +172,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 		layeredPane.add(button_3);
 		
 		
-		layeredPane.add(panel);
+		//layeredPane.add(panel);
 		
 		
 		new Thread()
@@ -204,13 +232,14 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 	         public void keyReleased(KeyEvent e) {                
 	             if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
 	            	 //System.out.println("You Typed esc ");
-	            	 model.getA().suspend();
+	            	 
 	            	 FenetrePause p = new FenetrePause(0);
 	            	 
 	             }
 	          }        
 	       });
 		
+		layeredPane.add(panel4);
 		
 	}
 	
@@ -225,17 +254,18 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 					
 					
 					
+				
 					textField = new JTextField();
 					textField.setBounds(462, 202, 100, 20);
 					layeredPane.add(textField);
 					textField.setColumns(10);
 					
-					JLabel lblNomDuVillage = new JLabel("Nom du village :");
+					JLabel lblNomDuVillage = new JLabel("<html> <font color=white>Nom du village :</font></html>");
 					lblNomDuVillage.setBounds(462, 177, 100, 14);
 					layeredPane.add(lblNomDuVillage);
 					
-					JLabel lblNombresDeJoueurs = new JLabel("Nombres de joueurs : ");
-					lblNombresDeJoueurs.setBounds(462, 233, 100, 14);
+					JLabel lblNombresDeJoueurs = new JLabel("<html> <font color=white>Nombres de joueurs :</font> </html>");
+					lblNombresDeJoueurs.setBounds(462, 233, 125, 14);
 					layeredPane.add(lblNombresDeJoueurs);
 					
 					choice = new Choice();
@@ -250,7 +280,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 					
 					this.button2 = new Button("Partie rapide");
 					button2.addActionListener(this);
-					panel.setBackground(new Color(0,0,0,0));
+					
 					
 					
 								
@@ -264,20 +294,23 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 					button3.setBounds(512, 279, 100, 32);
 					layeredPane.add(button3);
 					button3.addActionListener(this);
+					layeredPane.add(panel4);
 					
 				}
 
 			if(source.equals( this.button2))
 			{
 				
-
 		        // run in new thread to play in background
-				
+				frame.setFocusableWindowState(false);
+				layeredPane.remove(panel4);
 				a.close();
 				MyAudioPlayer b = new MyAudioPlayer("mp3/mainSong.mp3",true);
 				model.setAudio(b);
 				b.start();
 				layeredPane.removeAll();
+				panel.setOpaque(false);
+				panel.setBackground(new Color(0,0,0,0));
 				layeredPane.add(panel);
 				model.setPartieRapide(1);
 				model.setNomJoueur(textField.getText());
@@ -302,7 +335,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 			   
 			}
 			if (source.equals(this.button3)){
-				
+				frame.setFocusableWindowState(false);
 				a.close();
 				MyAudioPlayer b = new MyAudioPlayer("mp3/mainSong.mp3",true);
 				model.setAudio(b);
@@ -311,6 +344,8 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 			        
 			        
 				layeredPane.removeAll();
+				panel.setOpaque(false);
+				panel.setBackground(new Color(0,0,0,0));
 				layeredPane.add(panel);
 				model.setPartieRapide(2);
 				model.setNomJoueur(textField.getText());
@@ -337,7 +372,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 	
 		public void addMenhir(){
 			
-			panel.setBounds(270, 0, 470, 80);
+			panel.setBounds(270, 20, 470, 80);
 			panel.setBackground(new Color(0,0,0,0));
 			panel.setOpaque(false);
 		    //panel_1.add(pic2);
@@ -420,7 +455,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 					// animation Joueur principal demande des graines
 				if(model.isGeantAnimation())
 				{
-					panel.setBounds(270, 0, 470, 80);
+					panel.setBounds(270, 20, 470, 80);
 					panel.setVisible(false);
 					frame.remove(picLabel);
 					ImageIcon icon = new ImageIcon("geant/e.gif");
@@ -451,14 +486,14 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				    frame.revalidate();
 				    frame.repaint();
 					
-				    panel.setBounds(270, 0, 470, 80);
+				    panel.setBounds(270, 20, 470, 80);
 					model.setGeantAnimation(false);
 				}
 				// Animation joueur principal  qui se fait voler 
 				if(model.isFarfadetAnimation()==true)
 				{
 					frame.remove(picLabel);
-					panel.setBounds(270, 0, 470, 80);
+					panel.setBounds(270, 20, 470, 80);
 					frame.add(picLabel4, BorderLayout.CENTER);
 				    frame.revalidate();
 				    frame.repaint();
@@ -479,7 +514,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				// Animation joueur principal qui se fait voler mais réponds par un chien de garde
 				if(model.isChienDeGarde()==true)
 				{
-					panel.setBounds(270, 0, 470, 80);
+					panel.setBounds(270, 20, 470, 80);
 					frame.remove(picLabel);
 					JLabel picLabel9 = new JLabel(new ImageIcon("geant/chiendegarde.gif"));
 					frame.add(picLabel9, BorderLayout.CENTER);
@@ -503,7 +538,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				// animation joueur principal qui vole 
 				if(model.isFarfadetAnimation2()==true)
 				{
-					panel.setBounds(270, 0, 470, 80);
+					panel.setBounds(270, 20, 470, 80);
 					frame.remove(picLabel);
 					panel.removeAll();
 					for (int i=0; i<model.getListeJoueur().get(model.getIndexJoueurCible()).getNbreMenhir();i++)
@@ -545,7 +580,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				
 				if(model.isChienDeGardeEnnemi()==true)
 				{
-					panel.setBounds(270, 0, 470, 80);
+					panel.setBounds(270, 20, 470, 80);
 					frame.remove(picLabel);
 					panel.removeAll();
 					
@@ -587,7 +622,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				}
 				if(model.isTaupe()==true)
 				{
-					panel.setBounds(270, 0, 470, 80);
+					panel.setBounds(270, 20, 470, 80);
 					panel.removeAll();
 					
 					frame.remove(picLabel);
@@ -687,7 +722,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				
 				if(model.isTaupeEnnemi()==true)
 				{
-					panel.setBounds(270, 0, 470, 80);
+					panel.setBounds(270, 20, 470, 80);
 					panel.removeAll();
 					
 					frame.remove(picLabel);
@@ -696,7 +731,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 				    frame.revalidate();
 				    frame.repaint();
 					
-				    panel.setBounds(270, 0, 470, 80);
+				    panel.setBounds(270, 20, 470, 80);
 					panel.setBackground(new Color(0,0,0,0));
 					panel.setOpaque(false);
 					

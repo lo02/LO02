@@ -108,7 +108,7 @@ public class MessageBox extends JFrame implements Runnable{
 		frame2.setBounds(x-300, y ,290, 233);
 		frame2.getContentPane().add(layeredPane, BorderLayout.CENTER);
 		
-	 scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 299, 172);
 		scrollPane.getViewport().setBackground(Color.BLACK);
 		layeredPane.add(scrollPane);
@@ -133,8 +133,7 @@ public class MessageBox extends JFrame implements Runnable{
 			{
 				try {
 					Thread.sleep(100);
-					barre=scrollPane.getVerticalScrollBar();
-	                barre.setValue(scrollPane.getMaximumSize().height+30);
+					
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -142,9 +141,17 @@ public class MessageBox extends JFrame implements Runnable{
 			}
 			else
 			{
-				label.setText(mod.getMessage());
+					label.setText(mod.getMessage());
+					
+				  
+				  try {
+					Thread.sleep(750);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				  barre=scrollPane.getVerticalScrollBar();
-	                barre.setValue(scrollPane.getMaximumSize().height+30);
+	                barre.setValue(scrollPane.getMaximumSize().height+50);
 			}
 		}
 		

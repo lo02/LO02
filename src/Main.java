@@ -1,5 +1,8 @@
 //Code réalisé par EZZAAMARI Anass et JAUVION Gilles
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
@@ -8,6 +11,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Main {
@@ -15,11 +22,38 @@ public class Main {
 	public static void main(String[] argc) throws InterruptedException{
 		 Model mod = Model.getInstance();
 		mod.setA(Thread.currentThread());
-	
-		 
+		
+		/*ImageIcon img89;
+		try {
+			img89 = new ImageIcon(ImageIO.read(new File("img/background.jpg"))
+			        /*.getScaledInstance(892, 215, Image.SCALE_SMOOTH));
+			JLabel pic76 = new JLabel(img89);
+			pic76.setBounds(x-(1024/2), 0 ,1024, 542);
+			frame.add(pic76);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}*/
+		
+		
 		// On lance l'interface principale
 		 if(!(mod.isDoNotRelaunch()))
 		 {
+			 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+			    int x = (int) ((dimension.getWidth() ));
+			    int y = (int) ((dimension.getHeight()));
+			JFrame frame = new JFrame();    
+			frame.setBounds(0, 0 ,x, y);
+			frame.setUndecorated(true);
+			frame.setFocusableWindowState(false);
+			JPanel panel5 = new JPanel();
+			panel5.setBounds(0, 0, x, y);
+			panel5.setBackground(Color.black);
+			frame.add(panel5);
+			frame.setVisible(true);
+			
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			 
 			 Graphique inter = new Graphique(0);
 		 }
 		
@@ -226,7 +260,7 @@ public class Main {
 			mod.setListeJoueur(partie.getListJoueur());
 			Score boiteDeScore = new Score(0);
 			MessageBox message = new MessageBox(0);
-			j.setNbreMenhir(5);
+			
 			
 			new Thread() {
 	            public void run() {
@@ -263,11 +297,10 @@ public class Main {
 			for(int manche = 0 ; manche<partie.getListJoueur().size(); manche++)
 			{
 				
-				j.setNbreMenhir(10);
 				
 				
 				
-				mod.setMessage("Début de la manche "+ (manche+1)+"<br>");
+				mod.setMessage("<br><font color=4B98FD>Début de la manche "+ (manche+1)+"</font><br>");
 				ChoixDebutManche m = new ChoixDebutManche(0);
 				while(mod.getChoix()== 0)
 				{
@@ -562,6 +595,7 @@ public class Main {
 				
 			j.poserCarte(carte, partie.getListJoueur().get(cible));*/
 			
+			@SuppressWarnings("unused")
 			ChoixJoueur b = new ChoixJoueur(0);
 			while(mod.getIndexJoueurCible()==-1)
 			{

@@ -158,7 +158,7 @@ public class FenetreFin {
 				model.getAudio().close();
 				a = new MyAudioPlayer("mp3/victorySong.mp3", true);
 				a.start();
-				img89 = new ImageIcon(ImageIO.read(new File("img/sdad.png"))
+				img89 = new ImageIcon(ImageIO.read(new File("img/victory2.png"))
 				        .getScaledInstance(892, 215, Image.SCALE_SMOOTH));
 				JLabel pic76 = new JLabel(img89);
 				panelImageResultat.add(pic76);
