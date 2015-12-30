@@ -460,4 +460,29 @@ public class Partie {
 	{
 		this.listeJoueur = listeJoueur;
 	}
+	
+	/**
+	 * Méthode qui donne le nom de la saison selon le numéro de tours
+	 * @param numero tour
+	 * 				nom de la saison
+	 */
+	public String saisonFromInt(int a)
+	{
+		if(a==0)
+		{
+			return "printemps";
+		}
+		if(a==1)
+		{
+			return "été";
+		}
+		if(a==2)
+		{
+			return "automne";
+		}
+		else
+		{
+			return "hiver";
+		}
+	}
 }

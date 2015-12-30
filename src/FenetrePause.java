@@ -63,6 +63,7 @@ public class FenetrePause {
 		btnRecommencerPartie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.getA().resume();
+				model.setListeJoueur(null);
 				model.setMain(null);
 				model.setRestart(true);
 				frame.setVisible(false);

@@ -110,6 +110,7 @@ public class FenetreFin {
 		});
 		
 		JPanel panelImageResultat = new JPanel();
+		panelImageResultat.setBounds(125, 234, 647, 189);
 		if (model.getPartieRapide()==1)
 		{
 			if(model.getListeJoueurGagnant().contains(model.getJoueurPrincipal()))
@@ -122,6 +123,7 @@ public class FenetreFin {
 					img89 = new ImageIcon(ImageIO.read(new File("img/victory2.png"))
 					        .getScaledInstance(892, 215, Image.SCALE_SMOOTH));
 					JLabel pic76 = new JLabel(img89);
+					pic76.setBounds(125, 234, 647, 189);
 					panelImageResultat.add(pic76);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -139,6 +141,7 @@ public class FenetreFin {
 				        .getScaledInstance(892, 215, Image.SCALE_SMOOTH));
 				JLabel pic76 = new JLabel(img89);
 				panelImageResultat.add(pic76);
+				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -187,7 +190,7 @@ public class FenetreFin {
 		//JLabel pic = new JLabel(new ImageIcon(model.getMain().get(0).getLogo()));
 		
 		panelImageResultat.setOpaque(true);
-		panelImageResultat.setBackground(Color.BLACK);
+		panelImageResultat.setBackground(new Color(1.0f,1.0f,1.0f,0));
 		
 		panelImageResultat.setBounds(0, 0, 892, 215);
 		layeredPane.add(panelImageResultat);

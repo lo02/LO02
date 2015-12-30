@@ -42,13 +42,14 @@ public class ChoixAttaque extends JFrame implements ActionListener{
 	private JButton graineBouton;
 	private Graphique fenetrePrincipale;
 	private Model mod = Model.getInstance();
+	private JButton btnNewButton_3;
 
 
 	
 	/**
 	 * Launch the application.
 	 */
-	public ChoixAttaque (int a)
+	public ChoixAttaque(int a )
 	{
 		
 		
@@ -99,7 +100,7 @@ public class ChoixAttaque extends JFrame implements ActionListener{
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		    int x = (int) ((dimension.getWidth() - frame2.getWidth()) / 2);
 		    int y = (int) ((dimension.getHeight() - frame2.getHeight()) / 2);
-		frame2.setBounds(x-(178/2), y-(153/2) ,178, 153);
+		frame2.setBounds(x-(178/2), y-(153/2) ,178, 188);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
 		frame2.getContentPane().add(layeredPane, BorderLayout.CENTER);
@@ -128,6 +129,11 @@ public class ChoixAttaque extends JFrame implements ActionListener{
 		btnNewButton_2.addActionListener(this);
 		btnNewButton_2.setBounds(10, 80, 142, 23);
 		layeredPane.add(btnNewButton_2);
+		
+		btnNewButton_3 = new JButton("Annuler");
+		btnNewButton_3.addActionListener(this);
+		btnNewButton_3.setBounds(10, 115, 142, 23);
+		layeredPane.add(btnNewButton_3);
 		JPanel panel_1 = new JPanel();
 		
 		
@@ -155,6 +161,14 @@ public class ChoixAttaque extends JFrame implements ActionListener{
 			if(source.equals( this.graineBouton))
 			{
 				mod.setAction(1);
+				frame2.setVisible(false);
+				frame2.dispose();
+			}
+			if(source.equals(btnNewButton_3))
+			{
+				
+				mod.setCarteChoisie(-1);
+				SelectionDeCarte a = new SelectionDeCarte(0);
 				frame2.setVisible(false);
 				frame2.dispose();
 			}

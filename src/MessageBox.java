@@ -105,7 +105,7 @@ public class MessageBox extends JFrame implements Runnable{
 		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		    int x = (int) ((dimension.getWidth() - frame2.getWidth()));
 		    int y = (int) ((dimension.getHeight() - frame2.getHeight())/1.45);
-		frame2.setBounds(0, y ,335, 233);
+		frame2.setBounds(x-300, y ,290, 233);
 		frame2.getContentPane().add(layeredPane, BorderLayout.CENTER);
 		
 	 scrollPane = new JScrollPane();

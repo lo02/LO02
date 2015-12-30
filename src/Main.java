@@ -143,6 +143,8 @@ public class Main {
 			{ 
 				
 				partie.setTour(tour);
+				mod.setMessage("<br><font color=green>saison : "+partie.saisonFromInt(tour)+"<br></font>");
+				
 				//Donne la liste des joueurs qui composent la partie
 				mod.setJoueursPoints(partie.getListJoueur().toString());
 				mod.setMain(j.getMain());
@@ -153,14 +155,14 @@ public class Main {
 					Thread.sleep(100);
 				}
 				
-				int carte = mod.getCarteChoisie();
-				mod.setCarteChoisie(-1);
-				ChoixAttaque a = new ChoixAttaque(0);
+				
+				
 				while(mod.getAction()==-1)
 				{
 					Thread.sleep(100);
 				}
-				
+				int carte = mod.getCarteChoisie();
+				mod.setCarteChoisie(-1);
 				int jeu = mod.getAction();
 				mod.setAction(-1);
 				if(jeu == 2)
@@ -294,7 +296,8 @@ public class Main {
 					
 					
 					partie.setTour(tour);
-					for(int i=0;i<partie.getListJoueur().size();i++)
+					mod.setMessage("<br><font color=green>saison : "+partie.saisonFromInt(tour)+"<br></font>");
+							for(int i=0;i<partie.getListJoueur().size();i++)
 					{
 						List<Joueur> listTemp = new LinkedList<Joueur>();
 						listTemp.addAll(partie.arrangerOrdreListe(manche));
@@ -308,7 +311,7 @@ public class Main {
 						if(listTemp.get(i)==j)
 						{
 							Main.deroulementJoueur(j, partie);
-							mod.setMessage("yo1");
+						
 							
 							
 							/*if(j.getAllie() != null){
@@ -488,6 +491,12 @@ public class Main {
 			model.setAncienPointCible(joueurCible.getNbreMenhir()+joueur.getAllie().getValeur()[Partie.getTour()]);
     		model.setMenhirADetruire(joueur.getAllie().getValeur()[Partie.getTour()]);
     		model.setTaupeEnnemi(true);
+    		try {
+				Thread.sleep(3500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			}
 			
     		
@@ -530,14 +539,14 @@ public class Main {
 		{
 			Thread.sleep(100);
 		}
-		int carte = mod.getCarteChoisie();
-		mod.setCarteChoisie(-1);
-		ChoixAttaque a = new ChoixAttaque(0);
+		
+		
 		while(mod.getAction()==-1)
 		{
 			Thread.sleep(100);
 		}
-		
+		int carte = mod.getCarteChoisie();
+		mod.setCarteChoisie(-1);
 		int jeu = mod.getAction();
 		mod.setAction(-1);
 		
@@ -567,7 +576,6 @@ public class Main {
 			j.poserCarteBis(carte, partie.getListJoueur().get(cible));
 			while(mod.getCas()==-1)
 			{
-				System.out.println("en attente");
 				Thread.sleep(100);
 			}
 			if(mod.getCas()==0)

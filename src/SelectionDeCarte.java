@@ -87,7 +87,7 @@ public class SelectionDeCarte {
 	         public void keyReleased(KeyEvent e) {                
 	             if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
 	            	 //System.out.println("You Typed esc ");
-	            	 model.getA().suspend();
+	            	
 	            	 FenetrePause p = new FenetrePause(1);
 	            	 
 	             }
@@ -140,6 +140,7 @@ public class SelectionDeCarte {
 		layeredPane_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
+				ChoixAttaque a = new ChoixAttaque(0);
 				Model model = Model.getInstance();
 				model.setCarteChoisie(0);
 				frmVotreMain.setVisible(false);
@@ -238,6 +239,7 @@ public class SelectionDeCarte {
 		layeredPane_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
+				ChoixAttaque a = new ChoixAttaque(0);
 				Model model = Model.getInstance();
 				model.setCarteChoisie(1);
 				frmVotreMain.setVisible(false);
@@ -277,6 +279,7 @@ public class SelectionDeCarte {
 		layeredPane_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
+				ChoixAttaque a = new ChoixAttaque(0);
 				Model model = Model.getInstance();
 				model.setCarteChoisie(2);
 				frmVotreMain.setVisible(false);
@@ -317,6 +320,7 @@ public class SelectionDeCarte {
 		layeredPane_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
+				ChoixAttaque a = new ChoixAttaque(0);
 				Model model = Model.getInstance();
 				model.setCarteChoisie(3);
 				frmVotreMain.setVisible(false);
