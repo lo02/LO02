@@ -151,7 +151,7 @@ public class FenetreRegles {
 		layeredPane.add(btnQuitter);
 		btnQuitter.addActionListener(new  ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				model.getA().resume();
+				
 				frame.setVisible(false);
 				frame.dispose();
 			}

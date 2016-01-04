@@ -80,6 +80,7 @@ public class ChoixJoueur extends JFrame implements ActionListener{
 	 */
 	private void initialize() {
 		 frame2 = new JFrame();
+		 frame2.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		 new Thread() {
 	            public void run() {
 	            	
@@ -98,7 +99,7 @@ public class ChoixJoueur extends JFrame implements ActionListener{
 		 }.start();
 		JLayeredPane layeredPane = new JLayeredPane();
 
-		 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		    int x = (int) ((dimension.getWidth() - frame2.getWidth()) / 2);
 		    int y = (int) ((dimension.getHeight() - frame2.getHeight()) / 2);
 		frame2.setBounds(x-(308/2), y-45 ,308, 90);
@@ -123,10 +124,6 @@ public class ChoixJoueur extends JFrame implements ActionListener{
 		}
 		
 		layeredPane.add(choice);
-		JPanel panel_1 = new JPanel();
-		
-		
-		
 	}
 	
 

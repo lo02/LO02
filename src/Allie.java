@@ -204,7 +204,22 @@ public class Allie extends Card {
 	
 	}
 	public String toString2(){
-		return "<html>"+titre+"<table style='width:100%;'><tr><td>"+valeur[0]+"</td><td>"+valeur[1]+"</td><td>"+valeur[2]+"</td><td>"+valeur[3]+"</td></tr></table></html>";
+		if (Partie.getTour()==0){
+			return "<html>"+titre+"<table style='width:100%;'><tr><td style='background-color:green; text-align:center'>"+valeur[0]+"</td><td text-align:center'>"+valeur[1]+"</td><td text-align:center'>"+valeur[2]+"</td><td text-align:center'>"+valeur[3]+"</td></tr></table></html>";
+		}
+		if (Partie.getTour()==1){
+			return "<html>"+titre+"<table style='width:100%;'><tr><td text-align:center'>"+valeur[0]+"</td><td style='background-color:green; text-align:center'>"+valeur[1]+"</td><td text-align:center'>"+valeur[2]+"</td><td text-align:center'>"+valeur[3]+"</td></tr></table></html>";
+		}
+		if (Partie.getTour()==2){
+			return "<html>"+titre+"<table style='width:100%;'><tr><td text-align:center'>"+valeur[0]+"</td><td text-align:center'>"+valeur[1]+"</td><td style='background-color:green; text-align:center'>"+valeur[2]+"</td><td text-align:center'>"+valeur[3]+"</td></tr></table></html>";
+		}
+		if (Partie.getTour()==3){
+			return "<html>"+titre+"<table style='width:100%;'><tr><td text-align:center'>"+valeur[0]+"</td><td text-align:center'>"+valeur[1]+"</td><td text-align:center'>"+valeur[2]+"</td><td style='background-color:green; text-align:center'>"+valeur[3]+"</td></tr></table></html>";
+		}
+		else{
+			return "error";
+		}
+		
 	}
 
 	@Override

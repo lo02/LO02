@@ -4,7 +4,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Label;
+import java.awt.Toolkit;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -39,7 +42,14 @@ public class ChienDeGarde {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 432, 183);
+		//frame.setBounds(100, 100, 432, 183);
+
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+	    int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+	   
+	   frame.setBounds(x-(432/2), y-(183/2) ,432, 183);
+		
 		 new Thread() {
 	            public void run() {
 	            	
