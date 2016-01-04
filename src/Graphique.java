@@ -155,7 +155,7 @@ public class Graphique extends JFrame implements ActionListener, Runnable{
 		Button button_2 = new Button("A propos");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Ce jeu a été créer par Ezzaamari Anass & Jauvion Gilles dans le cadre de l'UV LO02.");
+				JOptionPane.showMessageDialog(null, "Ce jeu a été créé par Ezzaamari Anass & Jauvion Gilles dans le cadre de l'UV LO02.");
 			}
 		});
 		button_2.setBounds(461, 248, 100, 22);

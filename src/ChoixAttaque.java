@@ -116,7 +116,7 @@ public class ChoixAttaque extends JFrame implements ActionListener{
 		btnNewButton.setBounds(10, 11, 142, 23);
 		layeredPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Joueur engrais");
+		JButton btnNewButton_1 = new JButton("Jouer engrais");
 		this.graineBouton=btnNewButton_1;
 		btnNewButton_1.addActionListener(this);
 	
