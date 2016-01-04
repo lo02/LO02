@@ -174,21 +174,31 @@ public class SelectionCarteAlliee {
 					panel_9.setBounds(10, 158, 137, 67);
 					layeredPane_5.add(panel_9);
 					
-					JLabel label = new JLabel(model.getAllie().toString2());
+					String texte = model.getAllie().toString2();
+					JLabel label = new JLabel(texte);
 					panel_9.add(label);
 					 new Thread() {
 				            public void run() {
-					while(!(model.getAllie().getTitre().equals("")))
-					{
-						
-						try {
-							Thread.sleep(100);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						
-					}
+				            	int saison = -1;
+								while(!(model.getAllie().getTitre().equals("")))
+								{
+									
+									try {
+										Thread.sleep(100);
+										
+										if ( saison != Partie.getTour()){
+											saison = Partie.getTour() ;
+											String texte2 = model.getAllie().toString2();
+											label.setText(texte2);
+											
+											
+										}
+									} catch (InterruptedException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									
+								}
 					frmVotreMain.setVisible(false);
 					frmVotreMain.dispose();
 				            }
