@@ -1,5 +1,3 @@
-//Code réalisé par EZZAAMARI Anass et JAUVION Gilles
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -10,73 +8,60 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Main {
 	
 	public static void main(String[] argc) throws InterruptedException{
+		 
+		
 		 Model mod = Model.getInstance();
-		mod.setA(Thread.currentThread());
+		 
+		 //Référencement du Thread actuel dans le Singleton
+		 mod.setA(Thread.currentThread());
 		
-		/*ImageIcon img89;
-		try {
-			img89 = new ImageIcon(ImageIO.read(new File("img/background.jpg"))
-			        /*.getScaledInstance(892, 215, Image.SCALE_SMOOTH));
-			JLabel pic76 = new JLabel(img89);
-			pic76.setBounds(x-(1024/2), 0 ,1024, 542);
-			frame.add(pic76);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
-		
-		
-		// On lance l'interface principale
 		 if(!(mod.isDoNotRelaunch()))
 		 {
-			 Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+			 	
+			 	// Création de la fenêtre principale avec un fond noir 
+			 
+			 	Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 			    int x = (int) ((dimension.getWidth() ));
 			    int y = (int) ((dimension.getHeight()));
-			JFrame frame = new JFrame();    
-			frame.setBounds(0, 0 ,x, y);
-			frame.setUndecorated(true);
-			frame.setFocusableWindowState(false);
-			JPanel panel5 = new JPanel();
-			panel5.setBounds(0, 0, x, y);
-			panel5.setBackground(Color.black);
-			frame.add(panel5);
-			frame.setVisible(true);
-			
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			 
-			 Graphique inter = new Graphique(0);
+			    JFrame frame = new JFrame();    
+			    frame.setBounds(0, 0 ,x, y);
+			    frame.setUndecorated(true);
+			    frame.setFocusableWindowState(false);
+			    JPanel panel5 = new JPanel();
+			    panel5.setBounds(0, 0, x, y);
+			    panel5.setBackground(Color.black);
+			    frame.add(panel5);
+			    frame.setVisible(true);
+			    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			    Graphique inter = new Graphique(0);
 		 }
 		
-		while(mod.getNomJoueur() == null)
+		//En attente du nom du joueur 
+		 while(mod.getNomJoueur() == null)
 		{
 			Thread.sleep(100);
 		}
-		
-		
-		//on demande au joueur physique de se donner un nom
-		
 		String nom = mod.getNomJoueur();
 		
 		//On met le nom dans le joueur
 		Joueur j = new Joueur(nom,0,0); 
 		mod.setJoueurPrincipal(j);
-		System.out.println("Vous vous appelez : " +nom +"\n" + j);
-		// demande du nombre de joueurs
+	
+		
+		
+		// Creation d'une partie avec le nombre de joueurs demandé
 		Partie partie = new Partie(mod.getNombreJoueurs());
 		
+		// Création d'un nouveau Thread 
 		 new Thread() {
 	            public void run() {
-	            	
+	            	// Tant qu'on ne redemarre pas la partie
 	            	while(!(mod.isRestart()))
 	            	{
 	            		try {
@@ -85,22 +70,21 @@ public class Main {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-	            		
-	            		
 	            	}
-	            	
 	            	try {
-	            		
+	            		// On redemare la partie
 	            		mod.setRestart(false);
 	            		mod.setResetPrincipalInterface(true);
 	            		mod.setFinished(true);
+	            		// On vérifie si on doit revenir au menu principal ou juste recommencer la partie
 	            		if(!(mod.isResetAll()))
 	            		{
 	            			mod.setDoNotRelaunch(true);
 	            		}
 	            		else
 	            		{
-	            			 StringBuilder cmd = new StringBuilder();
+	            			 	// Pour revenir au menu , on quitte le jeu puis on le relance.
+	            				StringBuilder cmd = new StringBuilder();
 	            		        cmd.append(System.getProperty("java.home") + File.separator + "bin" + File.separator + "java ");
 	            		        for (String jvmArg : ManagementFactory.getRuntimeMXBean().getInputArguments()) {
 	            		            cmd.append(jvmArg + " ");
@@ -113,15 +97,20 @@ public class Main {
 	            		        try {
 									Runtime.getRuntime().exec(cmd.toString());
 								} catch (IOException e) {
-									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
+	            		        
+	            		        // On essaye de quitter le jeu 
 	            		        while(true)
 	            		        {
 	            		        	System.exit(0);
 	            		        }
 	            		        
 	            		}
+	            		
+	            		//Autrement on ne veut pas quitter le jeu donc 
+	            		// On arrête le main 
+	            		//Et on rénitialise toutes les autres fenêtres.
 	            		mod.getA().interrupt();
 	            		Thread.sleep(500);
 	            		mod.setFinished(false);
@@ -129,7 +118,8 @@ public class Main {
 	            		mod.clearBox();
 	            		Thread.sleep(1000);
 	            		Ingredient.resetTasDeCartes();
-						main(argc);
+						// on RELANCE le main
+	            		main(argc);
 					
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
@@ -138,6 +128,7 @@ public class Main {
 	            }
 		 }.start();
 		
+		 
 		//On ajoute le joueur physique dans la liste des joueurs  
 		List<Joueur> listeTemp =  new ArrayList<Joueur>(); 
 		listeTemp = partie.getListJoueur();
@@ -145,13 +136,13 @@ public class Main {
 		partie.setListJoueur(listeTemp);
 		
 		
-		//On crée les joueurs virtuel
+		//On crée les joueurs virtuels
 		partie.factoryJoueurs();
 		
-		// Partie Rapide ou Avancée 
-		boolean vrai = true;
 		
+		boolean vrai = true;
 		int reponse = mod.getPartieRapide();
+		// On récupère le type de partie et on l'initie.
 		while(vrai)
 		{
 			switch (reponse)
@@ -171,11 +162,12 @@ public class Main {
 			j.setNbreGraine(2);
 			mod.setJoueursPoints(partie.getListJoueur().toString());
 			mod.setListeJoueur(partie.getListJoueur());
+			// On crée une fenêtre affichant le score
 			Score boiteDeScore = new Score(0);
+			//On crée une fenêtre affichant les messages 
 			MessageBox message = new MessageBox(0);
 			for(int tour=0 ; tour <4 ; tour++) 
 			{ 
-				
 				partie.setTour(tour);
 				mod.setMessage("<br><font color=green>saison : "+partie.saisonFromInt(tour)+"<br></font>");
 				
@@ -183,37 +175,43 @@ public class Main {
 				mod.setJoueursPoints(partie.getListJoueur().toString());
 				mod.setMain(j.getMain());
 				
+				//On affiche la fenêtre qui affiches les différentes cartes
 				SelectionDeCarte c = new SelectionDeCarte(0);
+				
+				//En attente du joueur qui choisit sa carte 
 				while(mod.getCarteChoisie()==-1)
 				{
 					Thread.sleep(100);
 				}
-				
-				
-				
+				// En attente du joueur qui choisit son action 
 				while(mod.getAction()==-1)
 				{
 					Thread.sleep(100);
 				}
+				
+				// on indique l'index de la carte choisie
 				int carte = mod.getCarteChoisie();
 				mod.setCarteChoisie(-1);
+				
+				// On indique l'index du type de jeu choisi
 				int jeu = mod.getAction();
 				mod.setAction(-1);
 				if(jeu == 2)
 				{
-					
+					//Si on choisit de joueur farfadet 
+					//On crée une fenêtre qui affiche la cible du joueur
 					ChoixJoueur b = new ChoixJoueur(0);
 					while(mod.getIndexJoueurCible()==-1)
 					{
 						Thread.sleep(250);
 					}
+					// On affiche une animation qui montre le joueur entrain de voler 
 					mod.setFarfadetAnimation2(true);
-					Thread.sleep(9500);
-					
+					//l'animation dure 9.5 sec
+					Thread.sleep(9500);	
 					int cible = mod.getIndexJoueurCible();
 					mod.setIndexJoueurCible(-1);
-					
-					//System.out.println("Vous avez joué : \n "+j.getMain().get(carte)+"\nVous avez volé "+j.getMain().get(carte).getFarfadet()[Partie.getTour()]+" graine(s)");
+					//On affiche le message comme quoi je joueur a volé un autre joueur
 					mod.setMessage("Vous avez volé "+j.getMain().get(carte).getFarfadet()[Partie.getTour()]+ " graine(s) au joueur "+partie.getListJoueur().get(cible).getNom());
 					j.poserCarte(carte, partie.getListJoueur().get(cible));
 				}else
@@ -221,51 +219,53 @@ public class Main {
 					
 					if(jeu == 0)
 					{
+						//Demande de graines au géant
 						mod.setMessage("Vous demandez "+j.getMain().get(carte).getGeant()[Partie.getTour()]+" graine(s)");
+						// Animation du géant qui donne des graines 
 						mod.setGeantAnimation(true);
 						Thread.sleep(8000);
 					}	
 					else
-					{	if(j.getNbreGraine()>=j.getMain().get(carte).getEngrais()[Partie.getTour()] )
-					{
-						mod.setMessage("Vous plantez "+j.getMain().get(carte).getEngrais()[Partie.getTour()]+" graine(s)");
-					mod.setMenhir(j.getMain().get(carte).getEngrais()[Partie.getTour()]);}
-					else
-					{
-						mod.setMessage("Vous plantez "+j.getNbreGraine()+" graine(s)");
-						mod.setMenhir(j.getNbreGraine());}
-					
+					{	
+						//On joue engrais 
+						if(j.getNbreGraine()>=j.getMain().get(carte).getEngrais()[Partie.getTour()] )
+						{
+							//Affichage de l'animation et message correspondant
+							mod.setMessage("Vous plantez "+j.getMain().get(carte).getEngrais()[Partie.getTour()]+" graine(s)");
+							mod.setMenhir(j.getMain().get(carte).getEngrais()[Partie.getTour()]);
+						}
+						else
+						{
+							mod.setMessage("Vous plantez "+j.getNbreGraine()+" graine(s)");
+							mod.setMenhir(j.getNbreGraine());
+						}
 					}
-					
 					j.poserCarte(carte, jeu);
 					mod.setJoueursPoints(partie.getListJoueur().toString());
-					
 				}
-				
+				// on fait jouer les autres joueurs virtuels 
 				partie.gererTour();
 			
 			}
 			mod.setJoueursPoints(partie.getListJoueur().toString());
 			mod.setListeJoueurGagnant(partie.chercherGagnantRapide());
-			FenetreFin f = new FenetreFin(0);
-			//mod.setMessage("Le gagnant est : <br>"+partie.chercherGagnantRapide().toString());
-			
-			
-			
+			// On affiche la fenêtre de fin de partie 
+			FenetreFin f = new FenetreFin(0);	
 		}
 		else
-		if(reponse == 2){
-			//SelectionCarteAlliee A = new SelectionCarteAlliee(0);
+		if(reponse == 2)
+		{
 			mod.setJoueursPoints(partie.getListJoueur().toString());
 			mod.setListeJoueur(partie.getListJoueur());
+			// création fenêtre de score et de messages 
 			Score boiteDeScore = new Score(0);
 			MessageBox message = new MessageBox(0);
 			
-			
+			//Création d'un nouveau thread
 			new Thread() {
 	            public void run() {
-	            
-	            	while(true)
+	            //Pour pouvoir jouer la taupe n'importe quand dans la partie
+	            	while(!(mod.isRestart()))
 	            	{
 	            		try {
 							Thread.sleep(300);
@@ -273,23 +273,25 @@ public class Main {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-	            	if (!(mod.getIndexJoueurCibleTaupe()==99)){
-	            		mod.setAncienPointCible(partie.getListJoueur().get(mod.getIndexJoueurCibleTaupe()).getNbreMenhir());
-	            		mod.setMenhirADetruire(j.getAllie().getValeur()[Partie.getTour()]);
-	            		mod.setIndexJoueurCibleTaupe2(mod.getIndexJoueurCibleTaupe());
-	            		mod.setTaupe(true);
-	            		Main.afficherActionAllieeTaupe(j, mod.getListeJoueur().get(mod.getIndexJoueurCibleTaupe()), mod.getMenhirADetruire());
-	            		j.jouerTaupe(partie.getListJoueur().get(mod.getIndexJoueurCibleTaupe()));
-	            		try {
-							Thread.sleep(4000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-	            		mod.setJoueursPoints(partie.getListJoueur().toString());
-	            		mod.setIndexJoueurCibleTaupe(99);
-	            		
-	            	}
+	            		if (!(mod.getIndexJoueurCibleTaupe()==99))
+	            		{
+	            			
+	            			mod.setAncienPointCible(partie.getListJoueur().get(mod.getIndexJoueurCibleTaupe()).getNbreMenhir());
+	            			mod.setMenhirADetruire(j.getAllie().getValeur()[Partie.getTour()]);
+	            			mod.setIndexJoueurCibleTaupe2(mod.getIndexJoueurCibleTaupe());
+	            			mod.setTaupe(true);
+	            			Main.afficherActionAllieeTaupe(j, mod.getListeJoueur().get(mod.getIndexJoueurCibleTaupe()), mod.getMenhirADetruire());
+	            			j.jouerTaupe(partie.getListJoueur().get(mod.getIndexJoueurCibleTaupe()));
+	            			try {
+	            				Thread.sleep(4000);
+							
+	            			} catch (InterruptedException e) {
+	            				// TODO Auto-generated catch block
+	            				e.printStackTrace();
+	            			}
+	            			mod.setJoueursPoints(partie.getListJoueur().toString());
+	            			mod.setIndexJoueurCibleTaupe(99);
+	            		}
 	            	
 	            	}
 	            }
@@ -297,117 +299,73 @@ public class Main {
 			for(int manche = 0 ; manche<partie.getListJoueur().size(); manche++)
 			{
 				
-				
-				
-				
 				mod.setMessage("<br><font color=4B98FD>Début de la manche "+ (manche+1)+"</font><br>");
+				// Fenetre pour le choix du début d'une manche
 				ChoixDebutManche m = new ChoixDebutManche(0);
+				//En attente du choix
 				while(mod.getChoix()== 0)
 				{
 					Thread.sleep(100);
 				}
-				
-				
-				
 				int choix = mod.getChoix();
 				mod.setChoix(0);
-				//int choix= Main.saisie("Souhaitez vous prendre 2 graines (tapez 1) ou une alliée (tapez 2)?", 1, 2);
 				j.choixDebutManche(choix);
-				
-				if (choix == 2){
+				if (choix == 2)
+				{
 					mod.setAllie(j.getAllie());
-				
 					SelectionCarteAlliee B = new SelectionCarteAlliee(0);
-				
-					
-					
-					
 				}
 				
 				for(int tour=0 ; tour <4 ; tour++) 
 				{
-					
-					
 					partie.setTour(tour);
 					mod.setMessage("<br><font color=green>saison : "+partie.saisonFromInt(tour)+"<br></font>");
-							for(int i=0;i<partie.getListJoueur().size();i++)
+					
+					for(int i=0;i<partie.getListJoueur().size();i++)
 					{
 						List<Joueur> listTemp = new LinkedList<Joueur>();
-						listTemp.addAll(partie.arrangerOrdreListe(manche));
-						
+						listTemp.addAll(partie.arrangerOrdreListe(manche));	
 						mod.setJoueursPoints(partie.getListJoueur().toString());
 						mod.setMain(j.getMain());
 						mod.setAllie(j.getAllie());
-						// On veut jouer la taupe ici à n'importe qu'elle moment durant le tour
-						//A chaque fois qu'un joueur voudra jouer on pourra utiliser la taupe
-						
 						if(listTemp.get(i)==j)
 						{
+							// le code est long , pour le rendre lisible 
+							//nous l'avons mise dans une méthode statique
 							Main.deroulementJoueur(j, partie);
-						
-							
-							
-							/*if(j.getAllie() != null){
-								
-							
-								if (j.getAllie().getTitre().equals("Taupe géante")){
-									mod.setMessage("yo");
-									
-									DemandeTaupe t = new DemandeTaupe(0);
-									while(mod.getChoixTaupe()== 0)
-									{
-										Thread.sleep(100);
-									}
-									int choixTaupe = mod.getChoixTaupe();
-									mod.setChoixTaupe(0);
-									if(choixTaupe == 1){
-										ChoixJoueurTaupe tv = new ChoixJoueurTaupe(0);
-										
-										while(mod.getChoix()== 0)
-										{
-											try {
-												Thread.sleep(100);
-											} catch (InterruptedException e1) {
-												// TODO Auto-generated catch block
-												e1.printStackTrace();
-											}
-										}
-										
-										int choixB = mod.getChoix();
-										mod.setChoix(0);
-										mod.getJoueurPrincipal().jouerTaupe(mod.getListeJoueur().get(choix));
-									}
-								}
-								
-							}*/
 						}else
 						{
 							partie.gererTourAvancee(listTemp.get(i));
-							//System.out.println("Tapez une touche pour continuer");
+							//temporisation une seconde 
 							pause();
 						}		
 					}
-					
-					//System.out.println("Tapez une touche pour continuer");
-					//pause();	
 				}
 				mod.setMenhir(-1);
 				partie.initierPartieAvancee();
-				
-				
 			}
+			
 			partie.finPartie();
 			mod.setJoueurGagnant(partie.getListJoueur().get(partie.chercherGagnantAvancee()));
+			//On montre le joueur gagnant
 			FenetreFin f = new FenetreFin(0);
-			System.out.println("\nScore Final : \n"+ partie.getListJoueur()+"\nLe gagnant est : \n"+partie.getListJoueur().get(partie.chercherGagnantAvancee()));
-			
 		}
 		
 		
 		
 	}
 	
-	public static boolean danger(int valeur, Joueur j, Joueur joueurCible){
+	/**
+	 * Methode qui avertit le joueur d'une attaque ennemi avec un farfadet 
+	 * @param int valeur indique le nombre maximal de graines que le joueur ennemi puisse voler 
+	 * @param Joueur j Le joueur qui veut  voler 
+	 * @param Joueur j2 Le joueur cible qui est ciblée par le joueur qui veut voler
+	 * 
+	 * @return boolean - true : pour dire d'utiliser le chien de garde 
+	 * @return boolean - false : pour ne pas utiliser le Chien de garde
+	 */
+	public static boolean danger(int valeur, Joueur j, Joueur joueurCible)
+	{
 		Model model = Model.getInstance();
 		model.setMessage2("<html>Le joueur "+j.getNom()+" veut vous voler "+valeur+" graine(s) avec un farfadet!!!<br>Voulez vous utilisez votre chien de garde ?</html>");
 		
@@ -422,25 +380,36 @@ public class Main {
 			}
 		}
 		
-		if (model.getChienDeGardeAction()==1){
+		if (model.getChienDeGardeAction()==1)
+		{	
 			model.setChienDeGarde(true);
 			model.setMessage("Le joueur "+model.getJoueurPrincipal().getNom()+"Défends "+model.getJoueurPrincipal().getAllie().getValeur()[Partie.getTour()]+" de ses graines");
 			model.setChienDeGardeAction(-1);
 			return true;
 		}
-		else{
+		else
+		{
 			model.setFarfadetAnimation(true);
 			model.setChienDeGardeAction(-1);
 			return false;
 		}
 	}
 	
-	public static void afficherActionoff(Joueur joueur, Joueur joueurcible, int carte){
+	/**
+	 * Affiche dans la boite de dialogue, l'action "Chien de garde " effectuée par un des joueurs, cela indique 
+	 * que le joueur ciblé par les farfadets s'est protégé avec un chien de garde 
+	 * 
+	 * @param joueur : qui attaque 
+	 * @param joueurcible : joueur ciblée par les attaques et qui se défends 
+	 * @param carte : la carte alliée jouée par le joueur qui se défend 
+	 */
+	public static void afficherActionoff(Joueur joueur, Joueur joueurcible, int carte)
+	{
 		Model model = Model.getInstance();
 		if (joueurcible.equals(model.getJoueurPrincipal()))
-				{
-					if(model.getPartieRapide()==2)
-					{	
+		{
+			if(model.getPartieRapide()==2)
+			{	
 				if(model.getAllie()!= null)
 				{
 					if(model.getAllie().equals("Chien de garde"))
@@ -460,7 +429,6 @@ public class Main {
 							try {
 								Thread.sleep(4000);
 							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 							model.setChienDeGardeAction(-1);
@@ -471,36 +439,42 @@ public class Main {
 							model.setChienDeGardeAction(-1);
 						}
 					}
-					else{
-						Main.farfadetAnimation(joueur, joueurcible, carte);
-						}
-				}
-				else{
-					
-					Main.farfadetAnimation(joueur, joueurcible, carte);
-				}
-				
-				}
 					else
 					{
-						
 						Main.farfadetAnimation(joueur, joueurcible, carte);
 					}
 				}
+				else
+				{	
+					Main.farfadetAnimation(joueur, joueurcible, carte);
+				}
+			}
+			else
+			{					
+				Main.farfadetAnimation(joueur, joueurcible, carte);
+			}
+		}
 		else
 		{
 			if (joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]<= joueurcible.getNbreGraine())
-			{
-				
+			{			
 				model.setMessage("Le village "+joueur.getNom()+" a volé "+ joueur.getMain().get(carte).getFarfadet()[Partie.getTour()]+ " graine(s) à "+joueurcible.getNom());
-			}else{
-				
+			}else{	
 				model.setMessage("Le village "+joueur.getNom()+" a volé "+joueurcible.getNbreGraine() + " graine(s) à "+joueurcible.getNom());
 			}
 		}
-		}
+	}
 	
 	
+	
+	/**
+	 * 
+	 * Affiche dans la boite de dialogue l'action faite par le joueur 
+	 * 
+	 * @param joueur 
+	 * @param carte
+	 * @param action
+	 */
 	public static void afficherAction(Joueur joueur, int carte, int action){
 		Model model = Model.getInstance();
 		//Géant
@@ -584,37 +558,26 @@ public class Main {
 		mod.setAction(-1);
 		
 		if(jeu == 2)
-		{
-			/*System.out.print("Quel joueur voulez vous voler ?");
-			for(int i = 1 ; i < partie.getListJoueur().size(); i++)
-			{
-				System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
-			}
-			int cible = Main.saisie("", 1, partie.getListJoueur().size()-1);
-			System.out.println("Vous avez joué : \n "+j.getMain().get(carte)+"\nVous avez volé "+j.getMain().get(carte).getFarfadet()[Partie.getTour()]+" graine(s)");
-				
-			j.poserCarte(carte, partie.getListJoueur().get(cible));*/
-			
+		{		
 			@SuppressWarnings("unused")
 			ChoixJoueur b = new ChoixJoueur(0);
+			
 			while(mod.getIndexJoueurCible()==-1)
 			{
 				Thread.sleep(250);
 			}
-			//mod.setFarfadetAnimation2(true);
 			
-			
-			int cible = mod.getIndexJoueurCible();
-			
+			int cible = mod.getIndexJoueurCible();	
 			mod.setMessage("Vous avez volé "+j.getMain().get(carte).getFarfadet()[Partie.getTour()]+ " graine(s) au joueur "+partie.getListJoueur().get(cible).getNom());
 			j.poserCarteBis(carte, partie.getListJoueur().get(cible));
+			
 			while(mod.getCas()==-1)
 			{
 				Thread.sleep(100);
 			}
+			
 			if(mod.getCas()==0)
-			{
-				
+			{	
 				mod.setFarfadetAnimation2(true);
 				Thread.sleep(9500);
 			}
@@ -626,21 +589,9 @@ public class Main {
 				}
 			mod.setCas(-1);
 			mod.setIndexJoueurCible(-1);
-			
-			
-			
-			
-		}else
+		}
+		else
 		{
-			/*System.out.println("Vous avez joué : \n "+j.getMain().get(carte));
-			if(jeu == 0)
-				System.out.println("Vous demandez "+j.getMain().get(carte).getGeant()[Partie.getTour()]+" graine(s)");
-			else
-				System.out.println("Vous plantez "+j.getMain().get(carte).getEngrais()[Partie.getTour()]+" graine(s)");
-			
-			j.poserCarte(carte, jeu);
-			*/
-			
 			if(jeu == 0)
 			{
 				mod.setMessage("Vous demandez "+j.getMain().get(carte).getGeant()[Partie.getTour()]+" graine(s)");
@@ -648,44 +599,19 @@ public class Main {
 				Thread.sleep(8000);
 			}	
 			else
-			{	if(j.getNbreGraine()>=j.getMain().get(carte).getEngrais()[Partie.getTour()] ){
-					mod.setMessage("Vous plantez "+j.getMain().get(carte).getEngrais()[Partie.getTour()]+" graine(s)");
-					mod.setMenhir(j.getMain().get(carte).getEngrais()[Partie.getTour()]);
-				}else{
-					mod.setMessage("Vous plantez "+j.getNbreGraine()+" graine(s)");
-					mod.setMenhir(j.getNbreGraine());}
+			{	
+				if(j.getNbreGraine()>=j.getMain().get(carte).getEngrais()[Partie.getTour()] ){
+				mod.setMessage("Vous plantez "+j.getMain().get(carte).getEngrais()[Partie.getTour()]+" graine(s)");
+				mod.setMenhir(j.getMain().get(carte).getEngrais()[Partie.getTour()]);		
 			}
-		
+			else
+			{
+				mod.setMessage("Vous plantez "+j.getNbreGraine()+" graine(s)");
+				mod.setMenhir(j.getNbreGraine());}
+			}	
 			j.poserCarte(carte, jeu);
 			mod.setJoueursPoints(partie.getListJoueur().toString());
-		}
-		
-		
-		
-		//On ne veut pas forcément jouer la taupe à la fin de notre tour, on veut pouvoir la jouer à n'importe qu'elle moment
-		
-		/*if (j.getAllie() == null)
-		{}
-		else{
-			if(j.getAllie().getTitre().equals("Taupe géante")){
-				/*System.out.println("Voulez vous jouer votre Taupe Géante (O/N)?");
-				
-				Scanner scs = new Scanner(System.in); 
-				String reponse1 = scs.nextLine();
-				if (reponse1.equals("O")){
-					System.out.print("A quelle joueur souhaitez vous détruire les menhirs ?");
-					for(int i = 1 ; i < partie.getListJoueur().size(); i++)
-					{
-						System.out.println("Tapez "+i+" pour \n"+partie.getListJoueur().get(i));
-					}
-					int cible = Main.saisie("", 1, partie.getListJoueur().size()-1);
-					j.jouerTaupe(partie.getListJoueur().get(cible));
-				}
-				
-				
-				
-			}
-		}*/
+		}				
 	}
 	
 	
@@ -697,7 +623,6 @@ public class Main {
 		System.out.println(saisie);
 		Scanner saisie2 = new Scanner(System.in);		
 		String a = saisie2.nextLine();
-		//saisie2.close();
 		try{
 		    if (Integer.parseInt(a)<=max && Integer.parseInt(a)>=min)
 		    {

@@ -112,8 +112,6 @@ public class SelectionCarteAlliee {
 		layeredPane.setBounds(11, 2, 158, 335);
 		
 		frmVotreMain.getContentPane().add(layeredPane);
-
-		//if (model.getPartieRapide()==2)
 		{
 			if(model.getAllie() != null)
 			{
@@ -133,20 +131,6 @@ public class SelectionCarteAlliee {
 								Model model = Model.getInstance();
 							
 								ChoixJoueurTaupe t = new ChoixJoueurTaupe(0);
-								/*
-								while(model.getIndexJoueurCible()==-1)
-								{
-									try {
-										Thread.sleep(250);
-									} catch (InterruptedException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-								}*/
-								//int cible = model.getIndexJoueurCible();
-								//model.setIndexJoueurCible(-1);
-								
-								//model.setMenhirADetruire(model.getAllie().getValeur()[Partie.getTour()]);;
 								frmVotreMain.setVisible(false);
 								frmVotreMain.dispose();
 								
@@ -199,16 +183,13 @@ public class SelectionCarteAlliee {
 									}
 									
 								}
-					frmVotreMain.setVisible(false);
-					frmVotreMain.dispose();
+								frmVotreMain.setVisible(false);
+								frmVotreMain.dispose();
 				            }
 				        }.start();
 					
 				}
 			}
 		}
-		
-		
-		
 	}
 }

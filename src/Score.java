@@ -39,6 +39,8 @@ public class Score extends JFrame implements Runnable {
 	private JLabel lblNewLabel;
 	private Model model = Model.getInstance();
 	
+	
+	
 	/**
 	 * Launch the application.
 	 */

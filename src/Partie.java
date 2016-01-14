@@ -1,7 +1,5 @@
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 //C'est dans cette classe que le déroulement d'une partie va s'organiser
 /**
