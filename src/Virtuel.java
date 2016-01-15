@@ -2,25 +2,49 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
+/**
+ * 
+ * @author Anass et Gilles
+ * Classe qui contient le code de Virtuel ainsi que les méthodes qui vont lui permettre de jouer.
+ */
 public class Virtuel extends Joueur {
 	
+	/**
+	 * Attribut qui contient la liste des noms
+	 */
 	public final static List<String> names = Arrays.asList("Thor","Iron Man","Hulk","Black Widow","Spider-Man","Ant-Man","Cap.America","Coulson","Nick Fury","Pr.Xavier","Wolverine","Cyclope","Hawkeyes");
+	
+	/**
+	 * Attribut qui contient la liste des noms disponible
+	 */
 	private static List<String> namesDisponible = new ArrayList<String>();
 	
-	// La variable strategy contient le type de strategie choisi pour le joueur virtuel
+	/**
+	 * Attribut qui contient la strategy du jeu virtuel
+	 */
 	public Strategy strategy;
 
+	/**
+	 * Constructeur d'un joueur Virtuel
+	 * @param nbreMenhir
+	 * @param nbreGraine
+	 */
 	public Virtuel( int nbreMenhir, int nbreGraine) {
 		//String nom23 = aleaName();
 		super(aleaName(), nbreMenhir, nbreGraine);
 	}
-	
+	/**
+	 * Méthode qui initialise les noms qui seront disponible pour les joueurs
+	 */
 	public static void initialisationNom(){
 		namesDisponible.addAll(names);
 	}
 	
-	//Méthodes qui va choisir un nom au hazard parmi la liste
+	/**
+	 * Méthode qui permet d'attribuer des noms aléatoires parmi une liste
+	 * @return
+	 * 		le nom du joueur
+	 */
 	public static String aleaName()
 	{
 		Random rand = new Random();
@@ -29,7 +53,12 @@ public class Virtuel extends Joueur {
 		namesDisponible.remove(nombreAleatoire);	
 		return nom ;
 	}
-	@SuppressWarnings("rawtypes")
+	
+	/**
+	 * Méthode qui va permettre au joueur virtuel de choisir une carte
+	 * @return 
+	 * 		une liste qui permet de jouer une carte
+	 */
 	public List choisirCarte(Strategy strategie)
 	{
 		return strategie.choisirCarte(this);	
@@ -112,7 +141,11 @@ public class Virtuel extends Joueur {
 		}
 		
 	}
-	
+	/**
+	 * Méthode qui permet de jouer la carte allié chien
+	 * @return 
+	 * 		le nombre de graine que le chien va sauver
+	 */
 	public int jouerChien(int valeur, Joueur j, Joueur joueurCible){
 		//on regarde si il peut jouer son chien
 		if(this.getAllie().getTitre().equals(""))
@@ -183,11 +216,14 @@ public class Virtuel extends Joueur {
 			}
 		}
 	}
-	
+	/**
+	 * Méthode qui permet de chercher la valer la plus grande d'une carte taupe
+	 * @return
+	 * 		valuer la plus haute
+	 */
 	public int rechercheMaxTaupe(){
 		int Max = 0, id = 0;
 		for (int i =0; i<4; i++){
-			//On regarde qu'elle est la valeur la plus grande pour la taupe et on garde l'indice de la saison dans id que l'on retourne
 			if(this.getAllie().getValeur()[i]>=Max)
 			{
 				Max = this.getAllie().getValeur()[i];
@@ -196,6 +232,12 @@ public class Virtuel extends Joueur {
 		}
 		return id;	
 	}
+	/**
+	 * Méthode qui permet de savoir si le jouuer est virtuel
+	 * @return
+	 * 		vrai
+	 * 	
+	 */
 	public boolean isVirtuel()
 	{
 		return true;

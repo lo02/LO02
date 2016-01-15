@@ -18,17 +18,31 @@ import org.w3c.dom.NodeList;
 public class Allie extends Card {
 
 	/**
-	 * Liste de cartes
+	 * Attribut qui contient une liste de cartes
+	 * @see Allie#getTasDeCartes()
+	 * @see Allie#setTasDeCartes(List)
+	 * @see Allie#setTasDeCartes(Queue)
 	 */
 	private static List<Card> tasdecartes = new ArrayList<Card>();	
 	/**
-	 * Tableau de valeur qui va correspondre au point d'action de la carte
+	 * Attibut qui contient un tableau de valeur qui va correspondre au point d'action de la carte
+	 * @see Allie#getValeur()
+	 * @see Allie#setValeur(int[])
+	 * @see Allie#setValeur(int, int)
+	 * 
 	 */
 	private int[] valeur = new int[4];
 	/**
-	 * Variable qui contient le nom de la carte
+	 * Attribut qui contient le nom de la carte
+	 * @see Allie#getTitre()
+	 * @see Allie#setTitre(String)
 	 */
 	private String titre = "";
+	/**
+	 * Attribut qui contient le nom du logo d'une carte
+	 * @see Allie#getLogo()
+	 * @see Allie#setLogo(String)
+	 */
 	private String logo;
 	
 	
@@ -100,47 +114,75 @@ public class Allie extends Card {
 	/**
 	 * Supprime une carte allié après son utilisation
 	 */
-	//Une fois qu'un allié à été utlisée on lui enlève son nom pour qu'il ne puisse plus être utilisé
 	public void deleteAllie(){
 		this.titre = "";
 	}
 	
 	/**
-	 * Donne le tas de cartes
+	 * Methode qui donne une liste de carte
+	 * @return
+	 * 		renvoie une liste de carte
 	 */
 	public List<Card> getTasDeCartes() {
 		return tasdecartes;
 	}
 
 	/**
-	 * 
+	 * Méthode qui actualise une liste de carte
+	 * @param cartes
+	 * 		nouvelle liste de carte
 	 */
 	public void setTasDeCartes(List<Card> cartes) {
 		tasdecartes.clear();
 		tasdecartes.addAll(cartes);
 	}
+	
+	/**
+	 * Méthode qui actualise une liste de carte
+	 * @param cartes
+	 * 		nouvelle liste de carte
+	 */
 	public void setTasDeCartes(Queue<Card> cartes) {
 		tasdecartes.clear();
 		tasdecartes.addAll(cartes);
 	}
 	
+	/**
+	 * Méthode qui actualise une valeur
+	 * @param valeur
+	 * 		nouvelle valeur
+	 */
 	public void setValeur(int[] valeur) {
 		this.valeur = valeur;
 	}
 
-
+	/**
+	 * Méthode qui actualise un titre
+	 * @param titre
+	 * 		nouveau titre
+	 */
 	public void setTitre(String titre) {
 		this.titre = titre;
 	}
 
-
+	/**
+	 * Méthode qui actualise une valeur d'un joueur
+	 * @param valeur
+	 * 		nouvelle valeur
+	 * @param j
+	 * 		joueur dont on veux la valeur de la carte
+	 */
 	public void setValeur(int valeur, int j)
 	{
 		this.valeur[j]=valeur;
 	}
 
 
-	@Override
+	/**
+	 * Méthode qui actualise un nom
+	 * @param attribute
+	 * 		nouveau nom
+	 */
 	public void setName(String attribute) {
 		// TODO Auto-generated method stub
 		this.titre = attribute;
@@ -148,61 +190,104 @@ public class Allie extends Card {
 	}
 
 
-	@Override
+	/**
+	 * Méthode qui actualise la valeur géant
+	 * @param parseInt
+	 * @param j
+	 * 		
+	 */
 	public void setGeant(int parseInt, int j) {
 		// TODO Auto-generated method stub
 		
 	}
 
 
-	@Override
+	/**
+	 * Méthode qui actualise la valeur engrais
+	 * @param parseInt
+	 * @param j
+	 * 		
+	 */
 	public void setEngrais(int parseInt, int j) {
 		// TODO Auto-generated method stub
 		
 	}
 
 
-	@Override
+	/**
+	 * Méthode qui actualise la valeur farfadet
+	 * @param parseInt
+	 * @param j
+	 * 		
+	 */
 	public void setFarfadet(int parseInt, int j) {
 		// TODO Auto-generated method stub
 		
 	}
 
-
+	/**
+	 * Methode qui donne une valeur
+	 * @return
+	 * 		renvoie une valeur
+	 */
 	public int[] getValeur() {
 		return valeur;
 	}
 
+	/**
+	 * Methode qui donne un titre
+	 * @return
+	 * 		renvoie un titre
+	 */
 	public String getTitre() {
 		return titre;
 	}
 
-	@Override
+	/**
+	 * Methode qui donne les valeurs d'un géant
+	 * @return
+	 * 		renvoie rien
+	 */
 	public int[] getGeant() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
-	@Override
+	/**
+	 * Methode qui donne les valeurs d'un engrais
+	 * @return
+	 * 		renvoie rien
+	 */
 	public int[] getEngrais() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
-	@Override
+	/**
+	 * Methode qui donne les valeurs d'un farfadet
+	 * @return
+	 * 		renvoie rien
+	 */
 	public int[] getFarfadet() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	/**
+	 * Méthode qui permet d'afficher un message sur la console.
+	 * 
+	 */
 	public String toString(){
 		//Nous permet d'afficher le carte
 		return "\t"+this.titre+"\n"+this.valeur[0]+"\t"+this.valeur[1]+"\t"+this.valeur[2]+"\t"+this.valeur[3];
 	
 	}
+	/**
+	 * Méthode qui permet d'afficher un message en html sur l'interface graphique.
+	 * 
+	 */
 	public String toString2(){
 		if (Partie.getTour()==0){
 			return "<html>"+titre+"<table style='width:100%;'><tr><td style='background-color:green; text-align:center'>"+valeur[0]+"</td><td text-align:center'>"+valeur[1]+"</td><td text-align:center'>"+valeur[2]+"</td><td text-align:center'>"+valeur[3]+"</td></tr></table></html>";
@@ -222,13 +307,21 @@ public class Allie extends Card {
 		
 	}
 
-	@Override
+	/**
+	 * Méthode qui actualise le nom d'un logo
+	 * @param logo
+	 * 		nouveau nom
+	 */
 	public void setLogo(String logo) {
 		// TODO Auto-generated method stub
 		this.logo= logo;
 	}
 
-	@Override
+	/**
+	 * Methode qui donne le nom du logo
+	 * @return
+	 * 		renvoie le nom du logo
+	 */
 	public String getLogo() {
 		// TODO Auto-generated method stub
 		return logo;

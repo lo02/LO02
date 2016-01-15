@@ -11,15 +11,51 @@
 
 public class Ingredient extends Card {
 	private boolean cheatCard = false;
+	/**
+	 * Attribut qui contient le nom de la carte
+	 * @see Ingredient#getName()
+	 * @see Ingredient#setName(String)
+	 */
 	private String name = "";
+	/**
+	 * Attibut qui contient un tableau de valeur qui va correspondre au point géant de la carte
+	 * @see Ingredient#getGeant()
+	 * @see Ingredient#setGeant(int, int)
+	 * 
+	 */
 	private int[] geant = new int[4];
+	/**
+	 * Attibut qui contient un tableau de valeur qui va correspondre au point farfadet de la carte
+	 * @see Ingredient#getFarfadet()
+	 * @see Ingredient#setFarfadet(int, int)
+	 * 
+	 */
 	private int[] farfadet = new int[4];
+	/**
+	 * Attibut qui contient un tableau de valeur qui va correspondre au point géant de la carte
+	 * @see Ingredient#getEngrais()
+	 * @see Ingredient#setEngrais(int, int)
+	 * 
+	 */
 	private int[] engrais = new int[4];
+	/**
+	 * Attribut qui contient le nom du logo d'une carte
+	 * @see Ingredient#getLogo()
+	 * @see Ingredient#setLogo(String)
+	 */
 	private String logo;
+	/**
+	 * Attribut qui contient une liste de cartes
+	 * @see Ingredient#getTasDeCartes()
+	 * @see Ingredient#setTasDeCartes(List)
+	 * @see Ingredient#setTasDeCartes(Queue)
+	 */
 	private static List<Card> tasdecartes = new ArrayList<Card>();	
 	
 	
-
+	/**
+	 * Méthode qui va permettre de lire les cartes alliées du fichier XML et les disposer dans une liste de cartes
+	 */
 	public void initialisationCartes() {
 		//System.out.println("dsqdqcxvcxdddddsd");
 	    try {
@@ -140,24 +176,45 @@ public class Ingredient extends Card {
 	    }
 	  }
 
-	
+	/**
+	 * Supprime une carte allié après son utilisation
+	 */
 	public void deleteAllie() {
 		
 		
 	}
-
+	/**
+	 * Méthode qui actualise un nom
+	 * @param attribute
+	 * 		nouveau nom
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	/**
+	 * Méthode qui actualise la valeur géant
+	 * @param parseInt
+	 * @param j
+	 * 		
+	 */
 	public void setGeant(int geant,int index) {
 		this.geant[index] = geant;
 	}
-
+	/**
+	 * Méthode qui actualise la valeur farfadet
+	 * @param parseInt
+	 * @param j
+	 * 		
+	 */
 	public void setFarfadet(int farfadet, int index) {
 		this.farfadet[index] = farfadet;
 	}
-
+	/**
+	 * Méthode qui actualise la valeur engrais
+	 * @param parseInt
+	 * @param j
+	 * 		
+	 */
 	public void setEngrais(int engrais ,int index) {
 		this.engrais[index] = engrais ;
 	}
@@ -171,60 +228,106 @@ public class Ingredient extends Card {
 	{
 		tasdecartes.clear();
 	}
-	@Override
+	/**
+	 * Méthode qui actualise une valeur d'un joueur
+	 * @param parseInt
+	 * 		nouvelle valeur
+	 * @param j
+	 * 		joueur dont on veux la valeur de la carte
+	 */
 	public void setValeur(int parseInt, int j) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	/**
+	 * Méthode qui actualise une liste de carte
+	 * @param cartes
+	 * 		nouvelle liste de carte
+	 */
 	public void setTasDeCartes(Queue<Card> cartes) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Methode qui donne un nom
+	 * @return
+	 * 		renvoie un nom
+	 */
 	public String getName() {
 		return name;
 	}
 
-
+	/**
+	 * Methode qui donne les valeurs d'un géant
+	 * @return
+	 * 		renvoie un tableau
+	 */
 	public int[] getGeant() {
 		return geant;
 	}
 
-
+	/**
+	 * Methode qui donne les valeurs d'un farfadet
+	 * @return
+	 * 		renvoie un tableau
+	 */
 	public int[] getFarfadet() {
 		return farfadet;
 	}
 
-
+	/**
+	 * Methode qui donne les valeurs d'un engrais
+	 * @return
+	 * 		renvoie un tableau
+	 */
 	public int[] getEngrais() {
 		return engrais;
 	}
 
-
+	/**
+	 * Methode qui donne une liste de carte
+	 * @return
+	 * 		renvoie une liste de carte
+	 */
 	public  List<Card> getTasDeCartes() {
 		return tasdecartes;
 	}
 
 
-	@Override
+	/**
+	 * Methode qui donne un titre
+	 * @return
+	 * 		renvoie un titre
+	 */
 	public String getTitre() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	/**
+	 * Methode qui donne une valeur
+	 * @return
+	 * 		renvoie une valeur
+	 */
 	public int[] getValeur() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
+	/**
+	 * Méthode qui permet d'afficher un message sur la console.
+	 * 
+	 */
 	public String toString(){
 		
 		return "\n\n\t"+name+"\n"+geant[0]+"\t"+geant[1]+"\t"+geant[2]+"\t"+geant[3]+"\n"+engrais[0]+"\t"+engrais[1]+"\t"+engrais[2]+"\t"+engrais[3]+"\n"+farfadet[0]+"\t"+farfadet[1]+"\t"+farfadet[2]+"\t"+farfadet[3];
 	}
+	/**
+	 * Méthode qui permet d'afficher un message en html sur l'interface graphique.
+	 * 
+	 */
 	public String toString2()
 	{
 		/*if (Partie.getTour() == 0){
@@ -252,20 +355,24 @@ public class Ingredient extends Card {
 		}
 	}
 
-
+	/**
+	 * Methode qui donne le nom du logo
+	 * @return
+	 * 		renvoie le nom du logo
+	 */
 	public String getLogo() {
 		return logo;
 	}
 
 
+	/**
+	 * Méthode qui actualise le nom d'un logo
+	 * @param logo
+	 * 		nouveau nom
+	 */
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
-
-
-
-	
-
-	}
+}
 	
 

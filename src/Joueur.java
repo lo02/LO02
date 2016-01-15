@@ -3,7 +3,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Random;
-
+/**
+ * 
+ * @author Anass et Gilles
+ * Classe qui contient le code de joueur ainsi que les méthodes qui vont lui permettre de jouer.
+ */
 public class Joueur {
 
 	/**
@@ -33,10 +37,13 @@ public class Joueur {
 	/**
 	 * Atribut qui contient la carte allié d'un joueur
 	 * @see Joueur#getAllie()
+	 * @see Joueur#setAllie(Card)
 	 */
 	protected Card allie  ;
 	/**
 	 * Attribut qui va compter les menhirs d'un joueur
+	 * @see Joueur#getCompteurMenhir()
+	 * @see Joueur#setCompteurMenhir(int)
 	 */
 	protected int compteurMenhir = 0;
 	
